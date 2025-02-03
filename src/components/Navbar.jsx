@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";  
+import { AppContext } from "../context/AppContext"; 
 
 const Navbar = () => {
+  const navigate = useNavigate(); 
+  const { cart } = useContext(AppContext); 
+
+  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">Navbar</a>
+        <a className="navbar-brand" href="/">Logo</a>
         <button
           className="navbar-toggler"
           type="button"
@@ -19,10 +26,10 @@ const Navbar = () => {
         <div className="collapse navbar-collapse " id="navbarSupportedContent">
           <ul className="navbar-nav mb-2 mb-lg-0 ms-auto pe-3">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">Inicio</a>
+              <a className="nav-link active" aria-current="page" href="/">Inicio</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Catálogo</a>
+              <a className="nav-link" href="/gallery">Catálogo</a>
             </li>
             <li className="nav-item dropdown">
               <a
@@ -35,19 +42,24 @@ const Navbar = () => {
                 Iniciar sesión
               </a>
               <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="#">Iniciar sesión</a></li>
-                <li><a className="dropdown-item" href="#">Registrate</a></li>
+                <li><a className="dropdown-item" href="/login">Iniciar sesión</a></li>
+                <li><a className="dropdown-item" href="/registro">Registrate</a></li>
                 <li><hr className="dropdown-divider" /></li>
-                <li><a className="dropdown-item" href="#">Cerrar sesión</a></li>
+                <li><a className="dropdown-item" href="/profile">Cerrar sesión</a></li>
               </ul>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Mi perfil</a>
+              <a className="nav-link" href="/profile">Mi perfil</a>
             </li>
-            
           </ul>
-          <form className="d-flex" >
-            <button className="btn btn-outline-success" type="submit">Mi carrito</button>
+          <form className="d-flex">
+            <button
+              className="btn btn-outline-primary"
+              type="button"
+              onClick={() => navigate("/cart")} 
+            >
+              Mi carrito ({totalItems}) 
+            </button>          
           </form>
         </div>
       </div>

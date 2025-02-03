@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Registro from "./pages/Registro";
 
+
 function App() {
   return (
     <AppProvider>

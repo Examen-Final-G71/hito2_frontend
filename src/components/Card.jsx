@@ -1,64 +1,33 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../context/AppContext"; 
+import { Link } from "react-router-dom"; 
 
-import seguridadImg from "../assets/img/seguridad.png";
-import limpiezaImg from "../assets/img/limpieza.png";
-import libreriaImg from "../assets/img/libreria.png";
+const Card = ({ id, title, description, image, price, onClick }) => {
+  const { cart } = useContext(AppContext); 
 
-const Cardsmain = () => {
+  const productInCart = cart.find(item => item.id === id);
+  const quantity = productInCart ? productInCart.quantity : 0; 
+
   return (
-    <div className="d-flex justify-content-center mt-5 mb-5 gap-3"> {/* gap-3 agrega espacio entre las cards */}
-      <div className="card" style={{ width: "18rem" }}>
-        <img
-          src={seguridadImg}
-          className="card-img-top"
-          alt="Ropa de seguridad"
-        />
-        <div className="card-body">
-          <h5 className="card-title">Ropa de seguridad</h5>
-          <p className="card-text">
-            Ropa especializada para protección en diversos ambientes de trabajo.
-          </p>
-          <a href="#" className="btn btn-primary">
-            Ver más
-          </a>
-        </div>
-      </div>
+    <div className="card h-100">
+      <img src={image} className="card-img-top" alt={title} />
+      <div className="card-body">
+        <h5 className="card-title">
+          {title} {quantity > 0 && `(${quantity})`} 
+        </h5>
+        <p className="card-text">{description}</p>
+        <p className="card-text">Precio: ${price}</p>
+        <Link to={`/product/${id}`} className="btn btn-outline-secondary me-2">
+          Ver más
+        </Link> 
+        <button className="btn btn-primary " onClick={onClick}>
+          Añadir al Carrito
+        </button>
+        
 
-      <div className="card" style={{ width: "18rem" }}>
-        <img
-          src={limpiezaImg}
-          className="card-img-top"
-          alt="Productos de limpieza"
-        />
-        <div className="card-body">
-          <h5 className="card-title">Productos de limpieza</h5>
-          <p className="card-text">
-            Una variedad de productos para mantener tus espacios impecables.
-          </p>
-          <a href="#" className="btn btn-primary">
-            Ver más
-          </a>
-        </div>
-      </div>
-
-      <div className="card" style={{ width: "18rem" }}>
-        <img
-          src={libreriaImg}
-          className="card-img-top"
-          alt="Artículos de librería"
-        />
-        <div className="card-body">
-          <h5 className="card-title">Artículos de librería</h5>
-          <p className="card-text">
-            Artículos esenciales para tu oficina o espacio de estudio.
-          </p>
-          <a href="#" className="btn btn-primary">
-            Ver más
-          </a>
-        </div>
       </div>
     </div>
   );
 };
 
-export default Cardsmain;
+export default Card;

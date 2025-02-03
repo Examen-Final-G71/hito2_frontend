@@ -3,26 +3,26 @@ import { AppContext } from "../context/AppContext";
 import Card from "../components/Card";
 
 function Gallery() {
-  const { addToCart } = useContext(AppContext);
-
-  const products = [
-    { id: 1, title: "Producto A", description: "Descripción A", image: "/img/a.jpg" },
-    { id: 2, title: "Producto B", description: "Descripción B", image: "/img/b.jpg" },
-    { id: 3, title: "Producto C", description: "Descripción C", image: "/img/c.jpg" },
-  ];
+  const { products, addToCart } = useContext(AppContext); 
+  console.log("Productos en Gallery:", products);
 
   return (
-    <div className="gallery">
-      {products.map((product) => (
-        <Card
-          key={product.id}
-          title={product.title}
-          description={product.description}
-          image={product.image}
-          buttonText="Añadir al Carrito"
-          onClick={() => addToCart(product)}
-        />
-      ))}
+    <div className="container mt-5">
+      <div className="row">
+        {products.map((product) => (
+          <div className="col-12 col-md-4 col-lg-3 mb-4" key={product.id}>
+            <Card
+              title={product.title}
+              description={product.description}
+              image={product.image}
+              price={product.price}  
+              buttonText="Añadir al Carrito"
+              id={product.id} 
+              onClick={() => addToCart(product)} 
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

@@ -11,26 +11,26 @@ const Footer = () => {
         </li>
         <li className="nav-item">
           <a href="#" className="nav-link px-2 text-muted">
-            Features
+            Red social 1
           </a>
         </li>
         <li className="nav-item">
           <a href="#" className="nav-link px-2 text-muted">
-            Pricing
+          Red social 2
           </a>
         </li>
         <li className="nav-item">
           <a href="#" className="nav-link px-2 text-muted">
-            FAQs
+          Red social 3
           </a>
         </li>
         <li className="nav-item">
           <a href="#" className="nav-link px-2 text-muted">
-            About
+          Red social 4
           </a>
         </li>
       </ul>
-      <p className="text-center text-muted">© 2025 Company, Inc</p>
+      <p className="text-center text-muted">© 2025 Derechos reservados</p>
     </footer>
   );
 };
