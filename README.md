@@ -1,6 +1,6 @@
 Examen Final
 
-Gruupo:
+Grupo:
 Veróniica Gatiica
 Fabiola Muñoz
 Felipe Sánchez
