@@ -1,9 +1,8 @@
-# React + Vite
+Examen Final
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Gruupo:
+Veróniica Gatiica
+Fabiola Muñoz
+Felipe Sánchez
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# hito2_frontend
+Nuestra idea principal es crear un market place el cual permita a las empresas realizar compras al detalla y por mayor teniendo como objetivo a empresas mas grandes que no pueden comprar en el retail y buscan distribuidores dando una solucion a la amplitud de mercado y opciones de precio y calidad.
