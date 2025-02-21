@@ -24,9 +24,7 @@ const Profile = () => {
       <h2 className="text-center">Perfil de Usuario</h2>
       <div className="card mx-auto mt-4" style={{ maxWidth: "400px" }}>
         <div className="card-body text-center">
-          {/* Asegúrate de que el campo se llame "nombre" en el objeto user.
-              Si se llama "name", cambia user.nombre por user.name */}
-          <h4>{user.nombre}</h4> {/* Ajusta según el campo correcto */}
+          <h4>{user.nombre}</h4>
           <p>Email: {user.correo}</p>
           <button className="btn btn-danger mt-3" onClick={handleLogout}>
             Cerrar Sesión
