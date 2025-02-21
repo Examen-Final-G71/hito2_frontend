@@ -1,0 +1,83 @@
+[
+    {
+      "id": 1,
+      "title": "Guantes de seguridad",
+      "description": "Guantes resistentes para protección en trabajos manuales.",
+      "image": "https://guantesdeseguridad.cl/cdn/shop/files/guantesdeseguridad.png?v=1691261769",
+      "price": 3000,
+      "stock": 10,
+      "category": "Ropa de seguridad"
+    },
+    {
+      "id": 2,
+      "title": "Lentes de seguridad",
+      "description": "Lentes protectores para resguardar los ojos de impactos.",
+      "image": "https://bbismarck.cl/wp-content/uploads/2023/03/cod1906-p727427-5ef82ecdd1c633bdb5527a96ae82c3d6.jpg",
+      "price": 5000,
+      "stock": 15,
+      "category": "Ropa de seguridad"
+    },
+    {
+      "id": 3,
+      "title": "Casco de seguridad",
+      "description": "Casco resistente para protección de la cabeza en obras.",
+      "image": "https://s7d9.scene7.com/is/image/minesafetyappliances/V-Gard930Non-VentedSafetyHelmetwithIntegratedOverSpectacles_000060003500001020?$Home%20Market%20Card$",
+      "price": 8000,
+      "stock": 8,
+      "category": "Ropa de seguridad"
+    },
+    {
+      "id": 4,
+      "title": "Desinfectante Virutex",
+      "description": "Desinfectante líquido para superficies y manos.",
+      "image": "https://www.prisa.cl/media/cache/attachment/filter/product_gallery_main/b6b1adc76b36bd6a7f81344215e93277/78184/632114260681d634963287.png",
+      "price": 3500,
+      "stock": 15,
+      "category": "Productos de limpieza"
+    },
+    {
+      "id": 5,
+      "title": "Paños de microfibra",
+      "description": "Paños absorbentes para limpieza de superficies.",
+      "image": "https://fasit.cl/pub/media/catalog/product/cache/fcb558073145b303211f662a2d8c1fe5/g/e/generico-pano-microfibra-rosado-4001068.jpg",
+      "price": 1500,
+      "stock": 20,
+      "category": "Productos de limpieza"
+    },
+    {
+      "id": 6,
+      "title": "Escoba de cerdas",
+      "description": "Escoba con cerdas duras para barrer pisos.",
+      "image": "https://http2.mlstatic.com/D_NQ_NP_842324-MLC76417673065_052024-O.webp",
+      "price": 2000,
+      "stock": 25,
+      "category": "Productos de limpieza"
+    },
+    {
+      "id": 7,
+      "title": "Lápiz Pasta BIC",
+      "description": "Lápiz de pasta confiable para escritura diaria.",
+      "image": "https://libreriaolimpica.cl/4629-large_default/lapiz-bic-punta-fina-.jpg",
+      "price": 500,
+      "stock": 50,
+      "category": "Artículos de librería"
+    },
+    {
+      "id": 8,
+      "title": "Cuaderno universitario",
+      "description": "Cuaderno de hojas rayadas para notas y apuntes.",
+      "image": "https://dimeiggsschl.vtexassets.com/arquivos/ids/155520-800-auto?v=638019017905400000&width=800&height=auto&aspect=true",
+      "price": 1000,
+      "stock": 30,
+      "category": "Artículos de librería"
+    },
+    {
+      "id": 9,
+      "title": "Carpeta de anillas",
+      "description": "Carpeta con anillas para organizar documentos.",
+      "image": "https://sgfm.elcorteingles.es/SGFM/dctm/MEDIA03/202109/14/00106661909595____1__640x640.jpg",
+      "price": 1500,
+      "stock": 20,
+      "category": "Artículos de librería"
+    }
+]
