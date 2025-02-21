@@ -67,11 +67,7 @@ const Login = () => {
       setShowResetForm(false);
     } catch (error) {
       console.error("Error al enviar email de restablecimiento:", error);
-      Swal.fire(
-        "Error",
-        "Error al enviar email de restablecimiento",
-        "error"
-      );
+      Swal.fire("Error", "Error al enviar email de restablecimiento", "error");
     }
   };
 
@@ -178,4 +174,3 @@ const Login = () => {
 };
 
 export default Login;
-
