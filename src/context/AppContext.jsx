@@ -9,8 +9,8 @@ export function AppProvider({ children }) {
     return savedCart ? JSON.parse(savedCart) : [];
   });
 
-  const [user, setUser] = useState(null);
-  
+  const [user, setUser] = useState(null); 
+
   const products = productsData.map((product) => {
     return { ...product }; 
   });
@@ -22,26 +22,26 @@ export function AppProvider({ children }) {
   }, [cart]);
 
   const addToCart = (product) => {
-    setCart((prev) => {
-      const existingProduct = prev.find((item) => item.id === product.id);
+    setCart((prevCart) => {
+      const existingProduct = prevCart.find((item) => item.id === product.id);
       if (existingProduct) {
-        return prev.map((item) =>
+        return prevCart.map((item) =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
       }
-      return [...prev, { ...product, quantity: 1 }];
+      return [...prevCart, { ...product, quantity: 1 }];
     });
   };
 
   const removeFromCart = (productId) => {
-    setCart((prev) => prev.filter((item) => item.id !== productId));
+    setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
   };
 
   const increaseQuantity = (productId) => {
-    setCart((prev) =>
-      prev.map((item) =>
+    setCart((prevCart) =>
+      prevCart.map((item) =>
         item.id === productId
           ? { ...item, quantity: item.quantity + 1 }
           : item
@@ -50,8 +50,8 @@ export function AppProvider({ children }) {
   };
 
   const decreaseQuantity = (productId) => {
-    setCart((prev) =>
-      prev.map((item) =>
+    setCart((prevCart) =>
+      prevCart.map((item) =>
         item.id === productId && item.quantity > 1
           ? { ...item, quantity: item.quantity - 1 }
           : item
@@ -60,14 +60,28 @@ export function AppProvider({ children }) {
   };
 
   const login = (userData) => {
-    console.log("Usuario logueado:", userData); // <-- Agregar para verificar que se guarda
+    console.log("Usuario logueado:", userData); 
     setUser(userData);
-};
+  };
 
-  const logout = () => setUser(null);
+  const logout = () => {
+    setUser(null); 
+  };
 
   return (
-    <AppContext.Provider value={{ cart, addToCart, removeFromCart, user, login, logout, products, increaseQuantity, decreaseQuantity }}>
+    <AppContext.Provider
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+        user,
+        login,
+        logout,
+        products,
+        increaseQuantity,
+        decreaseQuantity,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );

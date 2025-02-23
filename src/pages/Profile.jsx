@@ -1,22 +1,39 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 
 const Profile = () => {
-  const { user, logout } = useContext(AppContext);
+  const { user, token, setUser, logout } = useContext(AppContext);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (!token) {
+      return navigate("/login"); 
+    }
+
+    fetch("https://hito3-backend.onrender.com/api/usuarios/perfil", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data) {
+          setUser(data); 
+        } else {
+          navigate("/login"); 
+        }
+      })
+      .catch(() => navigate("/login")); 
+  }, [token, navigate, setUser]);
+
   if (!user) {
-    return (
-      <p className="text-center mt-5">
-        No has iniciado sesión. <Link to="/login" className="text-decoration-none">Inicia sesión</Link>
-      </p>
-    );
+    return <Navigate to="/login" />;
   }
 
   const handleLogout = () => {
-    logout();
-    navigate("/login"); // Redirigir al login después de cerrar sesión
+    logout(); 
+    navigate("/login"); 
   };
 
   return (

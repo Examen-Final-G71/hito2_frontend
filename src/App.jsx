@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { AppProvider } from "./context/AppContext";
+import { AppProvider } from "./context/AppContext"; 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Gallery from "./pages/Gallery";
@@ -14,22 +14,22 @@ import CreatePost from "./pages/CreatePost";
 
 function App() {
   return (
-      <Router basename="/">
-        <AppProvider>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/registro" element={<Registro />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/product/:id" element={<ProductView />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/createpost" element={<CreatePost />} />
-          </Routes>
-          <Footer />
-        </AppProvider>
-      </Router>
+    <Router basename="/">
+      <AppProvider> 
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/registro" element={<Registro />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/product/:id" element={<ProductView />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/createpost" element={<CreatePost />} />
+        </Routes>
+        <Footer />
+      </AppProvider>
+    </Router>
   );
 }
 

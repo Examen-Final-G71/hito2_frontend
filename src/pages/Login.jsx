@@ -1,11 +1,11 @@
-import React, { useState, useContext } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useState, useContext, useEffect } from "react";
+import { useNavigate, Link, Navigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import { Modal, Button, Form, Spinner } from "react-bootstrap";
 import Swal from "sweetalert2";
 
 const Login = () => {
-  const { login } = useContext(AppContext);
+  const { user, login } = useContext(AppContext);  
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -16,6 +16,12 @@ const Login = () => {
 
   const [showResetForm, setShowResetForm] = useState(false);
   const [resetEmail, setResetEmail] = useState("");
+
+  useEffect(() => {
+    if (user) {
+      navigate("/profile");
+    }
+  }, [user, navigate]);  
 
   const handleChange = (e) => {
     setFormData({
@@ -42,8 +48,8 @@ const Login = () => {
 
       if (response.ok) {
         console.log("Usuario recibido:", data.usuario);
-        login(data.usuario);
-        navigate("/profile");
+        login(data.usuario); 
+        navigate("/profile"); 
       } else {
         Swal.fire("Error", data.message || "Error al iniciar sesión", "error");
       }
@@ -71,7 +77,9 @@ const Login = () => {
     }
   };
 
-  return (
+  return user ? (
+    <Navigate to="/profile" /> 
+  ) : (
     <div className="d-flex justify-content-center vh-80 bg-light">
       <div className="card p-4" style={{ width: "22rem" }}>
         <h3 className="text-center mb-3">Iniciar sesión</h3>
