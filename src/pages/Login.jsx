@@ -1,16 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useNavigate, Link, Navigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import { Modal, Button, Form, Spinner } from "react-bootstrap";
 import Swal from "sweetalert2";
 
 const Login = () => {
-  const { user, login } = useContext(AppContext);  
+  const { user, login } = useContext(AppContext); 
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     correo: "",
-    password: ""
+    password: "",
   });
   const [loading, setLoading] = useState(false);
 
@@ -21,12 +21,12 @@ const Login = () => {
     if (user) {
       navigate("/profile");
     }
-  }, [user, navigate]);  
+  }, [user, navigate]);
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.id]: e.target.value.trim()
+      [e.target.id]: e.target.value.trim(),
     });
   };
 
@@ -40,7 +40,10 @@ const Login = () => {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData)
+          body: JSON.stringify({
+            email: formData.correo,  
+            password: formData.password,
+          })
         }
       );
 
@@ -48,8 +51,7 @@ const Login = () => {
 
       if (response.ok) {
         console.log("Usuario recibido:", data.usuario);
-        login(data.usuario); 
-        navigate("/profile"); 
+        login(data.usuario);  
       } else {
         Swal.fire("Error", data.message || "Error al iniciar sesión", "error");
       }
