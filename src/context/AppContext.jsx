@@ -9,36 +9,17 @@ export function AppProvider({ children }) {
     return savedCart ? JSON.parse(savedCart) : [];
   });
 
-  const [user, setUser] = useState(() => {
-    const savedUser = sessionStorage.getItem("user");
-    return savedUser ? JSON.parse(savedUser) : null;
-  });
+  const [user, setUser] = useState(null); 
 
-  const [token, setToken] = useState(() => {
-    return sessionStorage.getItem("token") || null;
+  const products = productsData.map((product) => {
+    return { ...product }; 
   });
-
-  const products = productsData.map((product) => ({ ...product }));
 
   useEffect(() => {
-    sessionStorage.setItem("cart", JSON.stringify(cart));
+    if (cart.length > 0) {
+      sessionStorage.setItem("cart", JSON.stringify(cart));
+    }
   }, [cart]);
-
-  useEffect(() => {
-    if (user) {
-      sessionStorage.setItem("user", JSON.stringify(user));
-    } else {
-      sessionStorage.removeItem("user");
-    }
-  }, [user]);
-
-  useEffect(() => {
-    if (token) {
-      sessionStorage.setItem("token", token);
-    } else {
-      sessionStorage.removeItem("token");
-    }
-  }, [token]);
 
   const addToCart = (product) => {
     setCart((prevCart) => {
@@ -78,26 +59,13 @@ export function AppProvider({ children }) {
     );
   };
 
-  const login = (userData, authToken, navigate) => {
-    console.log("🔹 Usuario logueado:", userData);
-    console.log("🔹 Token recibido:", authToken);
-
+  const login = (userData) => {
+    console.log("Usuario logueado:", userData); 
     setUser(userData);
-    setToken(authToken);
-
-    sessionStorage.setItem("user", JSON.stringify(userData));
-    sessionStorage.setItem("token", authToken);
-
-    // 🔥 Esperamos un pequeño tiempo antes de redirigir para evitar problemas con `useState`
-    setTimeout(() => {
-      navigate("/profile");
-    }, 500);
   };
 
   const logout = () => {
-    setUser(null);
-    setToken(null);
-    sessionStorage.clear(); // 🔥 Borra todo el sessionStorage
+    setUser(null); 
   };
 
   return (
@@ -107,7 +75,6 @@ export function AppProvider({ children }) {
         addToCart,
         removeFromCart,
         user,
-        token,
         login,
         logout,
         products,

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, Navigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import { Modal, Button, Form, Spinner } from "react-bootstrap";
 import Swal from "sweetalert2";
@@ -13,6 +13,7 @@ const Login = () => {
     password: ""
   });
   const [loading, setLoading] = useState(false);
+
   const [showResetForm, setShowResetForm] = useState(false);
   const [resetEmail, setResetEmail] = useState("");
 
@@ -44,7 +45,7 @@ const Login = () => {
 
       if (response.ok) {
         console.log("Usuario recibido:", data.user);
-        login(data.user, data.token, navigate); // 🔥 PASAMOS `navigate`
+        login(data.user);
       } else {
         Swal.fire("Error", data.message || "Error al iniciar sesión", "error");
       }
@@ -73,7 +74,7 @@ const Login = () => {
   };
 
   if (user) {
-    return null;
+    return <Navigate to="/profile" />;
   }
 
   return (
@@ -88,7 +89,9 @@ const Login = () => {
 
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="correo" className="form-label">Email</label>
+            <label htmlFor="correo" className="form-label">
+              Email
+            </label>
             <input
               type="email"
               className="form-control"
@@ -101,7 +104,9 @@ const Login = () => {
           </div>
 
           <div className="mb-3">
-            <label htmlFor="password" className="form-label">Contraseña</label>
+            <label htmlFor="password" className="form-label">
+              Contraseña
+            </label>
             <input
               type="password"
               className="form-control"
@@ -123,7 +128,11 @@ const Login = () => {
             </Link>
           </div>
 
-          <button type="submit" className="btn btn-primary w-100" disabled={loading}>
+          <button
+            type="submit"
+            className="btn btn-primary w-100"
+            disabled={loading}
+          >
             {loading ? (
               <>
                 <Spinner animation="border" size="sm" /> Iniciando...
@@ -137,7 +146,9 @@ const Login = () => {
         <div className="text-center mt-3">
           <p className="small">
             ¿Eres nuevo?{" "}
-            <Link to="/registro" className="text-decoration-none">Regístrate</Link>
+            <Link to="/registro" className="text-decoration-none">
+              Regístrate
+            </Link>
           </p>
         </div>
       </div>

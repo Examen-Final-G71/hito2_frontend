@@ -1,16 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 
 const Profile = () => {
   const { user, token, setUser, logout } = useContext(AppContext);
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true); // Nuevo estado de carga
 
   useEffect(() => {
     if (!token) {
-      navigate("/login");
-      return;
+      return navigate("/login"); 
     }
 
     fetch("https://hito3-backend.onrender.com/usuarios/perfil", {
@@ -20,35 +18,22 @@ const Profile = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data && data.nombre) {
-          setUser(data);
+        if (data) {
+          setUser(data); 
         } else {
-          logout(); 
-          navigate("/login");
+          navigate("/login"); 
         }
       })
-      .catch(() => {
-        logout();
-        navigate("/login");
-      })
-      .finally(() => setLoading(false)); 
-  }, [token, navigate, setUser, logout]);
-
-  if (loading) {
-    return (
-      <div className="text-center mt-5">
-        <p>Cargando perfil...</p>
-      </div>
-    );
-  }
+      .catch(() => navigate("/login")); 
+  }, [token, navigate, setUser]);
 
   if (!user) {
-    return null; 
+    return <Navigate to="/login" />;
   }
 
   const handleLogout = () => {
-    logout();
-    navigate("/login");
+    logout(); 
+    navigate("/login"); 
   };
 
   return (
