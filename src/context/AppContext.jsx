@@ -9,17 +9,38 @@ export function AppProvider({ children }) {
     return savedCart ? JSON.parse(savedCart) : [];
   });
 
-  const [user, setUser] = useState(null); 
-
-  const products = productsData.map((product) => {
-    return { ...product }; 
+  const [user, setUser] = useState(() => {
+    const savedUser = sessionStorage.getItem("user");
+    return savedUser ? JSON.parse(savedUser) : null;
   });
+
+  const [token, setToken] = useState(() => {
+    return sessionStorage.getItem("token") || null;
+  });
+
+  const products = productsData.map((product) => ({ ...product }));
 
   useEffect(() => {
     if (cart.length > 0) {
       sessionStorage.setItem("cart", JSON.stringify(cart));
     }
   }, [cart]);
+
+  useEffect(() => {
+    if (user) {
+      sessionStorage.setItem("user", JSON.stringify(user));
+    } else {
+      sessionStorage.removeItem("user");
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (token) {
+      sessionStorage.setItem("token", token);
+    } else {
+      sessionStorage.removeItem("token");
+    }
+  }, [token]);
 
   const addToCart = (product) => {
     setCart((prevCart) => {
@@ -59,13 +80,16 @@ export function AppProvider({ children }) {
     );
   };
 
-  const login = (userData) => {
-    console.log("Usuario logueado:", userData); 
+  const login = (userData, authToken) => {
+    console.log("Usuario logueado:", userData);
     setUser(userData);
+    setToken(authToken); // Guardar el token
   };
 
   const logout = () => {
-    setUser(null); 
+    setUser(null);
+    setToken(null);
+    sessionStorage.removeItem("cart");
   };
 
   return (
@@ -75,6 +99,7 @@ export function AppProvider({ children }) {
         addToCart,
         removeFromCart,
         user,
+        token,
         login,
         logout,
         products,
