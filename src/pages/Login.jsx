@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useNavigate, Link, Navigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import { Modal, Button, Form, Spinner } from "react-bootstrap";
 import Swal from "sweetalert2";
@@ -46,6 +46,7 @@ const Login = () => {
       if (response.ok) {
         console.log("Usuario recibido:", data.user);
         login(data.user, data.token);
+        navigate("/profile"); // Redirección a /profile después de login exitoso
       } else {
         Swal.fire("Error", data.message || "Error al iniciar sesión", "error");
       }
@@ -74,7 +75,9 @@ const Login = () => {
   };
 
   if (user) {
-    return <Navigate to="/profile" />;
+    // Redirección solo si ya está logueado, no es necesario
+    // tener un Navigate extra aquí porque ya lo hacemos en el handleSubmit
+    return null;
   }
 
   return (
