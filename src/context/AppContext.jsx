@@ -21,9 +21,7 @@ export function AppProvider({ children }) {
   const products = productsData.map((product) => ({ ...product }));
 
   useEffect(() => {
-    if (cart.length > 0) {
-      sessionStorage.setItem("cart", JSON.stringify(cart));
-    }
+    sessionStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
   useEffect(() => {
@@ -80,16 +78,26 @@ export function AppProvider({ children }) {
     );
   };
 
-  const login = (userData, authToken) => {
-    console.log("Usuario logueado:", userData);
+  const login = (userData, authToken, navigate) => {
+    console.log("🔹 Usuario logueado:", userData);
+    console.log("🔹 Token recibido:", authToken);
+
     setUser(userData);
-    setToken(authToken); // Guardar el token
+    setToken(authToken);
+
+    sessionStorage.setItem("user", JSON.stringify(userData));
+    sessionStorage.setItem("token", authToken);
+
+    // 🔥 Esperamos un pequeño tiempo antes de redirigir para evitar problemas con `useState`
+    setTimeout(() => {
+      navigate("/profile");
+    }, 500);
   };
 
   const logout = () => {
     setUser(null);
     setToken(null);
-    sessionStorage.removeItem("cart");
+    sessionStorage.clear(); // 🔥 Borra todo el sessionStorage
   };
 
   return (

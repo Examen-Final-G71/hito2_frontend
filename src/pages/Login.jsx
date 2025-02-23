@@ -13,7 +13,6 @@ const Login = () => {
     password: ""
   });
   const [loading, setLoading] = useState(false);
-
   const [showResetForm, setShowResetForm] = useState(false);
   const [resetEmail, setResetEmail] = useState("");
 
@@ -45,8 +44,7 @@ const Login = () => {
 
       if (response.ok) {
         console.log("Usuario recibido:", data.user);
-        login(data.user, data.token);
-        navigate("/profile"); // Redirección a /profile después de login exitoso
+        login(data.user, data.token, navigate); // 🔥 PASAMOS `navigate`
       } else {
         Swal.fire("Error", data.message || "Error al iniciar sesión", "error");
       }
@@ -75,8 +73,6 @@ const Login = () => {
   };
 
   if (user) {
-    // Redirección solo si ya está logueado, no es necesario
-    // tener un Navigate extra aquí porque ya lo hacemos en el handleSubmit
     return null;
   }
 
@@ -92,9 +88,7 @@ const Login = () => {
 
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="correo" className="form-label">
-              Email
-            </label>
+            <label htmlFor="correo" className="form-label">Email</label>
             <input
               type="email"
               className="form-control"
@@ -107,9 +101,7 @@ const Login = () => {
           </div>
 
           <div className="mb-3">
-            <label htmlFor="password" className="form-label">
-              Contraseña
-            </label>
+            <label htmlFor="password" className="form-label">Contraseña</label>
             <input
               type="password"
               className="form-control"
@@ -131,11 +123,7 @@ const Login = () => {
             </Link>
           </div>
 
-          <button
-            type="submit"
-            className="btn btn-primary w-100"
-            disabled={loading}
-          >
+          <button type="submit" className="btn btn-primary w-100" disabled={loading}>
             {loading ? (
               <>
                 <Spinner animation="border" size="sm" /> Iniciando...
@@ -149,9 +137,7 @@ const Login = () => {
         <div className="text-center mt-3">
           <p className="small">
             ¿Eres nuevo?{" "}
-            <Link to="/registro" className="text-decoration-none">
-              Regístrate
-            </Link>
+            <Link to="/registro" className="text-decoration-none">Regístrate</Link>
           </p>
         </div>
       </div>
