@@ -1,16 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, Navigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import { Modal, Button, Form, Spinner } from "react-bootstrap";
 import Swal from "sweetalert2";
 
 const Login = () => {
-  const { user, login } = useContext(AppContext); 
+  const { user, login } = useContext(AppContext);
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     correo: "",
-    password: "",
+    password: ""
   });
   const [loading, setLoading] = useState(false);
 
@@ -26,7 +26,7 @@ const Login = () => {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.id]: e.target.value.trim(),
+      [e.target.id]: e.target.value.trim()
     });
   };
 
@@ -42,7 +42,7 @@ const Login = () => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             email: formData.correo,  
-            password: formData.password,
+            password: formData.password
           })
         }
       );
@@ -50,8 +50,9 @@ const Login = () => {
       const data = await response.json();
 
       if (response.ok) {
-        console.log("Usuario recibido:", data.usuario);
-        login(data.usuario);  
+        console.log("Usuario recibido:", data.user);
+        login(data.user);
+        navigate("/profile");
       } else {
         Swal.fire("Error", data.message || "Error al iniciar sesión", "error");
       }
@@ -80,7 +81,7 @@ const Login = () => {
   };
 
   return user ? (
-    <Navigate to="/profile" /> 
+    <Navigate to="/profile" />
   ) : (
     <div className="d-flex justify-content-center vh-80 bg-light">
       <div className="card p-4" style={{ width: "22rem" }}>
