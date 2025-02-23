@@ -2,7 +2,16 @@ import React, { useContext, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 import { useNavigate, Navigate } from "react-router-dom";
 
+import React from 'react'
+
 const Profile = () => {
+  return (
+    <div>
+      <h1>hola</h1>
+    </div>
+  )
+}
+/* const Profile = () => {
   const { user, token, setUser, logout } = useContext(AppContext);
   const navigate = useNavigate();
 
@@ -50,6 +59,6 @@ const Profile = () => {
       </div>
     </div>
   );
-};
+}; */
 
 export default Profile;
