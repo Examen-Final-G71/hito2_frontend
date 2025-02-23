@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate, Link, Navigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import { Modal, Button, Form, Spinner } from "react-bootstrap";
@@ -16,12 +16,6 @@ const Login = () => {
 
   const [showResetForm, setShowResetForm] = useState(false);
   const [resetEmail, setResetEmail] = useState("");
-
-  useEffect(() => {
-    if (user) {
-      navigate("/profile");
-    }
-  }, [user, navigate]);
 
   const handleChange = (e) => {
     setFormData({
@@ -52,7 +46,6 @@ const Login = () => {
       if (response.ok) {
         console.log("Usuario recibido:", data.user);
         login(data.user);
-        navigate("/profile");
       } else {
         Swal.fire("Error", data.message || "Error al iniciar sesión", "error");
       }
@@ -80,9 +73,11 @@ const Login = () => {
     }
   };
 
-  return user ? (
-    <Navigate to="/profile" />
-  ) : (
+  if (user) {
+    return <Navigate to="/profile" />;
+  }
+
+  return (
     <div className="d-flex justify-content-center vh-80 bg-light">
       <div className="card p-4" style={{ width: "22rem" }}>
         <h3 className="text-center mb-3">Iniciar sesión</h3>
