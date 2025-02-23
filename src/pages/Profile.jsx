@@ -2,8 +2,6 @@ import React, { useContext, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 import { useNavigate, Navigate } from "react-router-dom";
 
-import React from 'react'
-
 const Profile = () => {
   return (
     <div>
