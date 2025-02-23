@@ -11,7 +11,7 @@ const Profile = () => {
       return navigate("/login"); 
     }
 
-    fetch("https://hito3-backend.onrender.com/api/usuarios/perfil", {
+    fetch("https://hito3-backend.onrender.com/usuarios/perfil", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
