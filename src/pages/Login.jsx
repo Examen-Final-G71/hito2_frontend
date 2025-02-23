@@ -41,7 +41,7 @@ const Login = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            email: formData.correo,  
+            correo: formData.correo,  
             password: formData.password
           })
         }
