@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 
 const Cart = () => {
-  const { cart, increaseQuantity, decreaseQuantity, removeFromCart } = useContext(AppContext);
+  const { cart, increaseQuantity, decreaseQuantity, removeFromCart, getCartTotal } = useContext(AppContext);
 
   if (cart.length === 0) {
     return (
@@ -31,44 +31,41 @@ const Cart = () => {
                 <p className="card-text">{item.description}</p>
                 <p className="card-text">Precio: ${item.price}</p>
                 <div className="d-flex justify-content-between align-items-center">
-  <button
-    className="btn btn-outline-danger"
-    onClick={() => removeFromCart(item.id)}
-  >
-    Eliminar
-  </button>
-
-  <div className="d-flex align-items-center">
-
-
-    <button 
-      className="btn btn-outline-dark me-2"
-      onClick={() => decreaseQuantity(item.id)}
-    >
-      -
-    </button>
-    <p className="card-text mb-0 me-2">
-      <strong>{item.quantity}</strong>
-    </p>
-    <button 
-      className="btn btn-outline-dark me-2"
-      onClick={() => increaseQuantity(item.id)}
-    >
-      +
-    </button>
-
-
-
-  </div>
-</div>
-
-
-
+                  <button
+                    className="btn btn-outline-danger"
+                    onClick={() => removeFromCart(item.id)}
+                  >
+                    Eliminar
+                  </button>
+                  <div className="d-flex align-items-center">
+                    <button 
+                      className="btn btn-outline-dark me-2"
+                      onClick={() => decreaseQuantity(item.id)}
+                    >
+                      -
+                    </button>
+                    <p className="card-text mb-0 me-2">
+                      <strong>{item.quantity}</strong>
+                    </p>
+                    <button 
+                      className="btn btn-outline-dark me-2"
+                      onClick={() => increaseQuantity(item.id)}
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       ))}
+      <div className="text-end">
+        <h4>Total: ${getCartTotal().toFixed(2)}</h4>
+        <button className="btn btn-success mt-3">
+          Pagar
+        </button>
+      </div>
     </div>
   );
 };
