@@ -39,6 +39,14 @@ const Profile = () => {
       .finally(() => setLoading(false));
   }, [token, navigate, setUser, logout]);
 
+  const handleLogout = () => {
+    logout(); // Llama a la función logout del contexto
+  };
+
+  if (loading) {
+    return <div className="text-center mt-5">Cargando...</div>;
+  }
+
   return (
     <div className="container mt-5">
       <h2 className="text-center">Perfil de Usuario</h2>
