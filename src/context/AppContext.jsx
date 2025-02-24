@@ -36,6 +36,7 @@ export function AppProvider({ children }) {
     sessionStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
+  //Manejo del Carro
   const addToCart = (product) => {
     setCart((prevCart) => {
       const existingProduct = prevCart.find((item) => item.id === product.id);
@@ -74,6 +75,14 @@ export function AppProvider({ children }) {
     );
   };
 
+  const getCartTotal = () => {
+  return cart.reduce((total, item) => {
+    const price = parseFloat(item.price) || 0;
+    return total + price * item.quantity;
+  }, 0);
+};
+
+  //Manejo de Usuario
   const login = (userData, authToken) => {
     setUser(userData);
     setToken(authToken);
