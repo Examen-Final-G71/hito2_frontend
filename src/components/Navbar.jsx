@@ -50,7 +50,7 @@ const Navbar = () => {
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link active" to="/createpost">
-                    Crear Publicación <i class="fa-solid fa-square-plus fa-2xl"></i>
+                    Crear Publicación <i class="fa-solid fa-square-plus fa-xl"></i>
                   </Link>
                 </li>
                 <li className="nav-item">
