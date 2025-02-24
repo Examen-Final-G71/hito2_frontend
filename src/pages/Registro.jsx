@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Navigate, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const Registro = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         nombre: '',
         correo: '',
