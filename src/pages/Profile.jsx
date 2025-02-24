@@ -9,43 +9,35 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!token) {
-      return navigate("/login");
+    const storedToken = token || localStorage.getItem("token");
+  
+    if (!storedToken) {
+      navigate("/login");
+      return;
     }
-
+  
     fetch("https://hito3-backend.onrender.com/usuarios/perfil", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { Authorization: `Bearer ${storedToken}` },
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("No autorizado");
+        }
+        return response.json();
+      })
       .then((data) => {
-        if (data) {
+        if (data && data.nombre) {
           setUser(data);
         } else {
-          navigate("/login");
+          throw new Error("Usuario inválido");
         }
       })
-      .catch(() => navigate("/login"))
+      .catch(() => {
+        logout();
+        navigate("/login");
+      })
       .finally(() => setLoading(false));
-  }, [token, navigate, setUser]);
-
-  if (loading) {
-    return (
-      <div className="d-flex justify-content-center align-items-center vh-100">
-        <Spinner animation="border" variant="primary" />
-      </div>
-    );
-  }
-
-  if (!user) {
-    return <Navigate to="/login" />;
-  }
-
-  const handleLogout = () => {
-    logout();
-    navigate("/login");
-  };
+  }, [token, navigate, setUser, logout]);
 
   return (
     <div className="container mt-5">

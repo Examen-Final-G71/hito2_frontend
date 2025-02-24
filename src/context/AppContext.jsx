@@ -9,11 +9,27 @@ export function AppProvider({ children }) {
     return savedCart ? JSON.parse(savedCart) : [];
   });
 
-  const [user, setUser] = useState(null); 
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(sessionStorage.getItem("token") || null);
 
   const products = productsData.map((product) => {
     return { ...product }; 
   });
+
+  useEffect(() => {
+    if (token) {
+      fetch("https://hito3-backend.onrender.com/usuarios/perfil", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+        .then((res) => res.json())
+        .then((data) => setUser(data))
+        .catch(() => {
+          setUser(null);
+          setToken(null);
+          sessionStorage.removeItem("token");
+        });
+    }
+  }, [token]);
 
   useEffect(() => {
     if (cart.length > 0) {
@@ -59,14 +75,18 @@ export function AppProvider({ children }) {
     );
   };
 
-  const login = (userData) => {
-    console.log("Usuario logueado:", userData); 
+  const login = (userData, authToken) => {
     setUser(userData);
+    setToken(authToken);
+    sessionStorage.setItem("token", authToken);
   };
 
   const logout = () => {
-    setUser(null); 
+    setUser(null);
+    setToken(null);
+    sessionStorage.removeItem("token");
   };
+
 
   return (
     <AppContext.Provider
@@ -75,6 +95,8 @@ export function AppProvider({ children }) {
         addToCart,
         removeFromCart,
         user,
+        setUser,
+        token,
         login,
         logout,
         products,

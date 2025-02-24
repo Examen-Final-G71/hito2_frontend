@@ -45,7 +45,7 @@ const Login = () => {
 
       if (response.ok) {
         console.log("Usuario recibido:", data.user);
-        login(data.user);
+        login(data.user, data.token);
       } else {
         Swal.fire("Error", data.message || "Error al iniciar sesión", "error");
       }
