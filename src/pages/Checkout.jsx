@@ -50,7 +50,7 @@ const Checkout = () => {
                 <Card.Title>{item.title}</Card.Title>
                 <Card.Text>{item.description}</Card.Text>
                 <Card.Text>
-                  Precio unitario: {item.precio}
+                  Precio unitario: {item.price}
                 </Card.Text>
                 <Card.Text>
                   Cantidad: {item.quantity} &mdash; Total: ${getItemTotal(item).toFixed(0)} CLP
