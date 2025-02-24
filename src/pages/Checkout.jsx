@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
+import Swal from 'sweetalert2';
 
 const shippingCost = 4500; // 4.500 CLP
 
@@ -15,9 +16,13 @@ const Checkout = () => {
   const finalTotal = shippingMethod === "despacho" ? baseTotal + shippingCost : baseTotal;
 
   const handleConfirmPayment = () => {
-    // Por el momento, solo mostramos un mensaje
-    alert("Pago confirmado.");
-  };
+  Swal.fire({
+    title: 'Pago confirmado',
+    text: 'Tu pago ha sido procesado exitosamente.',
+    icon: 'success',
+    confirmButtonText: 'Aceptar'
+  });
+};
 
   return (
     <Container className="mt-5">
