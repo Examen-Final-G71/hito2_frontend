@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 import { useNavigate, Navigate } from "react-router-dom";
-import { Spinner } from "react-bootstrap";
 
 const Profile = () => {
   const { user, token, setUser, logout } = useContext(AppContext);
@@ -39,9 +38,6 @@ const Profile = () => {
       .finally(() => setLoading(false));
   }, [token, navigate, setUser, logout]);
 
-  const handleLogout = () => {
-    logout(); 
-  };
 
   if (loading) {
     return <div className="text-center mt-5">Cargando...</div>;
@@ -54,7 +50,7 @@ const Profile = () => {
         <div className="card-body text-center">
           <h4>{user.nombre}</h4>
           <p>Email: {user.correo}</p>
-          <button className="btn btn-danger mt-3" onClick={handleLogout}>
+          <button className="btn btn-danger mt-3" onClick={logout}>
             Cerrar Sesión
           </button>
         </div>
