@@ -40,7 +40,7 @@ const Profile = () => {
   }, [token, navigate, setUser, logout]);
 
   const handleLogout = () => {
-    logout(); // Llama a la función logout del contexto
+    logout(); 
   };
 
   if (loading) {

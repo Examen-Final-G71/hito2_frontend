@@ -5,7 +5,7 @@ import logo from "../assets/img/novatec.png";
 
 const Navbar = () => {
   const navigate = useNavigate(); 
-  const { cart } = useContext(AppContext); 
+  const { cart, user, logout } = useContext(AppContext); 
 
   const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
 
@@ -32,22 +32,40 @@ const Navbar = () => {
             <li className="nav-item">
               <Link className="nav-link active" to="/gallery">Catálogo</Link>
             </li>
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Ingresar
-              </a>
-              <ul className="dropdown-menu">
-                <li><Link className="dropdown-item" to="/login">Iniciar sesión</Link></li>
-                <li><Link className="dropdown-item" to="/registro">Registrate</Link></li>
-                <li><Link className="dropdown-item" to="/Profile">Mi perfil</Link></li>
-              </ul>
-            </li>
+            { user ? (
+              // Si el usuario está logueado, muestra "Mi perfil" y un botón de cerrar sesión
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link active" to="/profile">Mi perfil</Link>
+                </li>
+                <li className="nav-item">
+                  <button className="btn btn-link nav-link" onClick={() => { logout(); navigate("/login"); }}>
+                    Cerrar sesión
+                  </button>
+                </li>
+              </>
+            ) : (
+              // Si no hay usuario, muestra "Iniciar sesión" y "Registrate"
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Ingresar
+                </a>
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link className="dropdown-item" to="/login">Iniciar sesión</Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to="/registro">Registrate</Link>
+                  </li>
+                </ul>
+              </li>
+            )}
           </ul>
           <form className="d-flex">
             <button
