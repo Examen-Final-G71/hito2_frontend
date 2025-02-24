@@ -110,6 +110,7 @@ export function AppProvider({ children }) {
         products,
         increaseQuantity,
         decreaseQuantity,
+        getCartTotal,
       }}
     >
       {children}
