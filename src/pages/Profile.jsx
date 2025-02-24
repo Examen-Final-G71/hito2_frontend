@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
-import { useNavigate, Navigate } from "react-router-dom"
+import { useNavigate, Navigate } from "react-router-dom";
+import { Spinner } from "react-bootstrap";
 
 const Profile = () => {
   const { user, token, setUser, logout } = useContext(AppContext);
@@ -9,12 +10,12 @@ const Profile = () => {
 
   useEffect(() => {
     const storedToken = token || localStorage.getItem("token");
-  
+
     if (!storedToken) {
       navigate("/login");
       return;
     }
-  
+
     fetch("https://hito3-backend.onrender.com/usuarios/perfil", {
       headers: { Authorization: `Bearer ${storedToken}` },
     })
@@ -38,9 +39,16 @@ const Profile = () => {
       .finally(() => setLoading(false));
   }, [token, navigate, setUser, logout]);
 
-
   if (loading) {
-    return <div className="text-center mt-5">Cargando...</div>;
+    return (
+      <div className="d-flex justify-content-center align-items-center vh-100">
+        <Spinner animation="border" variant="primary" />
+      </div>
+    );
+  }
+
+  if (!user) {
+    return <Navigate to="/login" />;
   }
 
   return (
@@ -50,9 +58,6 @@ const Profile = () => {
         <div className="card-body text-center">
           <h4>{user.nombre}</h4>
           <p>Email: {user.correo}</p>
-          <button className="btn btn-danger mt-3">
-            Cerrar Sesión
-          </button>
         </div>
       </div>
     </div>
