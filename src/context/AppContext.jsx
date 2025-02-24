@@ -82,6 +82,11 @@ export function AppProvider({ children }) {
   }, 0);
 };
 
+  const getItemTotal = (item) => {
+    const price = parseFloat(item.price) || 0;
+    return price * item.quantity;
+  };
+
   //Manejo de Usuario
   const login = (userData, authToken) => {
     setUser(userData);
@@ -102,15 +107,16 @@ export function AppProvider({ children }) {
         cart,
         addToCart,
         removeFromCart,
+        increaseQuantity,
+        decreaseQuantity,
+        getItemTotal,
+        getCartTotal,
         user,
         setUser,
         token,
         login,
         logout,
         products,
-        increaseQuantity,
-        decreaseQuantity,
-        getCartTotal,
       }}
     >
       {children}
