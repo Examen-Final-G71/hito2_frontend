@@ -51,8 +51,12 @@ const CreatePost = () => {
     try {
       const response = await fetch("https://hito3-backend.onrender.com/api/publicaciones", {
         method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
         body: formDataToSend,
       });
+
       const data = await response.json();
       if (response.ok) {
         Swal.fire({
