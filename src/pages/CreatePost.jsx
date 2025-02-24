@@ -1,10 +1,20 @@
 import React, { useState } from 'react';
 import { Form, Button, Card, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { AppContext } from "../context/AppContext";
 import Swal from 'sweetalert2';
 
 const CreatePost = () => {
+  const { token } = useContext(AppContext);
   const navigate = useNavigate();
+
+  const response = await fetch("https://hito3-backend.onrender.com/api/publicaciones", {
+  method: "POST",
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+  body: formDataToSend,
+});
   const [formData, setFormData] = useState({
     nombre: '',
     precio: '',
