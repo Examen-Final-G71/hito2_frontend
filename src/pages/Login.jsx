@@ -74,7 +74,7 @@ const Login = () => {
   };
 
   if (user) {
-    return <Navigate to="/profile" />;
+    return <Navigate to="/" />;
   }
 
   return (
