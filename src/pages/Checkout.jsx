@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 const shippingCost = 4500; // 4.500 CLP
 
 const Checkout = () => {
-  const { cart, getCartTotal, getItemTotal } = useContext(AppContext);
+  const { cart, getCartTotal, getItemTotal, clearCart } = useContext(AppContext);
   const [shippingMethod, setShippingMethod] = useState("retiro"); // "despacho" o "retiro"
   const [paymentMethod, setPaymentMethod] = useState(""); // Opción de pago seleccionada
 
@@ -16,13 +16,16 @@ const Checkout = () => {
   const finalTotal = shippingMethod === "despacho" ? baseTotal + shippingCost : baseTotal;
 
   const handleConfirmPayment = () => {
-  Swal.fire({
-    title: 'Pago confirmado',
-    text: 'Tu pago ha sido procesado exitosamente.',
-    icon: 'success',
-    confirmButtonText: 'Aceptar'
-  });
-};
+ Swal.fire({
+      title: "Pago confirmado",
+      text: "Tu pago ha sido procesado exitosamente.",
+      icon: "success",
+      confirmButtonText: "Aceptar",
+    }).then(() => {
+      clearCart();
+      navigate("/");
+    });
+  };
 
   return (
     <Container className="mt-5">
