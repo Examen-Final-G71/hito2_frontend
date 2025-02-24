@@ -18,7 +18,6 @@ const Cart = () => {
     if (!user) {
       navigate("/login");
     } else {
-      // Aquí redirige a la página de pago, por ejemplo "/checkout"
       navigate("/checkout");
     }
   };
@@ -42,7 +41,7 @@ const Cart = () => {
                 <p className="card-text">{item.description}</p>
                 <p className="card-text">Precio: ${item.price}</p>
                 <p className="card-text">
-                  Total: ${getItemTotal().toFixed(2)}
+                  Total: ${getItemTotal(item).toFixed(2)}
                 </p>
                 <div className="d-flex justify-content-between align-items-center">
                   <button
@@ -85,4 +84,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
