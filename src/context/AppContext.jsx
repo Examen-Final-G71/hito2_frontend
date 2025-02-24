@@ -84,6 +84,10 @@ export function AppProvider({ children }) {
     return price * item.quantity;
   };
 
+  const clearCart = () => {
+  setCart([]);
+};
+  
   //Manejo de Usuario
   const login = (userData, authToken) => {
     setUser(userData);
@@ -108,6 +112,7 @@ export function AppProvider({ children }) {
         decreaseQuantity,
         getItemTotal,
         getCartTotal,
+        clearCart,
         user,
         setUser,
         token,
