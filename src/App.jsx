@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Registro from "./pages/Registro";
 import CreatePost from "./pages/CreatePost";
+import Checkout from "./pages/Checkout";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/createpost" element={<CreatePost />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
         <Footer />
       </AppProvider>
