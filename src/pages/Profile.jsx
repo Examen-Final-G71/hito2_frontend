@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom"
 
 const Profile = () => {
   const { user, token, setUser, logout } = useContext(AppContext);
@@ -50,7 +50,7 @@ const Profile = () => {
         <div className="card-body text-center">
           <h4>{user.nombre}</h4>
           <p>Email: {user.correo}</p>
-          <button className="btn btn-danger mt-3" onClick={logout}>
+          <button className="btn btn-danger mt-3">
             Cerrar Sesión
           </button>
         </div>
