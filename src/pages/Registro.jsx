@@ -51,7 +51,7 @@ const Registro = () => {
             if (response.ok) {
                 Swal.fire('¡Registro exitoso!', 'Ahora puedes iniciar sesión', 'success');
                 setFormData({ nombre: '', correo: '', password: '', confirmPassword: '' });
-                navigate("/");
+                 navigate("/login");
             } else {
                 Swal.fire('Error', data.message || 'Hubo un problema al registrarte', 'error');
             }
