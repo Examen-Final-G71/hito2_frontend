@@ -3,7 +3,7 @@ import { AppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const { cart, increaseQuantity, decreaseQuantity, removeFromCart, getCartTotal, user } = useContext(AppContext);
+  const { cart, increaseQuantity, decreaseQuantity, removeFromCart, getCartTotal, getItemTotal, user } = useContext(AppContext);
   const navigate = useNavigate();
 
   if (cart.length === 0) {
@@ -42,7 +42,7 @@ const Cart = () => {
                 <p className="card-text">{item.description}</p>
                 <p className="card-text">Precio: ${item.price}</p>
                 <p className="card-text">
-                  Total: ${getCartTotal().toFixed(2)}
+                  Total: ${getItemTotal().toFixed(2)}
                 </p>
                 <div className="d-flex justify-content-between align-items-center">
                   <button
@@ -74,9 +74,9 @@ const Cart = () => {
           </div>
         </div>
       ))}
-      <div className="text-end">
+      <div className="text-end mt-3 mb-3">
         <h4>Total a pagar: ${getCartTotal().toFixed(2)}</h4>
-        <button className="btn btn-success mt-3" onClick={handlePagar}>
+        <button className="btn btn-success mt-3 mb-3" onClick={handlePagar}>
           Pagar
         </button>
       </div>
