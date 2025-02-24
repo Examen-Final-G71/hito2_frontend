@@ -62,7 +62,8 @@ const CreatePost = () => {
           confirmButtonText: "Ver publicación"
         }).then(() => {
           // Se asume que el backend devuelve el id de la publicación creada
-          navigate(`/product/${data.id}`);
+          //navigate(`/product/${data.id}`);
+          navigate(`/`);  // mientras elnavigate apuntara hacia Home
         });
       } else {
         Swal.fire("Error", data.message || "Hubo un problema al crear la publicación", "error");
