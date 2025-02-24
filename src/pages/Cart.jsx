@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const { cart, increaseQuantity, decreaseQuantity, removeFromCart, getCartTotal } = useContext(AppContext);
+  const { cart, increaseQuantity, decreaseQuantity, removeFromCart, getCartTotal, user } = useContext(AppContext);
+  const navigate = useNavigate();
 
   if (cart.length === 0) {
     return (
@@ -11,6 +13,15 @@ const Cart = () => {
       </div>
     );
   }
+
+  const handlePagar = () => {
+    if (!user) {
+      navigate("/login");
+    } else {
+      // Aquí redirige a la página de pago, por ejemplo "/checkout"
+      navigate("/checkout");
+    }
+  };
 
   return (
     <div className="container mt-5">
@@ -30,6 +41,9 @@ const Cart = () => {
                 <h5 className="card-title">{item.title}</h5>
                 <p className="card-text">{item.description}</p>
                 <p className="card-text">Precio: ${item.price}</p>
+                <p className="card-text">
+                  Total: ${getCartTotal().toFixed(2)}
+                </p>
                 <div className="d-flex justify-content-between align-items-center">
                   <button
                     className="btn btn-outline-danger"
@@ -61,8 +75,8 @@ const Cart = () => {
         </div>
       ))}
       <div className="text-end">
-        <h4>Total: ${getCartTotal().toFixed(2)}</h4>
-        <button className="btn btn-success mt-3">
+        <h4>Total a pagar: ${getCartTotal().toFixed(2)}</h4>
+        <button className="btn btn-success mt-3" onClick={handlePagar}>
           Pagar
         </button>
       </div>
@@ -71,3 +85,4 @@ const Cart = () => {
 };
 
 export default Cart;
+
