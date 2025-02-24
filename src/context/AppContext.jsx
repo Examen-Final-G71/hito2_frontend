@@ -9,32 +9,31 @@ export function AppProvider({ children }) {
     return savedCart ? JSON.parse(savedCart) : [];
   });
 
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(sessionStorage.getItem("token") || null);
-
-  const products = productsData.map((product) => {
-    return { ...product }; 
+  const [user, setUser] = useState(() => {
+    const storedUser = sessionStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
   });
 
+  const [token, setToken] = useState(sessionStorage.getItem("token") || null);
+
+  const products = productsData.map((product) => ({ ...product }));
+
   useEffect(() => {
-    if (token) {
+    if (token && !user) {
       fetch("https://hito3-backend.onrender.com/usuarios/perfil", {
         headers: { Authorization: `Bearer ${token}` },
       })
         .then((res) => res.json())
-        .then((data) => setUser(data))
-        .catch(() => {
-          setUser(null);
-          setToken(null);
-          sessionStorage.removeItem("token");
-        });
+        .then((data) => {
+          setUser(data);
+          sessionStorage.setItem("user", JSON.stringify(data));
+        })
+        .catch(() => logout());
     }
   }, [token]);
 
   useEffect(() => {
-    if (cart.length > 0) {
-      sessionStorage.setItem("cart", JSON.stringify(cart));
-    }
+    sessionStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
   const addToCart = (product) => {
@@ -79,14 +78,15 @@ export function AppProvider({ children }) {
     setUser(userData);
     setToken(authToken);
     sessionStorage.setItem("token", authToken);
+    sessionStorage.setItem("user", JSON.stringify(userData));
   };
 
   const logout = () => {
     setUser(null);
     setToken(null);
     sessionStorage.removeItem("token");
+    sessionStorage.removeItem("user");
   };
-
 
   return (
     <AppContext.Provider
