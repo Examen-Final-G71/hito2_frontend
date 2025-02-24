@@ -16,7 +16,7 @@ const Checkout = () => {
 
   const handleConfirmPayment = () => {
     // Por el momento, solo mostramos un mensaje
-    alert("Pago confirmado (sin funcionalidad implementada).");
+    alert("Pago confirmado.");
   };
 
   return (
