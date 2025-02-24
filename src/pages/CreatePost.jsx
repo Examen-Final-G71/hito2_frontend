@@ -8,13 +8,6 @@ const CreatePost = () => {
   const { token } = useContext(AppContext);
   const navigate = useNavigate();
 
-  const response = await fetch("https://hito3-backend.onrender.com/api/publicaciones", {
-  method: "POST",
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-  body: formDataToSend,
-});
   const [formData, setFormData] = useState({
     nombre: '',
     precio: '',
