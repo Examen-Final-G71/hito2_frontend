@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 
 const shippingCost = 4500; // 4.500 CLP
@@ -9,6 +10,7 @@ const Checkout = () => {
   const { cart, getCartTotal, getItemTotal, clearCart } = useContext(AppContext);
   const [shippingMethod, setShippingMethod] = useState("retiro"); // "despacho" o "retiro"
   const [paymentMethod, setPaymentMethod] = useState(""); // Opción de pago seleccionada
+  const navigate = useNavigate();
 
   // Calcular total base sin envío
   const baseTotal = getCartTotal();
