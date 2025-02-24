@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useCallback  } from "react";
 import productsData from "../assets/data/products.json";
 
 export const AppContext = createContext();
@@ -81,12 +81,11 @@ export function AppProvider({ children }) {
     sessionStorage.setItem("user", JSON.stringify(userData));
   };
 
-  const logout = () => {
+ const logout = useCallback(() => {
     setUser(null);
     setToken(null);
     sessionStorage.removeItem("token");
-    sessionStorage.removeItem("user");
-  };
+  }, []);
 
   return (
     <AppContext.Provider
