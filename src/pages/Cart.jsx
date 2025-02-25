@@ -30,8 +30,8 @@ const Cart = () => {
           <div className="row g-0">
             <div className="col-md-4">
               <img 
-                src={getImageUrl(product.imagen)} 
-                alt={product.nombre}
+                src={getImageUrl(item.imagen)} 
+                alt={item.nombre}
               />
             </div>
             <div className="col-md-8">
