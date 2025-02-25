@@ -43,9 +43,9 @@ export function AppProvider({ children }) {
     sessionStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  export const getImageUrl = (imagen) => {
-  return `${IMAGE_BASE_URL}${imagen}`;
-};
+  const getImageUrl = (imagen) => {
+    return `${IMAGE_BASE_URL}${imagen}`;
+  };
   // Funciones para el carrito
   const addToCart = (product) => {
     setCart((prevCart) => {
