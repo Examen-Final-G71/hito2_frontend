@@ -20,8 +20,12 @@ function ProductView() {
         </Col>
         <Col md={6} className="d-flex flex-column justify-content-center">
           <h1>{product.nombre}</h1>
+          <p>{product.clasificacion}</p>
           <p>{product.descripcion}</p>
-          <p>Precio: ${product.precio}</p>
+          <p>{product.stock}</p>
+          <p>Publicado por: {product.usuario_nombre}</p>
+          <p className="mt-5">Precio: ${product.precio}</p>
+          
           <Button variant="primary" onClick={() => addToCart(product)}>
             Añadir al Carrito
           </Button>
