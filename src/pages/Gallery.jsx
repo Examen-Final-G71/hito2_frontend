@@ -4,7 +4,7 @@ import { Card, Button, Container, Row, Col, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 function Gallery() {
-  const { products, addToCart } = useContext(AppContext);
+  const { products, addToCart, getImageUrl } = useContext(AppContext);
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
   const navigate = useNavigate();
@@ -50,7 +50,8 @@ function Gallery() {
             <Card className="h-100">
               <Card.Img
                 variant="top"
-                src={product.imagen}
+                src={getImageUrl(product.imagen)}
+                alt={product.nombre}
                 style={{ height: "200px", objectFit: "cover" }}
               />
               <Card.Body className="d-flex flex-column">
