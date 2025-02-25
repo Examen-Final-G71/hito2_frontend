@@ -22,7 +22,7 @@ function ProductView() {
           <h1>{product.nombre}</h1>
           <p>{product.clasificacion}</p>
           <p>{product.descripcion}</p>
-          <p>Stock disponible:{product.stock}</p>
+          <p>Stock disponible: {product.stock}</p>
           <p>Publicado por: {product.usuario_nombre}</p>
           <p className="mt-5">Precio: ${product.precio}</p>
           
