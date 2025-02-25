@@ -123,6 +123,7 @@ export function AppProvider({ children }) {
         decreaseQuantity,
         getItemTotal,
         getCartTotal,
+        clearCart,
         user,
         setUser,
         token,
