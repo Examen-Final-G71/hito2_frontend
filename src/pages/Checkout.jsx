@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 const shippingCost = 7500;
 
 const Checkout = () => {
-  const { cart, getCartTotal, getItemTotal, clearCart } = useContext(AppContext);
+  const { cart, getCartTotal, getItemTotal, clearCart, getImageUrl } = useContext(AppContext);
   const [shippingMethod, setShippingMethod] = useState("retiro"); // "despacho" o "retiro"
   const [paymentMethod, setPaymentMethod] = useState(""); // Opción de pago seleccionada
   const navigate = useNavigate();
@@ -40,8 +40,8 @@ const Checkout = () => {
             <Col md={4}>
               <Card.Img 
                 variant="top" 
-                src={item.imagen} 
-                alt={item.nombre} 
+                src={getImageUrl(product.imagen)}
+                alt={product.nombre}
                 style={{ height: "150px", objectFit: "cover" }} 
               />
             </Col>
