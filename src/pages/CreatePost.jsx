@@ -115,9 +115,9 @@ const CreatePost = () => {
             <Form.Label>Categoría</Form.Label>
             <Form.Select name="clasificacion" value={formData.clasificacion} onChange={handleChange} required>
               <option value="">Seleccione una categoría</option>
-              <option value="Ropa de seguridad">Ropa de seguridad</option>
-              <option value="Productos de limpieza">Productos de limpieza</option>
-              <option value="Artículos de librería">Artículos de librería</option>
+              <option value="art_aseo">Ropa de seguridad</option>
+              <option value="epp">Productos de limpieza</option>
+              <option value="libreria">Artículos de librería</option>
             </Form.Select>
           </Form.Group>
 
