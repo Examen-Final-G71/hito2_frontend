@@ -32,6 +32,7 @@ const Cart = () => {
               <img 
                 src={getImageUrl(item.imagen)} 
                 alt={item.nombre}
+                style={{ height: "200px", objectFit: "cover" }} 
               />
             </div>
             <div className="col-md-8">
