@@ -16,7 +16,6 @@ export function AppProvider({ children }) {
   const [token, setToken] = useState(sessionStorage.getItem("token") || null); //manejo de token
   const [products, setProducts] = useState([]); //manejo de productos
   const IMAGE_BASE_URL = "https://hito3-backend.onrender.com/uploads/";  //URL de las imagenes
-  const URL_IMAGEN_POR_DEFECTO = "https://static.vecteezy.com/system/resources/previews/021/282/110/non_2x/loading-bar-icon-in-flat-style-progress-indicator-illustration-on-isolated-background-download-button-sign-business-concept-vector.jpg"; // Imagen de respaldo
 
   // Cargar publicaciones desde el backend
   useEffect(() => {
@@ -40,22 +39,13 @@ export function AppProvider({ children }) {
     }
   }, [token, user]);
 
-
-  
   useEffect(() => {
     sessionStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
-  
+
   const getImageUrl = (imagen) => {
-    if (!imagen) return URL_IMAGEN_POR_DEFECTO; // Usar la variable, no un string
-    return imagen.startsWith("http") ? imagen : `${IMAGE_BASE_URL}${imagen}`;
-  };
-
-
-  /*const getImageUrl = (imagen) => {
     return `${IMAGE_BASE_URL}${imagen}`;
-  };*/
-  
+  };
   // Funciones para el carrito
   const addToCart = (product) => {
     setCart((prevCart) => {
