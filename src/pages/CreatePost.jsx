@@ -115,8 +115,8 @@ const CreatePost = () => {
             <Form.Label>Categoría</Form.Label>
             <Form.Select name="clasificacion" value={formData.clasificacion} onChange={handleChange} required>
               <option value="">Seleccione una categoría</option>
-              <option value="epp">Ropa de seguridad</option>
-              <option value="art_aseo">Productos de limpieza</option>
+              <option value="art_aseo">Ropa de seguridad</option>
+              <option value="epp">Productos de limpieza</option>
               <option value="libreria">Artículos de librería</option>
             </Form.Select>
           </Form.Group>
@@ -284,13 +284,6 @@ const CreatePost = () => {
           <div className="d-flex justify-content-end">
             <Button variant="primary" type="submit">Subir Producto</Button>
           </div>
-        </Form>
-      </Card>
-    </div>
-  );
-};
-
-export default CreatePost;*/
         </Form>
       </Card>
     </div>
