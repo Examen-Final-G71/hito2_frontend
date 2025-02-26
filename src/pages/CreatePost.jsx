@@ -28,34 +28,56 @@ const CreatePost = () => {
   };
 
   const handleFileChange = (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      convertToBase64(file);
+    }
+  };
+
+  // Convierte la imagen a Base64 antes de enviarla
+  const convertToBase64 = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setFormData((prev) => ({
+        ...prev,
+        imagen: reader.result, 
+      }));
+    };
+  };
+  /*const handleFileChange = (e) => {
     setFormData((prev) => ({
       ...prev,
       imagen: e.target.files[0]
     }));
-  };
+  };*/
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     
-    const formDataToSend = new FormData();
-    formDataToSend.append('nombre', formData.nombre);
-    formDataToSend.append('precio', formData.precio);
-    formDataToSend.append('clasificacion', formData.clasificacion);
-    formDataToSend.append('descripcion', formData.descripcion);
-    formDataToSend.append('stock', formData.stock);
-    if (formData.imagen) {
-      formDataToSend.append('imagen', formData.imagen);
-    }
+     const formDataToSend = {
+      nombre: formData.nombre,
+      precio: formData.precio,
+      clasificacion: formData.clasificacion,
+      descripcion: formData.descripcion,
+      stock: formData.stock,
+      imagen: formData.imagen, // Ahora enviamos la imagen en Base64
+    };
 
     try {
-      const response = await fetch("https://hito3-backend.onrender.com/api/publicaciones", {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
-        body: formDataToSend,
-      });
+      const response = await fetch(
+        "https://hito3-backend.onrender.com/api/publicaciones",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(formDataToSend),
+        }
+      );
 
       const data = await response.json();
       if (response.ok) {
