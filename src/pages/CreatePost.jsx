@@ -1,29 +1,29 @@
 import React, { useState, useContext } from "react";
-import { Form, Button, Card, Row, Col } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { Form, Button, Card, Row, Col } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
 const CreatePost = () => {
   const { token } = useContext(AppContext);
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    nombre: '',
-    precio: '',
-    clasificacion: '',
-    descripcion: '',
-    stock: '',
-    imagen: null
+    nombre: "",
+    precio: "",
+    clasificacion: "",
+    descripcion: "",
+    stock: "",
+    imagen: null,
   });
+
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // Si el campo es "precio" o "stock" asegúrate de guardar números, si es necesario.
     setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -35,7 +35,7 @@ const CreatePost = () => {
     }
   };
 
-  // Convierte la imagen a Base64 antes de enviarla
+  //  Convierte la imagen a Base64 antes de enviarla
   const convertToBase64 = (file) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -46,24 +46,18 @@ const CreatePost = () => {
       }));
     };
   };
-  /*const handleFileChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      imagen: e.target.files[0]
-    }));
-  };*/
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    
-     const formDataToSend = {
+
+    const formDataToSend = {
       nombre: formData.nombre,
       precio: formData.precio,
       clasificacion: formData.clasificacion,
       descripcion: formData.descripcion,
       stock: formData.stock,
-      imagen: formData.imagen, // Ahora enviamos la imagen en Base64
+      imagen: formData.imagen, 
     };
 
     try {
@@ -85,14 +79,16 @@ const CreatePost = () => {
           title: "Publicación creada",
           text: "Tu publicación se ha creado correctamente.",
           icon: "success",
-          confirmButtonText: "Ver publicación"
+          confirmButtonText: "Ver publicación",
         }).then(() => {
-          // Se asume que el backend devuelve el id de la publicación creada
-          //navigate(`/product/${data.id}`);
-          navigate(`/`);  // mientras elnavigate apuntara hacia Home
+          navigate(`/`);
         });
       } else {
-        Swal.fire("Error", data.message || "Hubo un problema al crear la publicación", "error");
+        Swal.fire(
+          "Error",
+          data.message || "Hubo un problema al crear la publicación",
+          "error"
+        );
       }
     } catch (error) {
       console.error("Error al subir producto:", error);
@@ -104,33 +100,19 @@ const CreatePost = () => {
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 bg-light px-2 px-md-0">
-      <Card className="p-4 border" style={{ width: '100%', maxWidth: '700px', borderColor: 'inherit' }}>
+      <Card className="p-4 border" style={{ width: "100%", maxWidth: "700px", borderColor: "inherit" }}>
         <h3 className="mb-2">Nuevo Producto</h3>
         <h5 className="text-muted mb-3">Agrega producto para vender</h5>
         <hr />
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
             <Form.Label>Título del producto</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Ingresa el título"
-              name="nombre"
-              value={formData.nombre}
-              onChange={handleChange}
-              required
-            />
+            <Form.Control type="text" placeholder="Ingresa el título" name="nombre" value={formData.nombre} onChange={handleChange} required />
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Precio</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Ingresa el precio"
-              name="precio"
-              value={formData.precio}
-              onChange={handleChange}
-              required
-            />
+            <Form.Control type="text" placeholder="Ingresa el precio" name="precio" value={formData.precio} onChange={handleChange} required />
           </Form.Group>
 
           <Form.Group className="mb-3">
@@ -145,39 +127,20 @@ const CreatePost = () => {
 
           <Form.Group className="mb-3">
             <Form.Label>Descripción</Form.Label>
-            <Form.Control
-              as="textarea"
-              rows={3}
-              placeholder="Ingresa la descripción"
-              name="descripcion"
-              value={formData.descripcion}
-              onChange={handleChange}
-              required
-            />
+            <Form.Control as="textarea" rows={3} placeholder="Ingresa la descripción" name="descripcion" value={formData.descripcion} onChange={handleChange} required />
           </Form.Group>
 
           <Row className="mb-3">
             <Col>
               <Form.Group>
                 <Form.Label>Stock</Form.Label>
-                <Form.Control
-                  type="number"
-                  placeholder="Cantidad en stock"
-                  name="stock"
-                  value={formData.stock}
-                  onChange={handleChange}
-                  required
-                />
+                <Form.Control type="number" placeholder="Cantidad en stock" name="stock" value={formData.stock} onChange={handleChange} required />
               </Form.Group>
             </Col>
             <Col>
               <Form.Group>
                 <Form.Label>Imagen</Form.Label>
-                <Form.Control
-                  type="file"
-                  name="imagen"
-                  onChange={handleFileChange}
-                />
+                <Form.Control type="file" name="imagen" onChange={handleFileChange} accept="image/*" required />
               </Form.Group>
             </Col>
           </Row>
@@ -194,6 +157,7 @@ const CreatePost = () => {
 };
 
 export default CreatePost;
+
 
 
 
