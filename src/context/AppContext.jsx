@@ -15,7 +15,7 @@ export function AppProvider({ children }) {
 
   const [token, setToken] = useState(sessionStorage.getItem("token") || null); //manejo de token
   const [products, setProducts] = useState([]); //manejo de productos
-  const IMAGE_BASE_URL = "https://hito3-backend.onrender.com/uploads/";  //URL de las imagenes
+
 
   // Cargar publicaciones desde el backend
   useEffect(() => {
@@ -43,9 +43,6 @@ export function AppProvider({ children }) {
     sessionStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  const getImageUrl = (imagen) => {
-    return `${IMAGE_BASE_URL}${imagen}`;
-  };
   // Funciones para el carrito
   const addToCart = (product) => {
     setCart((prevCart) => {
@@ -130,7 +127,6 @@ export function AppProvider({ children }) {
         login,
         logout,
         products,
-        getImageUrl
       }}
     >
       {children}
