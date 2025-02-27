@@ -6,8 +6,8 @@ import { AppContext } from '../context/AppContext';
 function ProductView() {
   const location = useLocation();
   const { id } = useParams();
-  const [product, setProduct, obtenerNombreClasificacion ] = useState(location.state?.product || null);
-  const { addToCart } = useContext(AppContext);
+  const [product, setProduct ] = useState(location.state?.product || null);
+  const { addToCart, obtenerNombreClasificacion } = useContext(AppContext);
 
   useEffect(() => {
     if (!product) {
