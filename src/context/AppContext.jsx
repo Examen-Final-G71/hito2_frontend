@@ -43,6 +43,14 @@ export function AppProvider({ children }) {
     sessionStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
+  const obtenerNombreClasificacion = (codigo) => {
+  const clasificaciones = {
+    epp: "Elementos de Protección Personal",
+    aseo: "Artículos de Aseo",
+    libreria: "Productos de Librería",
+  };
+  return clasificaciones[codigo] || codigo;
+}; 
   
   const addProduct = (newProduct) => {
   setProducts((prevProducts) => [...prevProducts, newProduct]);
@@ -133,6 +141,7 @@ export function AppProvider({ children }) {
         logout,
         products,
         addProduct,
+        clasificacionesMap,
       }}
     >
       {children}
