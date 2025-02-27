@@ -147,15 +147,16 @@ function ProductView() {
           )}
 
           <ul className="list-unstyled">
-           {comentarios.length > 0 ? (
-            comentarios.map((comentario) => (
-              <p key={comentario.id}>
-                {comentario.calificacion ? "★".repeat(comentario.calificacion) : "Sin calificación"}
-              </p>
-            ))
-          ) : (
-            <p>No hay comentarios</p>
-          )}
+            {comentarios.length > 0 ? (
+              comentarios.map((c) => (
+                <li key={c.id} className="mb-3 border-bottom pb-2">
+                  <strong>{c.usuario_nombre || "Usuario"}</strong> ({c.calificacion} ★)
+                  <p>{c.comment}</p>
+                </li>
+              ))
+            ) : (
+              <p>Aún no hay comentarios.</p>
+            )}
           </ul>
         </Col>
       </Row>
