@@ -60,7 +60,6 @@ const CreatePost = () => {
 
       const data = await response.json();
       if (response.ok) {
-        addProduct(data);
         setFormData({
           nombre: "",
           precio: "",
@@ -75,7 +74,9 @@ const CreatePost = () => {
           text: "Tu publicación se ha creado correctamente.",
           icon: "success",
           confirmButtonText: "Ver publicación",
-        }).then(() => navigate(`/product/${data.id}`, { state: { product: data } })); 
+        }).then(() => 
+          addProduct(data);
+          navigate(`/product/${data.id}`, { state: { product: data } })); 
       } else {
         Swal.fire(
           "Error",
