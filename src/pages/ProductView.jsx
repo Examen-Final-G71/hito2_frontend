@@ -6,7 +6,7 @@ import { AppContext } from '../context/AppContext';
 function ProductView() {
   const location = useLocation();
   const { id } = useParams();
-  const [product, setProduct] = useState(location.state?.product || null);
+  const [product, setProduct, obtenerNombreClasificacion ] = useState(location.state?.product || null);
   const { addToCart } = useContext(AppContext);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ function ProductView() {
         </Col>
         <Col md={6} className="d-flex flex-column justify-content-center">
           <h1>{product.nombre}</h1>
-          <p>{clasificacionesMap[product.clasificacion] || product.clasificacion}</p>
+          <p>{obtenerNombreClasificacion(product.clasificacion)}</p>
           <p>{product.descripcion}</p>
           <p>Stock disponible: {product.stock}</p>
           <p>Publicado por: {product.usuario_nombre}</p>
