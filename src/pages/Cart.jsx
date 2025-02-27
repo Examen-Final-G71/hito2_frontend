@@ -3,7 +3,7 @@ import { AppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const { cart, increaseQuantity, decreaseQuantity, removeFromCart, getCartTotal, getItemTotal, user, getImageUrl } = useContext(AppContext);
+  const { cart, increaseQuantity, decreaseQuantity, removeFromCart, getCartTotal, getItemTotal, user } = useContext(AppContext);
   const navigate = useNavigate();
 
   if (cart.length === 0) {
@@ -30,7 +30,7 @@ const Cart = () => {
           <div className="row g-0">
             <div className="col-md-4">
               <img 
-                src={getImageUrl(item.imagen)} 
+                src={product.imagen}
                 alt={item.nombre}
                 style={{ height: "200px", objectFit: "cover" }} 
               />
