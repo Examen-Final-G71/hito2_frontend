@@ -40,7 +40,7 @@ const Checkout = () => {
             <Col md={4}>
               <Card.Img 
                 variant="top" 
-                src={product.imagen}
+                src={item.imagen}
                 alt={item.nombre}
                 style={{ height: "150px", objectFit: "cover" }} 
               />
