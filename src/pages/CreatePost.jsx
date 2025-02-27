@@ -33,64 +33,66 @@ const CreatePost = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
 
-    if (!formData.imagen) {
-      Swal.fire("Error", "Debes subir una imagen", "error");
-      setLoading(false);
-      return;
-    }
+  if (!formData.imagen) {
+    Swal.fire("Error", "Debes subir una imagen", "error");
+    setLoading(false);
+    return;
+  }
 
-    const formDataToSend = new FormData();
-    Object.keys(formData).forEach((key) => {
-      formDataToSend.append(key, formData[key]);
-    });
+  const formDataToSend = new FormData();
+  Object.keys(formData).forEach((key) => {
+    formDataToSend.append(key, formData[key]);
+  });
 
-    try {
-      const response = await fetch(
-        "https://hito3-backend.onrender.com/api/publicaciones",
-        {
-          method: "POST",
-          headers: { Authorization: `Bearer ${token}` },
-          body: formDataToSend,
-        }
-      );
-
-      const data = await response.json();
-      if (response.ok) {
-        setFormData({
-          nombre: "",
-          precio: "",
-          clasificacion: "",
-          descripcion: "",
-          stock: "",
-          imagen: null,
-        });
-
-        Swal.fire({
-          title: "Publicación creada",
-          text: "Tu publicación se ha creado correctamente.",
-          icon: "success",
-          confirmButtonText: "Ver publicación",
-        }).then(() => 
-          addProduct(data);
-          navigate(`/product/${data.id}`, { state: { product: data } })); 
-      } else {
-        Swal.fire(
-          "Error",
-          data.message || "Hubo un problema al crear la publicación",
-          "error"
-        );
+  try {
+    const response = await fetch(
+      "https://hito3-backend.onrender.com/api/publicaciones",
+      {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+        body: formDataToSend,
       }
-    } catch (error) {
-      console.error("Error al subir producto:", error);
-      Swal.fire("Error", "No se pudo conectar con el servidor", "error");
-    } finally {
-      setLoading(false);
+    );
+
+    const data = await response.json();
+    if (response.ok) {
+      setFormData({
+        nombre: "",
+        precio: "",
+        clasificacion: "",
+        descripcion: "",
+        stock: "",
+        imagen: null,
+      });
+
+      Swal.fire({
+        title: "Publicación creada",
+        text: "Tu publicación se ha creado correctamente.",
+        icon: "success",
+        confirmButtonText: "Ver publicación",
+      }).then(() => {
+        addProduct(data);
+        navigate(`/product/${data.id}`, { state: { product: data } });
+      });
+    } else {
+      Swal.fire(
+        "Error",
+        data.message || "Hubo un problema al crear la publicación",
+        "error"
+      );
     }
-  };
+  } catch (error) {
+    console.error("Error al subir producto:", error);
+    Swal.fire("Error", "No se pudo conectar con el servidor", "error");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 bg-light px-2 px-md-0">
