@@ -54,17 +54,34 @@ function ProductView() {
 
     console.log("Enviando comentario:", nuevoComentario);
 
-    try {
-      const res = await fetch(`https://hito3-backend.onrender.com/api/comentarios/${id}`, {
+   try {
+      const token = user?.token || sessionStorage.getItem("token");
+    
+      if (!token) {
+        console.error("No hay token disponible. No se puede enviar la solicitud.");
+        return;
+      }
+
+    const res = await fetch(`https://hito3-backend.onrender.com/api/comentarios/${id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${user?.token}`, 
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(nuevoComentario),
       });
-
+    
       const data = await res.json();
+    
+      if (!res.ok) {
+        throw new Error(data.message || "Error al enviar el comentario");
+      }
+    
+      console.log("Comentario enviado correctamente:", data);
+    } catch (error) {
+      console.error("Error en la solicitud:", error);
+    }
+
       if (res.ok) {
         setComentarios([data, ...comentarios]); // Agrega el nuevo comentario al estado
         setComentario(""); // Limpia el campo de texto
