@@ -8,11 +8,7 @@ function ProductView() {
   const { id } = useParams();
   const [product, setProduct] = useState(location.state?.product || null);
   const { addToCart } = useContext(AppContext);
-  const clasificacionesMap = {
-  epp: "Elementos de Protección Personal",
-  art_aseo: "Artículos de Aseo",
-  libreria: "Productos de Librería",
-  };  
+
   useEffect(() => {
     if (!product) {
       fetch(`https://hito3-backend.onrender.com/api/publicaciones/${id}`)
