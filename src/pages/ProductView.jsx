@@ -11,6 +11,7 @@ function ProductView() {
   const [comentarios, setComentarios] = useState([]);
   const [comentario, setComentario] = useState("");
   const [calificacion, setCalificacion] = useState(5);
+  console.log("ID del producto:", id);
 
   // Obtener producto si no está en el estado
   useEffect(() => {
