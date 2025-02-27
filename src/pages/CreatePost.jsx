@@ -1,76 +1,86 @@
 import React, { useState, useContext } from "react";
-import { Form, Button, Card, Row, Col } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { Form, Button, Card, Row, Col } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
 const CreatePost = () => {
   const { token } = useContext(AppContext);
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    nombre: '',
-    precio: '',
-    clasificacion: '',
-    descripcion: '',
-    stock: '',
-    imagen: null
+    nombre: "",
+    precio: "",
+    clasificacion: "",
+    descripcion: "",
+    stock: "",
+    imagen: null,
   });
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // Si el campo es "precio" o "stock" asegúrate de guardar números, si es necesario.
     setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: name === "precio" || name === "stock" ? Number(value) : value,
     }));
   };
 
   const handleFileChange = (e) => {
     setFormData((prev) => ({
       ...prev,
-      imagen: e.target.files[0]
+      imagen: e.target.files[0],
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    
-    const formDataToSend = new FormData();
-    formDataToSend.append('nombre', formData.nombre);
-    formDataToSend.append('precio', formData.precio);
-    formDataToSend.append('clasificacion', formData.clasificacion);
-    formDataToSend.append('descripcion', formData.descripcion);
-    formDataToSend.append('stock', formData.stock);
-    if (formData.imagen) {
-      formDataToSend.append('imagen', formData.imagen);
+
+    if (!formData.imagen) {
+      Swal.fire("Error", "Debes subir una imagen", "error");
+      setLoading(false);
+      return;
     }
 
+    const formDataToSend = new FormData();
+    Object.keys(formData).forEach((key) => {
+      formDataToSend.append(key, formData[key]);
+    });
+
     try {
-      const response = await fetch("https://hito3-backend.onrender.com/api/publicaciones", {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
-        body: formDataToSend,
-      });
+      const response = await fetch(
+        "https://hito3-backend.onrender.com/api/publicaciones",
+        {
+          method: "POST",
+          headers: { Authorization: `Bearer ${token}` },
+          body: formDataToSend,
+        }
+      );
 
       const data = await response.json();
       if (response.ok) {
+        setFormData({
+          nombre: "",
+          precio: "",
+          clasificacion: "",
+          descripcion: "",
+          stock: "",
+          imagen: null,
+        });
+
         Swal.fire({
           title: "Publicación creada",
           text: "Tu publicación se ha creado correctamente.",
           icon: "success",
-          confirmButtonText: "Ver publicación"
-        }).then(() => {
-          // Se asume que el backend devuelve el id de la publicación creada
-          //navigate(`/product/${data.id}`);
-          navigate(`/`);  // mientras elnavigate apuntara hacia Home
-        });
+          confirmButtonText: "Ver publicación",
+        }).then(() => navigate(`/`));
       } else {
-        Swal.fire("Error", data.message || "Hubo un problema al crear la publicación", "error");
+        Swal.fire(
+          "Error",
+          data.message || "Hubo un problema al crear la publicación",
+          "error"
+        );
       }
     } catch (error) {
       console.error("Error al subir producto:", error);
@@ -82,7 +92,7 @@ const CreatePost = () => {
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 bg-light px-2 px-md-0">
-      <Card className="p-4 border" style={{ width: '100%', maxWidth: '700px', borderColor: 'inherit' }}>
+      <Card className="p-4 border" style={{ width: "100%", maxWidth: "700px" }}>
         <h3 className="mb-2">Nuevo Producto</h3>
         <h5 className="text-muted mb-3">Agrega producto para vender</h5>
         <hr />
@@ -102,7 +112,7 @@ const CreatePost = () => {
           <Form.Group className="mb-3">
             <Form.Label>Precio</Form.Label>
             <Form.Control
-              type="text"
+              type="number"
               placeholder="Ingresa el precio"
               name="precio"
               value={formData.precio}
@@ -113,7 +123,12 @@ const CreatePost = () => {
 
           <Form.Group className="mb-3">
             <Form.Label>Categoría</Form.Label>
-            <Form.Select name="clasificacion" value={formData.clasificacion} onChange={handleChange} required>
+            <Form.Select
+              name="clasificacion"
+              value={formData.clasificacion}
+              onChange={handleChange}
+              required
+            >
               <option value="">Seleccione una categoría</option>
               <option value="epp">Ropa de seguridad</option>
               <option value="art_aseo">Productos de limpieza</option>
@@ -155,6 +170,7 @@ const CreatePost = () => {
                   type="file"
                   name="imagen"
                   onChange={handleFileChange}
+                  accept="image/png, image/jpeg, image/jpg"
                 />
               </Form.Group>
             </Col>
@@ -172,6 +188,7 @@ const CreatePost = () => {
 };
 
 export default CreatePost;
+
 
 
 
