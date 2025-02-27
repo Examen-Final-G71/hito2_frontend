@@ -8,7 +8,11 @@ function ProductView() {
   const { id } = useParams();
   const [product, setProduct] = useState(location.state?.product || null);
   const { addToCart } = useContext(AppContext);
-
+  const clasificacionesMap = {
+  epp: "Elementos de Protección Personal",
+  art_aseo: "Artículos de Aseo",
+  libreria: "Productos de Librería",
+  };  
   useEffect(() => {
     if (!product) {
       fetch(`https://hito3-backend.onrender.com/api/publicaciones/${id}`)
@@ -21,6 +25,7 @@ function ProductView() {
   if (!product) {
     return <Container className="mt-5"><p>Producto no encontrado.</p></Container>;
   }
+  
 
   return (
     <Container className="mt-5" style={{ marginBottom: '80px' }}>
@@ -30,7 +35,7 @@ function ProductView() {
         </Col>
         <Col md={6} className="d-flex flex-column justify-content-center">
           <h1>{product.nombre}</h1>
-          <p>{product.clasificacion}</p>
+          <p>{clasificacionesMap[product.clasificacion] || product.clasificacion}</p>
           <p>{product.descripcion}</p>
           <p>Stock disponible: {product.stock}</p>
           <p>Publicado por: {product.usuario_nombre}</p>
