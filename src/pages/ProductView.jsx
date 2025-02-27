@@ -6,7 +6,7 @@ import { AppContext } from '../context/AppContext';
 function ProductView() {
   const location = useLocation();
   const product = location.state?.product;
-  const { addToCart, getImageUrl } = useContext(AppContext);
+  const { addToCart } = useContext(AppContext);
 
   if (!product) {
     return <Container className="mt-5"><p>Producto no encontrado.</p></Container>;
@@ -16,7 +16,7 @@ function ProductView() {
     <Container className="mt-5" style={{ marginBottom: '80px' }}>
       <Row>
         <Col md={6}>
-          <Image src={getImageUrl(product.imagen)} alt={product.nombre} fluid rounded style={{ maxHeight: '500px', objectFit: 'contain' }} />
+          <Image src={product.imagen} alt={product.nombre} fluid rounded style={{ maxHeight: '500px', objectFit: 'contain' }} />
         </Col>
         <Col md={6} className="d-flex flex-column justify-content-center">
           <h1>{product.nombre}</h1>
