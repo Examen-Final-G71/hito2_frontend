@@ -30,7 +30,7 @@ const Cart = () => {
           <div className="row g-0">
             <div className="col-md-4">
               <img 
-                src={product.imagen}
+                src={item.imagen}
                 alt={item.nombre}
                 style={{ height: "200px", objectFit: "cover" }} 
               />
