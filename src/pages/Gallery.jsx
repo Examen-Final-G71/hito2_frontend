@@ -9,13 +9,14 @@ function Gallery() {
   const [categoryFilter, setCategoryFilter] = useState("all");
   const navigate = useNavigate();
 
-  const filteredProducts = products.filter((product) => {
-    const titleMatch = product.nombre.toLowerCase().includes(searchTerm.toLowerCase());
-    const categoryMatch = categoryFilter === "all" || product.clasificacion === categoryFilter;
-    return titleMatch && categoryMatch;
-  });
+const filteredProducts = (products || []).filter((product) => {
+  const titleMatch = product.nombre?.toLowerCase().includes(searchTerm.toLowerCase());
+  const categoryMatch = categoryFilter === "all" || product.clasificacion === categoryFilter;
+  return titleMatch && categoryMatch;
+});
 
-  const uniqueCategories = [...new Set(products.map((product) => product.clasificacion))];
+const uniqueCategories = [...new Set((products || []).map((product) => product.clasificacion))];
+
 
   const handleVerMas = (product) => {
     navigate(`/product/${product.id}`, { state: { product } });
