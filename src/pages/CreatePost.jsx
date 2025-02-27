@@ -75,7 +75,7 @@ const CreatePost = () => {
           text: "Tu publicación se ha creado correctamente.",
           icon: "success",
           confirmButtonText: "Ver publicación",
-        }).then(() => navigate(`/producto/${data.id || data._id}`));
+        }).then(() => navigate(/));
       } else {
         Swal.fire(
           "Error",
