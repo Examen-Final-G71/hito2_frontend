@@ -148,7 +148,9 @@ function ProductView() {
               comentarios.map((c) => (
                 <li key={c.id} className="mb-3 border-bottom pb-2">
                   <strong>{c.usuario_nombre || "Usuario Desconocido"}</strong>  
-                  <span className="text-warning">{"★".repeat(c.calificacion)}</span>
+                  <span className="text-warning">
+                    {"★".repeat(c.calificacion || 0)}
+                  </span>
                   <p>{c.comment}</p>
                 </li>
               ))
