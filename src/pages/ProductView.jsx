@@ -7,10 +7,11 @@ function ProductView() {
   const location = useLocation();
   const { id } = useParams();
   const [product, setProduct] = useState(location.state?.product || null);
-  const { addToCart, obtenerNombreClasificacion, usuario } = useContext(AppContext);
+  const { addToCart, obtenerNombreClasificacion, user } = useContext(AppContext);
   const [comentarios, setComentarios] = useState([]);
   const [comentario, setComentario] = useState("");
   const [calificacion, setCalificacion] = useState(5);
+  
   console.log("ID del producto:", id);
 
   // Obtener producto si no está en el estado
@@ -34,7 +35,17 @@ function ProductView() {
   // Enviar comentario
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!comentario.trim()) return alert("El comentario no puede estar vacío");
+    
+    const token = sessionStorage.getItem("token"); // Obtiene el token de sessionStorage
+    if (!token) {
+      alert("Debes iniciar sesión para comentar");
+      return;
+    }
+
+    if (!comentario.trim()) {
+      alert("El comentario no puede estar vacío");
+      return;
+    }
 
     const nuevoComentario = {
       calificacion,
@@ -48,15 +59,16 @@ function ProductView() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${usuario?.token}`,
+          Authorization: `Bearer ${user?.token}`, 
         },
         body: JSON.stringify(nuevoComentario),
       });
 
       const data = await res.json();
       if (res.ok) {
-        setComentarios([data, ...comentarios]);
-        setComentario("");
+        setComentarios([data, ...comentarios]); // Agrega el nuevo comentario al estado
+        setComentario(""); // Limpia el campo de texto
+        setCalificacion(5); // Resetea la calificación
       } else {
         alert(data.error || "Error al enviar comentario");
       }
@@ -111,13 +123,13 @@ function ProductView() {
         <Col>
           <h3>Comentarios</h3>
 
-          {usuario ? (
+          {user ? (
             <Form onSubmit={handleSubmit} className="mb-4">
               <Form.Group>
                 <Form.Label>Calificación:</Form.Label>
                 <Form.Select
                   value={calificacion}
-                  onChange={(e) => setCalificacion(e.target.value)}
+                  onChange={(e) => setCalificacion(Number(e.target.value))}
                 >
                   {[5, 4, 3, 2, 1].map((num) => (
                     <option key={num} value={num}>
@@ -147,11 +159,11 @@ function ProductView() {
           )}
 
           <ul className="list-unstyled">
-            {comentarios.length > 0 ? (
+            {Array.isArray(comentarios) && comentarios.length > 0 ? (
               comentarios.map((c) => (
-                <li key={c.id} className="mb-3 border-bottom pb-2">
-                  <strong>{c.usuario_nombre || "Usuario"}</strong> ({c.calificacion} ★)
-                  <p>{c.comment}</p>
+                <li key={c?.id || Math.random()} className="mb-3 border-bottom pb-2">
+                  <strong>{c?.usuario_nombre || "Usuario"}</strong> ({c?.calificacion} ★)
+                  <p>{c?.comment}</p>
                 </li>
               ))
             ) : (
@@ -165,6 +177,7 @@ function ProductView() {
 }
 
 export default ProductView;
+
 
 
 
