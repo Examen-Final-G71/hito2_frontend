@@ -40,6 +40,8 @@ function ProductView() {
       comment: comentario,
     };
 
+    console.log("Enviando comentario:", nuevoComentario);
+
     try {
       const res = await fetch(`https://hito3-backend.onrender.com/api/comentarios/${id}`, {
         method: "POST",
