@@ -141,7 +141,7 @@ export function AppProvider({ children }) {
         logout,
         products,
         addProduct,
-        clasificacionesMap,
+        obtenerNombreClasificacion,
       }}
     >
       {children}
