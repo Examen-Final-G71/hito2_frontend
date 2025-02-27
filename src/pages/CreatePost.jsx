@@ -60,6 +60,7 @@ const CreatePost = () => {
 
       const data = await response.json();
       if (response.ok) {
+        addProduct(data);
         setFormData({
           nombre: "",
           precio: "",
