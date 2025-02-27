@@ -43,6 +43,11 @@ export function AppProvider({ children }) {
     sessionStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
+  
+  const addProduct = (newProduct) => {
+  setProducts((prevProducts) => [...prevProducts, newProduct]);
+};
+
   // Funciones para el carrito
   const addToCart = (product) => {
     setCart((prevCart) => {
@@ -127,6 +132,7 @@ export function AppProvider({ children }) {
         login,
         logout,
         products,
+        addProduct,
       }}
     >
       {children}
