@@ -5,9 +5,19 @@ import { AppContext } from '../context/AppContext';
 
 function ProductView() {
   const location = useLocation();
-  const product = location.state?.product;
+  const { id } = useParams();
+  const [product, setProduct] = useState(location.state?.product || null);
   const { addToCart } = useContext(AppContext);
 
+  useEffect(() => {
+    if (!product) {
+      fetch(`https://hito3-backend.onrender.com/api/publicaciones/${id}`)
+        .then((res) => res.json())
+        .then((data) => setProduct(data))
+        .catch((err) => console.error("Error al obtener el producto:", err));
+    }
+  }, [id, product]);
+  
   if (!product) {
     return <Container className="mt-5"><p>Producto no encontrado.</p></Container>;
   }
