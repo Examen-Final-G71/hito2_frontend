@@ -5,7 +5,7 @@ import { AppContext } from "../context/AppContext";
 import Swal from "sweetalert2";
 
 const CreatePost = () => {
-  const { token } = useContext(AppContext);
+  const { token, addProduct } = useContext(AppContext);
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
