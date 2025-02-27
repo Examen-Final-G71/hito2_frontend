@@ -4,7 +4,7 @@ import { Card, Button, Container, Row, Col, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 function Gallery() {
-  const { products, addToCart, getImageUrl } = useContext(AppContext);
+  const { products, addToCart } = useContext(AppContext);
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
   const navigate = useNavigate();
