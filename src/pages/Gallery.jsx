@@ -4,7 +4,7 @@ import { Card, Button, Container, Row, Col, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 function Gallery() {
-  const { products, addToCart } = useContext(AppContext);
+  const { products, addToCart, obtenerNombreClasificacion } = useContext(AppContext);
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ const uniqueCategories = [...new Set((products || []).map((product) => product.c
             <option value="all">Todas las categorías</option>
             {uniqueCategories.map((category) => (
               <option key={category} value={category}>
-                {category}
+                {obtenerNombreClasificacion(category)}
               </option>
             ))}
           </Form.Select>
