@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 import { AppContext } from '../context/AppContext';
