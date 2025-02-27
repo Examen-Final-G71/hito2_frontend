@@ -35,7 +35,7 @@ function ProductView() {
           <p>{product.descripcion}</p>
           <p>Stock disponible: {product.stock}</p>
           <p>Publicado por: {product.usuario_nombre}</p>
-          <p className="mt-5">Precio: ${product.precio}</p>
+          <p className="mt-5">Precio: ${new Intl.NumberFormat("es-CL").format(product.precio)}
           
           <Button variant="primary" onClick={() => addToCart(product)}>
             Añadir al Carrito
