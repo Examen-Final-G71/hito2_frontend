@@ -51,7 +51,7 @@ const uniqueCategories = [...new Set((products || []).map((product) => product.c
             <Card className="h-100">
               <Card.Img
                 variant="top"
-                src={getImageUrl(product.imagen)}
+                src={product.imagen}
                 alt={product.nombre}
                 style={{ height: "200px", objectFit: "cover" }}
               />
