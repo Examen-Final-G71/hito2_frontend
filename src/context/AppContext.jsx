@@ -46,7 +46,7 @@ export function AppProvider({ children }) {
   const obtenerNombreClasificacion = (codigo) => {
   const clasificaciones = {
     epp: "Elementos de Protección Personal",
-    aseo: "Artículos de Aseo",
+    art_aseo: "Artículos de Aseo",
     libreria: "Productos de Librería",
   };
   return clasificaciones[codigo] || codigo;
