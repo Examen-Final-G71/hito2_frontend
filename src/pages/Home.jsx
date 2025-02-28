@@ -37,7 +37,7 @@ const Home = () => {
       <div className="container mt-5" style={{ marginBottom: "80px" }}>
         <div className="row">
           <div className="col-12 text-center" style={{ marginBottom: "50px" }}>
-          <h2>Categorías</h2>
+          <h2>Categorías_prueba</h2>
           </div>
         </div>
         <div className="row">
