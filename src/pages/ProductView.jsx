@@ -33,66 +33,62 @@ function ProductView() {
   }, [id]);
 
   // Enviar comentario
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    const token = sessionStorage.getItem("token"); // Obtiene el token de sessionStorage
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  const token = sessionStorage.getItem("token"); // Obtiene el token de sessionStorage
+  if (!token) {
+    alert("Debes iniciar sesión para comentar");
+    return;
+  }
+
+  if (!comentario.trim()) {
+    alert("El comentario no puede estar vacío");
+    return;
+  }
+
+  const nuevoComentario = {
+    calificacion,
+    comment: comentario,
+  };
+
+  console.log("Enviando comentario:", nuevoComentario);
+
+  try {
+    const token = user?.token || sessionStorage.getItem("token");
+
     if (!token) {
-      alert("Debes iniciar sesión para comentar");
+      console.error("No hay token disponible. No se puede enviar la solicitud.");
       return;
     }
-
-    if (!comentario.trim()) {
-      alert("El comentario no puede estar vacío");
-      return;
-    }
-
-    const nuevoComentario = {
-      calificacion,
-      comment: comentario,
-    };
-
-    console.log("Enviando comentario:", nuevoComentario);
-
-   try {
-      const token = user?.token || sessionStorage.getItem("token");
-    
-      if (!token) {
-        console.error("No hay token disponible. No se puede enviar la solicitud.");
-        return;
-      }
 
     const res = await fetch(`https://hito3-backend.onrender.com/api/comentarios/${id}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(nuevoComentario),
-      });
-    
-      const data = await res.json();
-    
-      if (!res.ok) {
-        throw new Error(data.message || "Error al enviar el comentario");
-      }
-    
-      console.log("Comentario enviado correctamente:", data);
-    } catch (error) {
-      console.error("Error en la solicitud:", error);
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(nuevoComentario),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.message || "Error al enviar el comentario");
     }
 
-      if (res.ok) {
-        setComentarios([data, ...comentarios]); // Agrega el nuevo comentario al estado
-        setComentario(""); // Limpia el campo de texto
-        setCalificacion(5); // Resetea la calificación
-      } else {
-        alert(data.error || "Error al enviar comentario");
-      }
-    } catch (error) {
-      console.error("Error al enviar comentario:", error);
-    }
-  };
+    console.log("Comentario enviado correctamente:", data);
+    
+    setComentarios([data, ...comentarios]); // Agrega el nuevo comentario al estado
+    setComentario(""); // Limpia el campo de texto
+    setCalificacion(5); // Resetea la calificación
+    
+  } catch (error) {
+    console.error("Error en la solicitud:", error);
+    alert(error.message || "Ocurrió un error al enviar el comentario");
+  }
+};
+
 
   if (!product) {
     return (
