@@ -57,7 +57,8 @@ const uniqueCategories = [...new Set((products || []).map((product) => product.c
               />
               <Card.Body className="d-flex flex-column">
                 <Card.Title>{product.nombre}</Card.Title>
-                <Card.Text>{product.descripcion}</Card.Text>
+                <Card.Text>{obtenerNombreClasificacion(product.clasificacion)}</Card.Text>
+                 <Card.Text>{product.stock}</Card.Text>
                 <Card.Text>Precio: ${new Intl.NumberFormat("es-CL").format(product.precio)}</Card.Text>
                 <div className="mt-auto d-flex justify-content-center align-items-center">
                   <Button variant="outline-primary" className="me-2" onClick={() => handleVerMas(product)}>
