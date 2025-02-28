@@ -173,14 +173,16 @@ const handleSubmit = async (e) => {
 
           <ul className="list-unstyled">
             {Array.isArray(comentarios) && comentarios.length > 0 ? (
-              comentarios.map((c) => (
-                <li key={c?.id || Math.random()} className="mb-3 border-bottom pb-2">
-                  <strong>{c?.usuario_nombre || "Usuario"}</strong> ({c?.calificacion} ★)
-                  <p>{c?.comment}</p>
-                </li>
-              ))
+              comentarios.map((c) =>
+                c?.id ? ( // Solo renderiza si `id` existe
+                  <li key={c.id} className="mb-3 border-bottom pb-2">
+                    <strong>{c.usuario_nombre ?? "Usuario"}</strong> ({c.calificacion ?? "0"} ★)
+                    <p>{c.comment ?? "Sin comentario"}</p>
+                  </li>
+                ) : null
+              )
             ) : (
-              <p>Aún no hay comentarios.</p>
+              <li>No hay comentarios aún.</li> 
             )}
           </ul>
         </Col>
