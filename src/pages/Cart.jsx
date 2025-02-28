@@ -24,7 +24,7 @@ const Cart = () => {
 
   return (
     <div className="container mt-5">
-      <h2 className="mb-4">Carrito de Compras</h2>
+      <h2 className="mb-4">Carro de Compras</h2>
       <div className="cart-items">
         {cart.map((item) => (
           <div className="d-flex align-items-center border-bottom py-3" key={item.id}>
@@ -32,7 +32,7 @@ const Cart = () => {
             <div className="flex-grow-1">
               <h6 className="mb-0">{item.nombre}</h6>
               <p className="text-muted mb-0" style={{ fontSize: "0.9rem" }}>{item.descripcion}</p>
-              {item.stock === 0 && <p className="text-danger fw-bold">OUT OF STOCK</p>}
+              {item.stock === 0 && <p className="text-danger fw-bold">Sin stock</p>}
             </div>
             <div className="d-flex align-items-center">
               <button className="btn btn-outline-dark btn-sm me-2" onClick={() => decreaseQuantity(item.id)}>-</button>
@@ -40,7 +40,7 @@ const Cart = () => {
               <button className="btn btn-outline-dark btn-sm me-3" onClick={() => increaseQuantity(item.id)}>+</button>
             </div>
             <p className="fw-bold mb-0">${getItemTotal(item).toFixed(2)}</p>
-            <button className="btn btn-link text-danger ms-3" onClick={() => removeFromCart(item.id)}>Remove</button>
+            <button className="btn btn-link text-danger ms-3" onClick={() => removeFromCart(item.id)}>Eliminar</button>
           </div>
         ))}
       </div>
