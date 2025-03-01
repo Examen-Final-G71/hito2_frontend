@@ -45,7 +45,7 @@ const Cart = () => {
         ))}
       </div>
       <div className="d-flex justify-content-end align-items-center mt-4 gap-3">
-        <h4 className="mb-0">Total: ${getCartTotal().toFixed(2)}</h4>
+        <h4 className="mb-0">Total: ${new Intl.NumberFormat("es-CL").format({getCartTotal().toFixed(2)})}</h4>
         <button className="btn btn-success ms-4" onClick={handlePagar}>Pagar</button>
       </div>
     </div>
