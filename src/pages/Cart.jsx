@@ -23,7 +23,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="container mt-5 text-center" style={{ minHeight: "60vh"}}>
+    <div className="container mt-5 text-center" style={{ minHeight: "115vh"}}>
       <h2 className="mb-4">Carro de Compras</h2>
       <div className="cart-items">
         {cart.map((item) => (
