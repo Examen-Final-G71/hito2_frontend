@@ -23,11 +23,19 @@ function ProductView() {
   }, [id, product]);
 
   // Obtener comentarios
+  const fetchComentarios = async () => {
+    try {
+      const res = await fetch(`https://hito3-backend.onrender.com/api/comentarios/publicacion/${id}`);
+      const data = await res.json();
+      setComentarios(data);
+    } catch (err) {
+      console.error("Error al cargar comentarios:", err);
+    }
+  };
+
+  // Llamar a fetchComentarios al montar el componente
   useEffect(() => {
-    fetch(`https://hito3-backend.onrender.com/api/comentarios/publicacion/${id}`)
-      .then((res) => res.json())
-      .then((data) => setComentarios(data))
-      .catch((err) => console.error("Error al cargar comentarios:", err));
+    fetchComentarios();
   }, [id]);
 
   // Enviar comentario
@@ -65,9 +73,9 @@ function ProductView() {
         throw new Error(data.message || "Error al enviar el comentario");
       }
 
-      setComentarios([data, ...comentarios]); // Agrega el nuevo comentario al estado
       setComentario(""); // Limpia el campo de texto
       setCalificacion(5); // Resetea la calificación
+      fetchComentarios(); // Recargar comentarios desde la API
     } catch (error) {
       console.error("Error en la solicitud:", error);
       alert(error.message || "Ocurrió un error al enviar el comentario");
@@ -89,7 +97,7 @@ function ProductView() {
           <Image src={product.imagen} alt={product.nombre} fluid rounded />
         </Col>
         <Col md={6}>
-         <h1>{product.nombre}</h1>
+          <h1>{product.nombre}</h1>
           <p>{obtenerNombreClasificacion(product.clasificacion)}</p>
           <p>{product.descripcion}</p>
           <p>Stock disponible: {product.stock}</p>
@@ -141,6 +149,7 @@ function ProductView() {
 }
 
 export default ProductView;
+
 
 
 
