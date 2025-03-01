@@ -89,9 +89,14 @@ function ProductView() {
           <Image src={product.imagen} alt={product.nombre} fluid rounded />
         </Col>
         <Col md={6}>
-          <h1>{product.nombre}</h1>
+         <h1>{product.nombre}</h1>
           <p>{obtenerNombreClasificacion(product.clasificacion)}</p>
           <p>{product.descripcion}</p>
+          <p>Stock disponible: {product.stock}</p>
+          <p>Publicado por: {product.usuario_nombre}</p>
+          <p className="mt-5">
+            Precio: ${new Intl.NumberFormat("es-CL").format(product.precio)}
+          </p>
           <Button onClick={() => addToCart(product)}>Añadir al Carrito</Button>
         </Col>
       </Row>
