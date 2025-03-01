@@ -35,9 +35,9 @@ const Cart = () => {
               {item.stock === 0 && <p className="text-danger fw-bold">Sin stock</p>}
             </div>
             <div className="d-flex align-items-center">
-              <button className="btn btn-outline-dark btn-sm me-2" onClick={() => decreaseQuantity(item.id)}>-</button>
+              <button className="btn btn-outline-primary btn-sm me-2" onClick={() => decreaseQuantity(item.id)}>-</button>
               <span className="px-2">{item.quantity}</span>
-              <button className="btn btn-outline-dark btn-sm me-3" onClick={() => increaseQuantity(item.id)}>+</button>
+              <button className="btn btn-outline-primary btn-sm me-3" onClick={() => increaseQuantity(item.id)}>+</button>
             </div>
             <p className="fw-bold mb-0">${getItemTotal(item).toFixed(2)}</p>
             <button className="btn btn-link text-danger ms-3" onClick={() => removeFromCart(item.id)}>Eliminar</button>
