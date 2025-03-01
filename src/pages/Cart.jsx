@@ -8,7 +8,7 @@ const Cart = () => {
 
   if (cart.length === 0) {
     return (
-      <div className="container mt-5 text-center">
+      <div className="container mt-5 text-center" style={{ minHeight: "60vh" }}>
         <h2>Tu carrito está vacío</h2>
       </div>
     );
@@ -23,7 +23,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 text-center">
       <h2 className="mb-4">Carro de Compras</h2>
       <div className="cart-items">
         {cart.map((item) => (
