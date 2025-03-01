@@ -28,7 +28,7 @@ const Cart = () => {
       <div className="cart-items">
         {cart.map((item) => (
           <div className="d-flex align-items-center border-bottom py-3" key={item.id}>
-            <img src={item.imagen} alt={item.nombre} className="me-3" style={{ width: "60px", height: "60px", objectFit: "cover" }} />
+            <img src={item.imagen} alt={item.nombre} className="me-3" style={{ width: "90px", height: "90px", objectFit: "cover" }} />
             <div className="flex-grow-1">
               <h6 className="mb-0">{item.nombre}</h6>
               <p className="text-muted mb-0" style={{ fontSize: "0.9rem" }}>{item.descripcion}</p>
