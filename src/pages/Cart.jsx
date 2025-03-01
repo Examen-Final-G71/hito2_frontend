@@ -8,7 +8,7 @@ const Cart = () => {
 
   if (cart.length === 0) {
     return (
-      <div className="container mt-5 text-center" style={{ minHeight: "60vh" }}>
+      <div className="container mt-5 text-center" style={{ minHeight: "70vh", marginBottom: "50px" }}>
         <h2>Tu carrito está vacío</h2>
       </div>
     );
