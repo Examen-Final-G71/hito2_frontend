@@ -25,7 +25,7 @@ function ProductView() {
   // Obtener comentarios
   const fetchComentarios = async () => {
     try {
-      const res = await fetch(`https://hito3-backend.onrender.com/api/comentarios/publicacion/${id}`);
+      const res = await fetch(`https://hito3-backend.onrender.com/api/comentarios/publicacion_${id}`);
       const data = await res.json();
       setComentarios(data);
     } catch (err) {
