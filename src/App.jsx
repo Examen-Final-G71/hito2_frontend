@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AppProvider } from "./context/AppContext"; 
-import { CommentContext } from "../context/ComentariosContext";
+import { CommentProvider } from "./context/ComentariosContext";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Gallery from "./pages/Gallery";
