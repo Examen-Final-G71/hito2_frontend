@@ -115,33 +115,40 @@ function ProductView() {
           <h3>Comentarios</h3>
 
           {user ? (
-            <Form onSubmit={handleSubmit}>
-              <Form.Group>
-                <Form.Label>Calificación:</Form.Label>
-                <Form.Select value={calificacion} onChange={(e) => setCalificacion(Number(e.target.value))}>
-                  {[5, 4, 3, 2, 1].map((num) => (
-                    <option key={num} value={num}>{num} ★</option>
-                  ))}
-                </Form.Select>
-              </Form.Group>
+  <Form onSubmit={handleSubmit}>
+    <Form.Group>
+      <Form.Label>Calificación:</Form.Label>
+      <Form.Select value={calificacion} onChange={(e) => setCalificacion(Number(e.target.value))}>
+        {[5, 4, 3, 2, 1].map((num) => (
+          <option key={num} value={num}>{num} ★</option>
+        ))}
+      </Form.Select>
+    </Form.Group>
 
-              <Form.Group>
-                <Form.Label>Comentario:</Form.Label>
-                <Form.Control as="textarea" rows={2} value={comentario} onChange={(e) => setComentario(e.target.value)} />
-              </Form.Group>
+    <Form.Group>
+      <Form.Label>Comentario:</Form.Label>
+      <Form.Control as="textarea" rows={2} value={comentario} onChange={(e) => setComentario(e.target.value)} />
+    </Form.Group>
 
-              <Button type="submit">Enviar</Button>
-            </Form>
-          ) : (
-            <p>Debes iniciar sesión para comentar.</p>
-          )}
+    <Button type="submit">Enviar</Button>
+  </Form>
+) : (
+  <p>Debes iniciar sesión para comentar.</p>
+)}
 
-          {comentarios.map((c) => (
-            <div key={c.id}>
-              <strong>{c.usuario_nombre}</strong> ({c.calificacion} ★)
-              <p>{c.comment}</p>
-            </div>
-          ))}
+{/* Lista de comentarios (Visible para todos) */}
+<div>
+  {comentarios.length > 0 ? (
+    comentarios.map((c) => (
+      <div key={c.id}>
+        <strong>{c.usuario_nombre}</strong> ({c.calificacion} ★)
+        <p>{c.comment}</p>
+      </div>
+    ))
+  ) : (
+    <p>No hay comentarios aún.</p>
+  )}
+</div>
         </Col>
       </Row>
     </Container>
