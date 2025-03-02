@@ -17,19 +17,21 @@ function App() {
   return (
     <Router basename="/">
       <AppProvider> 
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/registro" element={<Registro />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/product/:id" element={<ProductView />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/createpost" element={<CreatePost />} />
-          <Route path="/checkout" element={<Checkout />} />
-        </Routes>
-        <Footer />
+        <CommentProvider>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/registro" element={<Registro />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/product/:id" element={<ProductView />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/createpost" element={<CreatePost />} />
+            <Route path="/checkout" element={<Checkout />} />
+          </Routes>
+          <Footer />
+        </CommentProvider>
       </AppProvider>
     </Router>
   );
