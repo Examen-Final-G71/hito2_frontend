@@ -17,7 +17,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <img src={logo} alt="Logo" style={{ width: "150px", height: "auto" }} />
+        <img src={logo} alt="Logo" style={{ width: "60px", height: "auto" }} />
         <button
           className="navbar-toggler"
           type="button"
