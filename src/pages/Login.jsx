@@ -78,7 +78,7 @@ const Login = () => {
   }
 
   return (
-    <div className="d-flex justify-content-center vh-80 bg-light">
+    <div className="d-flex justify-content-center align-items-center main-content bg-light">
       <div className="card p-4" style={{ width: "22rem" }}>
         <h3 className="text-center mb-3">Iniciar sesión</h3>
         <hr />

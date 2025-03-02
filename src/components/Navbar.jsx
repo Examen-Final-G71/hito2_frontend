@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
-import { useNavigate, Link } from "react-router-dom";  
+import { useNavigate, Link, useLocation } from "react-router-dom";  
 import { AppContext } from "../context/AppContext"; 
 import logo from "../assets/img/novatec.png";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation(); 
   const { cart, user, logout } = useContext(AppContext);
 
   const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
@@ -14,10 +15,14 @@ const Navbar = () => {
     navigate("/login");
   };
 
+  const isActive = (path) => location.pathname === path ? "active" : "";
+
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <img src={logo} alt="Logo" style={{ width: "60px", height: "auto" }} />
+        <Link to="/"> 
+          <img src={logo} alt="Logo" className="ms-2" style={{ width: "60px", height: "auto", cursor: "pointer" }} />
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -32,25 +37,25 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mb-2 mb-lg-0 ms-auto pe-3">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/">
+              <Link className={`nav-link ${isActive("/")}`} aria-current="page" to="/">
                 Inicio
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link active" to="/gallery">
+              <Link className={`nav-link ${isActive("/gallery")}`} to="/gallery">
                 Catálogo
               </Link>
             </li>
             {user ? (
               <>
                 <li className="nav-item">
-                  <Link className="nav-link active" to="/profile">
+                  <Link className={`nav-link ${isActive("/profile")}`} to="/profile">
                     Mi perfil
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link active" to="/createpost">
-                    Crear Publicación <i class="fa-solid fa-square-plus fa-xl"></i>
+                  <Link className={`nav-link ${isActive("/createpost")}`} to="/createpost">
+                    Crear Publicación <i className="fa-solid fa-square-plus fa-xl"></i>
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -62,7 +67,7 @@ const Navbar = () => {
             ) : (
               <li className="nav-item dropdown">
                 <a
-                  className="nav-link dropdown-toggle"
+                  className={`nav-link dropdown-toggle ${isActive("/login") || isActive("/registro")}`}
                   href="#"
                   role="button"
                   data-bs-toggle="dropdown"
@@ -72,12 +77,12 @@ const Navbar = () => {
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <Link className="dropdown-item" to="/login">
+                    <Link className={`dropdown-item ${isActive("/login")}`} to="/login">
                       Iniciar sesión
                     </Link>
                   </li>
                   <li>
-                    <Link className="dropdown-item" to="/registro">
+                    <Link className={`dropdown-item ${isActive("/registro")}`} to="/registro">
                       Regístrate
                     </Link>
                   </li>

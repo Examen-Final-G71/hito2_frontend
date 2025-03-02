@@ -23,7 +23,7 @@ const uniqueCategories = [...new Set((products || []).map((product) => product.c
   };
 
   return (
-    <Container className="mt-5">
+    <Container className="mt-5 main-content">
       <Row className="mb-4">
         <Col xs={12} md={6}>
           <Form.Control

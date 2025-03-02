@@ -30,7 +30,7 @@ const Checkout = () => {
   };
 
   return (
-    <Container className="mt-5">
+    <Container className="mt- main-content5">
       <h2 className="text-center mb-4">Resumen de Pago</h2>
       
 

@@ -62,7 +62,7 @@ function ProductView() {
   }
 
   return (
-    <Container className="mt-5" style={{ marginBottom: "80px" }}>
+    <Container className="mt-5 main-content" style={{ marginBottom: "80px" }}>
       <Row>
         <Col md={6}>
           <Image src={product.imagen} alt={product.nombre} fluid rounded />

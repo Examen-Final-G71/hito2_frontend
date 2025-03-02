@@ -34,7 +34,7 @@ const Home = () => {
   return (
     <div>
       <Banner></Banner>
-      <div className="container mt-5" style={{ marginBottom: "80px" }}>
+      <div className="container mt-5 main-content" style={{ marginBottom: "80px" }}>
         <div className="row">
           <div className="col-12 text-center" style={{ marginBottom: "50px" }}>
           <h2>Categorías</h2>
