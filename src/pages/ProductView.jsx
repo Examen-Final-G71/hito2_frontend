@@ -112,7 +112,7 @@ function ProductView() {
             {comentarios.length > 0 ? (
               comentarios.map((c) => (
                 <div key={c.id}>
-                  <strong>{c.usuario.id}</strong> ({c.calificacion} ★)
+                  <strong>{c.usuario_nombre}</strong> ({c.calificacion} ★)
                   <p>{c.comment}</p>
                 </div>
               ))
