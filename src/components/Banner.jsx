@@ -2,6 +2,8 @@ import React from 'react';
 import { Container, Carousel, Button } from "react-bootstrap";
 import banner1 from "../assets/img/banner1.png";
 import banner2 from "../assets/img/banner2.png";
+import banner3 from "../assets/img/banner3.png";
+import banner4 from "../assets/img/banner4.png";
 import { Link } from 'react-router-dom';
 
 const Banner = () => {
@@ -28,18 +30,41 @@ const Banner = () => {
                   </Link>
                  </div>
                 </Carousel.Caption>
-
               </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src={banner2}
-                            style={{ height: '420px', objectFit: 'cove' }}
-                        />
-                        <Carousel.Caption className="d-flex flex-column justify-content-center align-items-center h-100">
-                            <h2>Productos hasta un 50% de descuento</h2>
-                        </Carousel.Caption>
-                    </Carousel.Item>
+
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100"
+                        src={banner2}
+                        style={{ height: '420px', objectFit: 'cove' }}
+                    />
+                    <Carousel.Caption className="d-flex flex-column justify-content-center align-items-center h-100">
+                        <h2>Productos hasta un 50% de descuento</h2>
+                    </Carousel.Caption>
+                </Carousel.Item>
+
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100"
+                        src={banner3}
+                        style={{ height: '420px', objectFit: 'cove' }}
+                    />
+                    <Carousel.Caption className="d-flex flex-column justify-content-center align-items-center h-100">
+                        <h2>Insumos para oficina y particulares</h2>
+                    </Carousel.Caption>
+                </Carousel.Item>
+
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100"
+                        src={banner4}
+                        style={{ height: '420px', objectFit: 'cove' }}
+                    />
+                    <Carousel.Caption className="d-flex flex-column justify-content-center align-items-center h-100">
+                        <h2>Comercializamos todas las marcas</h2>
+                    </Carousel.Caption>
+                </Carousel.Item>
+
                 </Carousel>
             </Container>
         </div>

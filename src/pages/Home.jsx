@@ -42,7 +42,7 @@ const Home = () => {
           <h1>Categorías</h1>
           </div>
         </div>
-        <div className="row">
+        <div className="row" style={{ marginBottom: "60px"}}>
           {categorias.map((categoria, index) => (
             <div className="col-md-4" key={index}>
               <motion.div // Usa motion.div para la animación de la tarjeta
@@ -69,7 +69,7 @@ const Home = () => {
 
         {/* NUEVA SECCIÓN PARA VENDER PRODUCTOS */}
         <div className="mt-5 text-center">
-          <h3>¿Quieres vender tus productos?</h3>
+          <h3 style={{marginBottom: "20px"}}>¿Quieres vender tus productos?</h3>
           <p>Únete a nuestra comunidad y empieza a publicar tus productos hoy mismo.</p>
           <div className="d-flex justify-content-center gap-3 mt-3">
             <button 
