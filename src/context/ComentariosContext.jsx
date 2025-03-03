@@ -9,7 +9,7 @@ export const CommentProvider = ({ children }) => {
   const fetchComentarios = async (publicacion_id) => {
     try {
       const response = await fetch(
-        `https://hito3-backend.onrender.com/api/publicacion/${publicacion_id}/comentarios`
+        `https://hito3-backend.onrender.com/api/comentarios/publicacion/${publicacion_id}/comentarios`
       );
       if (!response.ok) throw new Error("Error al obtener comentarios");
 
