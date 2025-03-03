@@ -9,18 +9,9 @@ import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const categorias = [
-    {
-      nombre: "Ropa de seguridad",
-      imagen: seguridad,
-    },
-    {
-      nombre: "Productos de limpieza",
-      imagen: limpieza,
-    },
-    {
-      nombre: "Artículos de librería",
-      imagen: libreria,
-    },
+    { nombre: "Ropa de seguridad", imagen: seguridad,},
+    { nombre: "Productos de limpieza", imagen: limpieza,},
+    { nombre: "Artículos de librería", imagen: libreria,},
   ];
 
   const navigate = useNavigate(); // Inicializa useNavigate

@@ -11,7 +11,7 @@ const Cart = () => {
     return (
       <div className="container mt-5 text-center" style={{ minHeight: "60vh"}}>
         <h2>Tu carrito está vacío</h2>
-        <img src={carrito} alt="Carrito" style={{ width: "60px", height: "auto" }} />
+        <img src={carrito} alt="Carrito" style={{ width: "200px", height: "auto" }} />
       </div>
     );
   }
