@@ -101,7 +101,7 @@ function ProductView() {
           <Form.Control as="textarea" rows={2} value={comentario} onChange={(e) => setComentario(e.target.value)} />
         </Form.Group>
 
-              <Button type="submit" disabled={!comentario.trim()}>Enviar</Button>
+              <Button type="submit my-2" disabled={!comentario.trim()}>Enviar</Button>
             </Form>
           ) : (
             <p>Debes iniciar sesión para comentar.</p>
