@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
+import { carrito } from "../assets/img/carritoVacio.png";
 
 const Cart = () => {
   const { cart, increaseQuantity, decreaseQuantity, removeFromCart, getCartTotal, getItemTotal, user } = useContext(AppContext);
@@ -10,6 +11,7 @@ const Cart = () => {
     return (
       <div className="container mt-5 text-center" style={{ minHeight: "60vh"}}>
         <h2>Tu carrito está vacío</h2>
+        <img src={carrito} alt="Carrito" style={{ width: "60px", height: "auto" }} />
       </div>
     );
   }
