@@ -21,14 +21,14 @@ export const CommentProvider = ({ children }) => {
   };
 
   // Agregar un nuevo comentario
- const addComentario = async (publicacion_id, comment, usuario_id, calificacion, fecha) => {
+ const addComentario = async (publicacion_id, comment, usuario_id, calificacion) => {
     try {
       const response = await fetch(
         "https://hito3-backend.onrender.com/api/comentarios",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ publicacion_id, comment, usuario_id, calificacion, fecha }),
+          body: JSON.stringify({ publicacion_id, comment, usuario_id, calificacion }),
         }
       );
       if (!response.ok) throw new Error("Error al agregar comentario");
