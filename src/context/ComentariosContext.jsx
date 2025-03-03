@@ -20,7 +20,7 @@ export const CommentProvider = ({ children }) => {
     }
   };
 
-  // Función para agregar un nuevo comentario
+  // Agregar un nuevo comentario
  const addComentario = async (publicacion_id, comment, usuario_id, calificacion) => {
     try {
       const response = await fetch(
@@ -38,9 +38,60 @@ export const CommentProvider = ({ children }) => {
       console.error("Error en la solicitud:", error);
     }
 };
+  //  Editar un comentario
+  const editComentario = async (comentario_id, newComment) => {
+    try {
+      const response = await fetch(
+        `https://hito3-backend.onrender.com/api/comentarios/${comentario_id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ comment: newComment }),
+        }
+      );
+
+      if (!response.ok) throw new Error("Error al editar comentario");
+
+      setComentarios((prev) =>
+        prev.map((comentario) =>
+          comentario.id === comentario_id
+            ? { ...comentario, comment: newComment }
+            : comentario
+        )
+      );
+    } catch (error) {
+      console.error("Error al editar comentario:", error);
+    }
+  };
+
+  //  Eliminar un comentario
+  const deleteComentario = async (comentario_id) => {
+    try {
+      const response = await fetch(
+        `https://hito3-backend.onrender.com/api/comentarios/${comentario_id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (!response.ok) throw new Error("Error al eliminar comentario");
+
+      setComentarios((prev) => prev.filter((comentario) => comentario.id !== comentario_id));
+    } catch (error) {
+      console.error("Error al eliminar comentario:", error);
+    }
+  };
+
+
 
   return (
-    <CommentContext.Provider value={{ comentarios, fetchComentarios, addComentario }}>
+    <CommentContext.Provider value={{ 
+      comentarios,
+      fetchComentarios,
+      addComentario,
+      editComentario,
+      deleteComentario
+      }}>
       {children}
     </CommentContext.Provider>
   );
