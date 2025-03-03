@@ -114,6 +114,13 @@ function ProductView() {
                 <div key={c.id}>
                   <strong>{c.usuario_nombre}</strong> ({c.calificacion} ★)
                   <p>{c.comment}</p>
+                   <small>{new Date(c.fecha).toLocaleDateString("es-ES", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit"
+                  })}</small>
                 </div>
               ))
             ) : (
