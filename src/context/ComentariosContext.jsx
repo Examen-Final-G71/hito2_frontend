@@ -24,7 +24,7 @@ export const CommentProvider = ({ children }) => {
  const addComentario = async (publicacion_id, comment, usuario_id, calificacion) => {
     try {
       const response = await fetch(
-        "https://hito3-backend.onrender.com/api/comentarios",
+        "https://hito3-backend.onrender.com/api/comentarios/publicacion/${publicacion_id}/comentarios",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -42,7 +42,7 @@ export const CommentProvider = ({ children }) => {
   const editComentario = async (comentario_id, newComment) => {
     try {
       const response = await fetch(
-        `https://hito3-backend.onrender.com/api/comentarios/${comentario_id}`,
+        `https://hito3-backend.onrender.com/api/comentarios/publicacion/${publicacion_id}/comentarios/${comentario_id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -68,7 +68,7 @@ export const CommentProvider = ({ children }) => {
   const deleteComentario = async (comentario_id) => {
     try {
       const response = await fetch(
-        `https://hito3-backend.onrender.com/api/comentarios/${comentario_id}`,
+        `https://hito3-backend.onrender.com/api/comentarios/publicacion/${publicacion_id}/comentarios/${comentario_id}`,
         {
           method: "DELETE",
         }
