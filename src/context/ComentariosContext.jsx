@@ -6,10 +6,10 @@ export const CommentProvider = ({ children }) => {
   const [comentarios, setComentarios] = useState([]);
 
   // Función para obtener comentarios de una publicación específica
-  const fetchComentarios = async (idPublicacion) => {
+  const fetchComentarios = async (publicacion_id) => {
     try {
       const response = await fetch(
-        `https://hito3-backend.onrender.com/api/publicacion/${idPublicacion}/comentarios`
+        `https://hito3-backend.onrender.com/api/publicacion/${publicacion_id}/comentarios`
       );
       if (!response.ok) throw new Error("Error al obtener comentarios");
 
