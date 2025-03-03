@@ -98,10 +98,10 @@ function ProductView() {
 
         <Form.Group>
           <Form.Label>Comentario:</Form.Label>
-          <Form.Control as="textarea" rows={2} value={comment} onChange={(e) => setComentario(e.target.value)} />
+          <Form.Control as="textarea" rows={2} value={comentario} onChange={(e) => setComentario(e.target.value)} />
         </Form.Group>
 
-              <Button type="submit" disabled={!comment.trim()}>Enviar</Button>
+              <Button type="submit" disabled={!comentario.trim()}>Enviar</Button>
             </Form>
           ) : (
             <p>Debes iniciar sesión para comentar.</p>
