@@ -1,11 +1,35 @@
-:root {
-    --bs-primary: #ffef16;  
-    --bs-primary-rgb: 0, 138, 192;
+/* BANNER */
+.carousel-caption-custom {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  text-align: center;
+}
+
+.overlay-text {
+  background: rgba(0, 0, 0, 0.6); /* Fondo oscuro semitransparente */
+  padding: 20px;
+  border-radius: 10px;
+  color: white; /* Texto en blanco */
+  display: inline-block;
+}
+
+.overlay-text h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.overlay-text p {
+  font-size: 1.5rem;
+  margin: 5px 0;
 }
 
 
+/* PARA VENDER */
 .sell-btn {
-    background-color: white;
+  background-color: white;
     color: #007bff;  /* Azul */
     border: 2px solid #007bff;
     padding: 10px 20px;
@@ -13,11 +37,16 @@
     font-weight: bold;
     border-radius: 5px;
     transition: all 0.3s ease-in-out;
-}
+  }
   
-.sell-btn:hover {
+  .sell-btn:hover {
     background-color: #007bff;
     color: white;
-}
+  }
   
+  /* FOOTER */
+  :root {
+      --bs-primary: #ffef16;  
+      --bs-primary-rgb: 0, 138, 192;
+  }
   
