@@ -21,16 +21,20 @@ export const CommentProvider = ({ children }) => {
   };
 
   // Agregar un nuevo comentario
- const addComentario = async (publicacion_id, comment, usuario_id, calificacion) => {
+ const addComentario = async (publicacion_id, comment, usuario_id, calificacion, token) => {
     try {
       const response = await fetch(
-        "https://hito3-backend.onrender.com/api/comentarios/publicacion/${publicacion_id}/comentarios",
+        `https://hito3-backend.onrender.com/api/comentarios/publicacion/${publicacion_id}/comentarios`,
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { 
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+          },
           body: JSON.stringify({ publicacion_id, comment, usuario_id, calificacion }),
         }
       );
+
       if (!response.ok) throw new Error("Error al agregar comentario");
 
       await fetchComentarios(publicacion_id); 
@@ -38,6 +42,7 @@ export const CommentProvider = ({ children }) => {
       console.error("Error en la solicitud:", error);
     }
 };
+
   //  Editar un comentario
   const editComentario = async (comentario_id, newComment) => {
     try {
