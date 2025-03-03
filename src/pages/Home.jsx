@@ -37,7 +37,7 @@ const Home = () => {
       <div className="container mt-5 main-content" style={{ marginBottom: "80px" }}>
         <div className="row">
           <div className="col-12 text-center" style={{ marginBottom: "50px" }}>
-          <h2>Categorías</h2>
+          <h1>Categorías</h1>
           </div>
         </div>
         <div className="row">
@@ -49,7 +49,7 @@ const Home = () => {
                   transition: "transform 0.3s ease, box-shadow 0.3s ease",
                   cursor: "pointer", // Cambia el cursor al pasar por encima
                 }}
-                whileHover={{ scale: 1.05, boxShadow: "0px 4px 15px rgba(88, 114, 230, 0.99)" }}
+                whileHover={{ scale: 1.05, boxShadow: "0px 4px 15px rgba(0, 138, 192, 0.99)" }}
                 onClick={() => handleClick(categoria)} // Agrega el evento onClick
               >
                 <img

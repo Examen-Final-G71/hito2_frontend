@@ -17,7 +17,7 @@ const Banner = () => {
                         />
                 <Carousel.Caption className="d-flex flex-column align-items-start h-90">
                   <div className="text-start">
-                    <h1 style={{ fontSize: '1.5rem' }}>Compra y Venta de</h1> 
+                    <h2 style={{ fontSize: '1.5rem' }}>Compra y Venta de</h2> 
                     <div style={{ fontSize: '2rem' }}>
                     <p>Productos de aseo</p>
                     <p>Ropa de seguridad</p>

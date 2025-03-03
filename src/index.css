@@ -1,5 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
+.btn-primary {
+    --bs-btn-bg: #008AC0 !important;
+    --bs-btn-border-color: #008AC0 !important;
+    --bs-btn-hover-bg: #006F9E !important;
+    --bs-btn-hover-border-color: #006F9E !important;
+    --bs-btn-active-bg: #00587D !important;
+    --bs-btn-active-border-color: #00587D !important;
+}
+
+.btn-outline-primary {
+    --bs-btn-color: #008AC0 !important; 
+    --bs-btn-border-color: #008AC0 !important; 
+    --bs-btn-hover-bg: #008AC0 !important; 
+    --bs-btn-hover-border-color: #008AC0 !important; 
+    --bs-btn-hover-color: #fff !important; 
+}
+
+
+h1 {
+    color: #008AC0}
+
 body {
     font-family: 'Roboto', sans-serif; 
   }
@@ -32,5 +53,10 @@ html, body {
   
 footer {
     margin-top: auto; 
+  }
+  
+.card:hover {
+    box-shadow: 0 4px 10px rgba(0, 138, 192, 0.5); 
+    transition: box-shadow 0.3s ease-in-out; 
   }
   

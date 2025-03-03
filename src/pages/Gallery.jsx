@@ -78,4 +78,3 @@ const uniqueCategories = [...new Set((products || []).map((product) => product.c
 }
 
 export default Gallery;
-
