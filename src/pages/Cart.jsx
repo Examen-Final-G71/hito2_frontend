@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
-import { carrito } from "../assets/img/carritoVacio.png";
+import  carrito  from "../assets/img/carritoVacio.png";
 
 const Cart = () => {
   const { cart, increaseQuantity, decreaseQuantity, removeFromCart, getCartTotal, getItemTotal, user } = useContext(AppContext);
