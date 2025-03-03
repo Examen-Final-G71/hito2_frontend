@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import seguridad from "../assets/img/seguridad.png";
 import limpieza from "../assets/img/limpieza.png";
 import libreria from "../assets/img/libreria.png";
@@ -7,18 +7,28 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom"; 
 import { AppContext } from "../context/AppContext"; // Importa el contexto para verificar usuario
 
-
 const Home = () => {
+  const { user } = useContext(AppContext); // Obtiene el usuario autenticado
+  const navigate = useNavigate();
+
+  
   const categorias = [
     { nombre: "Ropa de seguridad", imagen: seguridad,},
     { nombre: "Productos de limpieza", imagen: limpieza,},
     { nombre: "Artículos de librería", imagen: libreria,},
   ];
 
-  const navigate = useNavigate(); // Inicializa useNavigate
 
   const handleClick = (categoria) => {
     navigate(`/gallery?category=${categoria.nombre}`); // Navega a /gallery con query parameter
+  };
+
+  const handleRedirection = () => {
+    if (user) {
+      navigate("/crear-publicacion"); // Si hay usuario, va a crear publicación
+    } else {
+      navigate("/login"); // Si no hay usuario, va al login
+    }
   };
 
 
