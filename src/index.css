@@ -55,7 +55,7 @@ footer {
     margin-top: auto; 
   }
   
-.card:hover {
+.cardu:hover {
     box-shadow: 0 4px 10px rgba(0, 138, 192, 0.5); 
     transition: box-shadow 0.3s ease-in-out; 
   }

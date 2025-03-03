@@ -48,7 +48,7 @@ const uniqueCategories = [...new Set((products || []).map((product) => product.c
       <Row>
         {filteredProducts.map((product) => (
           <Col xs={12} sm={6} md={3} lg={3} className="mb-4" key={product.id}>
-            <Card className="h-100">
+            <Card className="h-100 cardu">
               <Card.Img
                 variant="top"
                 src={product.imagen}
