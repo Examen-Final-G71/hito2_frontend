@@ -26,7 +26,7 @@ function ProductView() {
   // Obtener comentarios
    useEffect(() => {
       fetchComentarios(id);
-    }, [id, fetchComentarios]);
+    }, [id]);
 
   // Enviar comentario
   const handleSubmit = async (e) => {
@@ -43,10 +43,10 @@ function ProductView() {
     }
 
     try {
-      await addComentario(id, comentario, calificacion, user.nombre); // ✅ Usa la función del contexto
+      await addComentario(id, comentario, calificacion, usuario.id); //
       setComentario(""); // Limpia el campo de texto
       setCalificacion(5); // Resetea la calificación
-      fetchComentarios(id); // ✅ Recarga los comentarios correctamente
+      fetchComentarios(id); // Recarga los comentarios
     } catch (error) {
       console.error("Error en la solicitud:", error);
       alert("Ocurrió un error al enviar el comentario");
@@ -72,7 +72,7 @@ function ProductView() {
           <p>{obtenerNombreClasificacion(product.clasificacion)}</p>
           <p>{product.descripcion}</p>
           <p>Stock disponible: {product.stock}</p>
-          <p>Publicado por: {product.usuario_nombre}</p>
+          <p>{product.usuario_nombre || "Anónimo"}</p>
           <p className="mt-5">
             Precio: ${new Intl.NumberFormat("es-CL").format(product.precio)}
           </p>
@@ -101,7 +101,7 @@ function ProductView() {
           <Form.Control as="textarea" rows={2} value={comentario} onChange={(e) => setComentario(e.target.value)} />
         </Form.Group>
 
-              <Button type="submit my-2" disabled={!comentario.trim()}>Enviar</Button>
+              <Button type="submit" disabled={!comentario.trim()}>Enviar</Button>
             </Form>
           ) : (
             <p>Debes iniciar sesión para comentar.</p>
@@ -112,7 +112,7 @@ function ProductView() {
             {comentarios.length > 0 ? (
               comentarios.map((c) => (
                 <div key={c.id}>
-                  <strong>{c.usuario_nombre}</strong> ({c.calificacion} ★)
+                  <strong>{c.usuario.id}</strong> ({c.calificacion} ★)
                   <p>{c.comment}</p>
                 </div>
               ))
