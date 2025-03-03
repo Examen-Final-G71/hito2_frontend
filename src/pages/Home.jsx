@@ -5,6 +5,7 @@ import libreria from "../assets/img/libreria.png";
 import Banner from "../components/Banner";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom"; 
+import { AppContext } from "../context/AppContext"; // Importa el contexto para verificar usuario
 
 
 const Home = () => {
@@ -54,6 +55,26 @@ const Home = () => {
               </motion.div>
             </div>
           ))}
+        </div>
+
+        {/* NUEVA SECCIÓN PARA VENDER PRODUCTOS */}
+        <div className="mt-5 text-center">
+          <h3>¿Quieres vender tus productos?</h3>
+          <p>Únete a nuestra comunidad y empieza a publicar tus productos hoy mismo.</p>
+          <div className="d-flex justify-content-center gap-3 mt-3">
+            <button 
+              className="btn sell-btn" 
+              onClick={handleRedirection}
+            >
+              Crear Publicación
+            </button>
+            <button 
+              className="btn sell-btn" 
+              onClick={() => navigate("/login")}
+            >
+              Iniciar Sesión
+            </button>
+          </div>
         </div>
       </div>
     </div>

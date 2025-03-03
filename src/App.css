@@ -2,3 +2,19 @@
     --bs-primary: #ffef16;  
     --bs-primary-rgb: 0, 138, 192;
 }
+
+.sell-btn {
+    background-color: white;
+    color: blue;
+    border: 2px solid blue;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .sell-btn:hover {
+    background-color: blue;
+    color: white;
+  }
+  
