@@ -8,26 +8,27 @@ const Footer = () => {
         <footer className="bg-dark text-light py-4 custom-footer">
             <Container className='pt-7'>
                 <Row>
-                    <Col md={5}>
-                        <h5>Síguenos</h5>
-                        <ul className="list-unstyled d-flex"> 
-                            <li className="me-3"> 
-                                <a href=""  rel="noopener noreferrer">
-                                    <FontAwesomeIcon icon={faFacebookF} size="lg"  /> 
-                                </a>
-                            </li>
-                            <li className="me-3">
-                                <a href="" target="_blank" rel="noopener noreferrer">
-                                    <FontAwesomeIcon icon={faTwitter} size="lg" />
-                                </a>
-                            </li>
-                            <li>
-                                <a href="" target="_blank" rel="noopener noreferrer">
-                                    <FontAwesomeIcon icon={faInstagram} size="lg" />
-                                </a>
-                            </li>
-                        </ul>
-                    </Col>
+                <Col md={5}>
+  <h5>Síguenos</h5>
+  <ul className="list-unstyled d-flex"> 
+    <li className="me-3"> 
+      <a href="" rel="noopener noreferrer">
+        <FontAwesomeIcon icon={faFacebookF} size="lg" style={{ color: '#FCB432' }} /> 
+      </a>
+    </li>
+    <li className="me-3">
+      <a href="" target="_blank" rel="noopener noreferrer">
+        <FontAwesomeIcon icon={faTwitter} size="lg" style={{ color: '#FCB432' }} />
+      </a>
+    </li>
+    <li>
+      <a href="" target="_blank" rel="noopener noreferrer">
+        <FontAwesomeIcon icon={faInstagram} size="lg" style={{ color: '#FCB432' }} />
+      </a>
+    </li>
+  </ul>
+</Col>
+
                     <Col md={4}>
                         <h5>Contacto</h5>
                         <ul className="list-unstyled">
