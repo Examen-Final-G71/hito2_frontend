@@ -8,9 +8,9 @@ const Profile = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [publicaciones, setPublicaciones] = useState([]); 
+  const storedToken = token || localStorage.getItem("token");
 
   useEffect(() => {
-    const storedToken = token || localStorage.getItem("token");
 
     if (!storedToken) {
       navigate("/login");
