@@ -51,7 +51,7 @@ const Home = () => {
                   transition: "transform 0.3s ease, box-shadow 0.3s ease",
                   cursor: "pointer", // Cambia el cursor al pasar por encima
                 }}
-                whileHover={{ scale: 1.05, boxShadow: "0px 4px 15px rgba(0, 138, 192, 0.99)" }}
+                whileHover={{ scale: 1.05, boxShadow: "0px 4px 15px rgb(0, 138, 192)" }}
                 onClick={() => handleClick(categoria)} // Agrega el evento onClick
               >
                 <img
@@ -73,14 +73,44 @@ const Home = () => {
           <p>Únete a nuestra comunidad y empieza a publicar tus productos hoy mismo.</p>
           <div className="d-flex justify-content-center gap-3 mt-3">
             <button 
-              className="btn sell-btn" 
               onClick={handleRedirection}
+              style={{
+                border: '2px solid rgb(0, 138, 192)', // Borde celeste
+                color: 'rgb(0, 138, 192)', // Letras celestes
+                padding: '10px 20px', // Ajusta el padding para el tamaño del botón
+                borderRadius: '5px', // Bordes redondeados
+                cursor: 'pointer', // Cambia el cursor al pasar por encima
+                transition: 'background-color 0.3s, color 0.3s' // Transición suave
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.backgroundColor = 'rgb(0, 138, 192)'; // Fondo celeste al pasar el mouse
+                e.target.style.color = 'white'; // Letras blancas al pasar el mouse
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.backgroundColor = 'transparent'; // Fondo transparente al salir el mouse
+                e.target.style.color = 'rgb(0, 138, 192)'; // Letras celestes al salir el mouse
+              }}
             >
               Crear Publicación
             </button>
             <button 
-              className="btn sell-btn" 
               onClick={() => navigate("/login")}
+              style={{
+                border: '2px solid rgb(0, 138, 192)', // Borde celeste
+                color: 'rgb(0, 138, 192)', // Letras celestes
+                padding: '10px 20px', // Ajusta el padding para el tamaño del botón
+                borderRadius: '5px', // Bordes redondeados
+                cursor: 'pointer', // Cambia el cursor al pasar por encima
+                transition: 'background-color 0.3s, color 0.3s' // Transición suave
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.backgroundColor = 'rgb(0, 138, 192)'; // Fondo celeste al pasar el mouse
+                e.target.style.color = 'white'; // Letras blancas al pasar el mouse
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.backgroundColor = 'transparent'; // Fondo transparente al salir el mouse
+                e.target.style.color = 'rgb(0, 138, 192)'; // Letras celestes al salir el mouse
+              }}
             >
               Iniciar Sesión
             </button>
