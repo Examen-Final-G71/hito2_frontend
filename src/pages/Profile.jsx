@@ -40,8 +40,8 @@ const Profile = () => {
       .finally(() => setLoading(false));
   }, [token, navigate, setUser, logout]);
 
-  const fetchPublicaciones = (userId, storedToken) => {
-    fetch(`https://hito3-backend.onrender.com/api/publicaciones/${userId}`, {
+  const fetchPublicaciones = (user, storedToken) => {
+    fetch(`https://hito3-backend.onrender.com/api/publicaciones/${user.Id}`, {
       headers: { Authorization: `Bearer ${storedToken}` },
     })
       .then((res) => res.json())
