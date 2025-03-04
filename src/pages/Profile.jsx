@@ -9,7 +9,8 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const [publicaciones, setPublicaciones] = useState([]); 
   const storedToken = token || localStorage.getItem("token");
-
+  
+console.log("Usuario recibido:", user);
 
       //DATOS DEL USUARIO Y PERFIL
   useEffect(() => {
