@@ -95,8 +95,15 @@ useEffect(() => {
                 <div key={publicacion.id} className="col-md-4">
                   <div className="card mt-3">
                     <div className="card-body">
-                      <h5>{publicacion.titulo}</h5>
-                      <p>{publicacion.descripcion}</p>
+                      <h5>{publicacion.nombre}</h5>
+                      <p>{publicacion.stock}</p>
+                        <small>{new Date(publicacion.fecha).toLocaleDateString("es-ES", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit"
+                        })}</small>
                       <p><strong>Precio:</strong> ${publicacion.precio}</p>
                     </div>
                   </div>
