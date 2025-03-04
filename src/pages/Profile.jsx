@@ -102,7 +102,7 @@ useEffect(() => {
                           month: "long",
                           day: "numeric",
                         })}</small>
-                      <p><strong>Precio: ${new Intl.NumberFormat("es-CL").format(publicacion.precio)}</p>
+                      <p>Precio: ${new Intl.NumberFormat("es-CL").format(publicacion.precio)}</p>
                     </div>
                   </div>
                 </div>
