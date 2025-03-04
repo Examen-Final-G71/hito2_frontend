@@ -43,15 +43,29 @@ console.log("Usuario recibido:", user);
 
 
       //DATOS DE PUBLICACIONES
-  const fetchPublicaciones = (user, storedToken) => {
-    fetch(`https://hito3-backend.onrender.com/api/publicaciones/${user.id}`, {
-      headers: { Authorization: `Bearer ${storedToken}` },
-    })
-      .then((res) => res.json())
-      .then((data) => setPublicaciones(data))
-      .catch((error) => console.error("Error al obtener publicaciones:", error));
+useEffect(() => {
+  const fetchPublicaciones = async () => {
+    try {
+      if (!user?.id || !token) return; 
+
+      console.log("Obteniendo publicaciones para el usuario:", user.id);
+
+      const response = await fetch(`https://hito3-backend.onrender.com/api/publicaciones/${user.id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (!response.ok) throw new Error(`Error ${response.status}: ${response.statusText}`);
+
+      const data = await response.json();
+      setPublicaciones(data);
+    } catch (error) {
+      console.error("Error al obtener publicaciones:", error);
+    }
   };
 
+  fetchPublicaciones();
+}, [user?.id, token]); 
+  
   if (loading) {
     return (
       <div className="d-flex justify-content-center align-items-center vh-100">
@@ -59,16 +73,11 @@ console.log("Usuario recibido:", user);
       </div>
     );
   }
-
+   
   if (!user) {
     return <Navigate to="/login" />;
   }
 
-    useEffect(() => {
-    if (user && user.id) {
-      fetchPublicaciones(user, token);
-    }
-  }, [user, token]);
 
   return (
     <div className="container mt-5 main-content">
