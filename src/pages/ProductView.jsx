@@ -43,7 +43,7 @@ function ProductView() {
     }
 
     try {
-      await addComentario(id, comentario, user.id, calificacion); //
+      await addComentario(id, comentario, user.id, calificacion, token); //
       setComentario(""); // Limpia el campo de texto
       setCalificacion(5); // Resetea la calificación
       fetchComentarios(id); // Recarga los comentarios
