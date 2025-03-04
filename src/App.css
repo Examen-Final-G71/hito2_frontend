@@ -1,36 +1,8 @@
-/* BANNER */
-.carousel-caption-custom {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70%;
-  text-align: center;
-}
-
-.overlay-text {
-  background: rgba(0, 0, 0, 0.6); /* Fondo oscuro semitransparente */
-  padding: 20px;
-  border-radius: 10px;
-  color: white; /* Texto en blanco */
-  display: inline-block;
-}
-
-.overlay-text h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
-.overlay-text p {
-  font-size: 1.5rem;
-  margin: 5px 0;
-}
-
 
 /* PARA VENDER */
 .sell-btn {
   background-color: white;
-    color: #007bff;  /* Azul */
+    color: #007bff; 
     border: 2px solid #007bff;
     padding: 10px 20px;
     font-size: 16px;
