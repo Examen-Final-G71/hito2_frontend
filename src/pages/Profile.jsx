@@ -41,7 +41,7 @@ const Profile = () => {
   }, [token, navigate, setUser, logout]);
 
   const fetchPublicaciones = (user, storedToken) => {
-    fetch(`https://hito3-backend.onrender.com/api/publicaciones/${user.Id}`, {
+    fetch(`https://hito3-backend.onrender.com/api/publicaciones/${user.id}`, {
       headers: { Authorization: `Bearer ${storedToken}` },
     })
       .then((res) => res.json())
