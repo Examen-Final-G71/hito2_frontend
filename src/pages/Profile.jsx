@@ -10,13 +10,13 @@ const Profile = () => {
   const [publicaciones, setPublicaciones] = useState([]); 
   const storedToken = token || localStorage.getItem("token");
 
-  useEffect(() => {
 
+      //DATOS DEL USUARIO Y PERFIL
+  useEffect(() => {
     if (!storedToken) {
       navigate("/login");
       return;
     }
-
     fetch("https://hito3-backend.onrender.com/usuarios/perfil", {
       headers: { Authorization: `Bearer ${storedToken}` },
     })
@@ -40,6 +40,8 @@ const Profile = () => {
       .finally(() => setLoading(false));
   }, [token, navigate, setUser, logout]);
 
+
+      //DATOS DE PUBLICACIONES
   const fetchPublicaciones = (user, storedToken) => {
     fetch(`https://hito3-backend.onrender.com/api/publicaciones/${user.id}`, {
       headers: { Authorization: `Bearer ${storedToken}` },
@@ -60,6 +62,12 @@ const Profile = () => {
   if (!user) {
     return <Navigate to="/login" />;
   }
+
+    useEffect(() => {
+    if (user && user.id) {
+      fetchPublicaciones(user, token);
+    }
+  }, [user, token]);
 
   return (
     <div className="container mt-5 main-content">
