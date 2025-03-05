@@ -16,45 +16,57 @@ const Checkout = () => {
   const finalTotal = shippingMethod === "despacho" ? baseTotal + shippingCost : baseTotal;
 
   const handleCheckout = async () => {
-    if (!paymentMethod) {
-      Swal.fire("Error", "Debes seleccionar un método de pago.", "error");
-      return;
-    }
-    const transactionData = {
-      usuario_id: user.id, 
-      monto_total: finalTotal,
-      tipo_transaccion: true, // true si es compra
-      productos: cart.map((item) => ({
-        publicacion_id: item.id,
-        cantidad: item.quantity,
-        subtotal: getItemTotal(item),
-      })),
-    };
+  if (!user || !token) {
+    Swal.fire("Error", "Debes iniciar sesión para comprar.", "error");
+    return;
+  }
 
-    try {
-      const response = await fetch("https://hito3-backend.onrender.com/transacciones/comprar", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(transactionData),
-      });
+  if (cart.length === 0) {
+    Swal.fire("Error", "No hay productos en el carrito.", "error");
+    return;
+  }
 
-      const data = await response.json();
-      
-      if (response.ok) {
-        Swal.fire("Éxito", "Compra realizada correctamente.", "success").then(() => {
-          clearCart();
-          navigate("/");
-        });
-      } else {
-        Swal.fire("Error", "Hubo un problema al procesar el pago.", "error");
-      }
-    } catch (error) {
-      Swal.fire("Error", "No se pudo conectar con el servidor.", "error");
-    }
+  if (!paymentMethod) {
+    Swal.fire("Error", "Debes seleccionar un método de pago.", "error");
+    return;
+  }
+
+  const transactionData = {
+    usuario_id: user.id, 
+    monto_total: finalTotal,
+    tipo_transaccion: true,
+    detalle: cart.map((item) => ({
+      publicacion_id: item.id,
+      cantidad: item.quantity,
+      subtotal: getItemTotal(item),
+    })),
   };
+
+  try {
+    const response = await fetch("https://hito3-backend.onrender.com/api/transacciones/comprar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(transactionData),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Error desconocido");
+    }
+
+    Swal.fire("Éxito", "Compra realizada correctamente.", "success").then(() => {
+      clearCart();
+      navigate("/");
+    });
+  } catch (error) {
+    Swal.fire("Error", error.message || "No se pudo procesar el pago.", "error");
+  }
+};
+
 
   return (
     <Container className="mt-4 main-content5">
