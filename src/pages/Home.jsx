@@ -22,7 +22,7 @@ const Home = () => {
   };
 
   const handleRedirection = () => {
-    navigate("/crear-publicacion");
+    navigate("/createpost");
   };
 
   return (
