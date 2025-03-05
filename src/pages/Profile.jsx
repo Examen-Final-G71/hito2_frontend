@@ -81,6 +81,26 @@ const Profile = () => {
         if (!response.ok) throw new Error(`Error ${response.status}: ${response.statusText}`);
 
         const data = await response.json();
+
+        // AGRUPAR POR FECHA
+        const groupedCompras = data.reduce((acc, compra) => {
+        const fechaCompra = new Date(compra.fecha).toLocaleString('es-CL', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+          });
+
+          if (!acc[fechaCompra]) {
+            acc[fechaCompra] = [];
+          }
+          acc[fechaCompra].push(compra);
+
+          return acc;
+        }, {});
+        
         setCompras(data);
       } catch (error) {
         console.error("Error al obtener compras:", error);
@@ -89,14 +109,6 @@ const Profile = () => {
 
     fetchCompras();
   }, [user?.id, token]);
-
-  // COMPRAS AGRUPADAS POR FECHA
-  const groupedCompras = compras.reduce((acc, compra) => {
-    const date = new Date(compra.fecha).toLocaleDateString("es-ES");
-    if (!acc[date]) acc[date] = [];
-    acc[date].push(compra);
-    return acc;
-  }, {});
 
   if (loading) {
     return (
@@ -147,32 +159,23 @@ const Profile = () => {
 
       {/* Sección Historial de Compras */}
       <h3 className="mt-4">Historial de Compras</h3>
-      {Object.keys(groupedCompras).length > 0 ? (
-        Object.keys(groupedCompras).map((date) => (
-          <div key={date} className="mt-4">
-            <h4>{date}</h4>
-            <div className="row">
-              {groupedCompras[date].map((compra) => (
-                <div key={compra.id} className="col-md-4">
-                  <div className="card mt-3">
-                    <div className="card-body">
-                      <h5>{compra.publicacion}</h5>
-                      <p>Cantidad: {compra.cantidad}</p>
-                      <p>Total: ${new Intl.NumberFormat("es-CL").format(compra.subtotal)}</p>
-                      <small>
-                        {new Date(compra.fecha).toLocaleDateString("es-ES", {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        })}
-                      </small>
-                    </div>
+      {Object.keys(compras).length > 0 ? (
+        <div className="row">
+          {Object.keys(compras).map((fecha) => (
+            <div key={fecha} className="col-md-12">
+              <h4>{fecha}</h4>
+              {compras[fecha].map((compra) => (
+                <div key={compra.id} className="card mt-3">
+                  <div className="card-body">
+                    <h5>{compra.publicacion}</h5>
+                    <p>Cantidad: {compra.cantidad}</p>
+                    <p>Total: ${new Intl.NumberFormat("es-CL").format(compra.subtotal)}</p>
                   </div>
                 </div>
               ))}
             </div>
-          </div>
-        ))
+          ))}
+        </div>
       ) : (
         <p>No tienes compras registradas.</p>
       )}
