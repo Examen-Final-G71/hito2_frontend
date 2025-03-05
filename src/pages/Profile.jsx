@@ -175,12 +175,6 @@ const Profile = () => {
                     </div>
                   </div>
                 ))
-              ) : (
-                <p>No tienes compras registradas para esta fecha.</p>
-              )}
-            </div>
-          ))}
-        </div>
       ) : (
         <p>No tienes compras registradas.</p>
       )}
