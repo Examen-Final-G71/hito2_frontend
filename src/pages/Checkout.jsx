@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 const shippingCost = 7500;
 
 const Checkout = () => {
-  const { cart, getCartTotal, getItemTotal, clearCart, user } = useContext(AppContext);
+  const { cart, getCartTotal, getItemTotal, clearCart, user, token } = useContext(AppContext);
   const [shippingMethod, setShippingMethod] = useState("retiro");
   const [paymentMethod, setPaymentMethod] = useState("");
   const navigate = useNavigate();
@@ -20,7 +20,6 @@ const Checkout = () => {
       Swal.fire("Error", "Debes seleccionar un método de pago.", "error");
       return;
     }
-
     const transactionData = {
       usuario_id: user.id, 
       monto_total: finalTotal,
@@ -37,10 +36,13 @@ const Checkout = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(transactionData),
       });
 
+      const data = await response.json();
+      
       if (response.ok) {
         Swal.fire("Éxito", "Compra realizada correctamente.", "success").then(() => {
           clearCart();
