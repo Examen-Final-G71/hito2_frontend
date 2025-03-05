@@ -17,7 +17,7 @@ const Banner = () => {
                             src={banner1}
                             style={{ height: '420px', objectFit: 'cover' }}                           
                         />
-                <Carousel.Caption className="d-flex flex-column justify-content-center align-items-center h-100">
+                <Carousel.Caption className="d-flex flex-column justify-content-center align-items-start h-100">
                   <div className="text-center">
                     <h2 style={{ fontSize: '1.5rem', backgroundColor: 'rgba(0, 0, 0, 0.27)' }}>
                         Compra y Venta de
