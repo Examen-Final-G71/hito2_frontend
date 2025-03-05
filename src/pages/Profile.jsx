@@ -160,20 +160,24 @@ const Profile = () => {
 
       {/* Sección Historial de Compras */}
       <h3 className="mt-4">Historial de Compras</h3>
-      {compras.length > 0 ? (
+      {Object.keys(compras).length > 0 ? (
         <div className="row">
-          {compras.map((fecha) => (
+          {Object.keys(compras).map((fecha) => (
             <div key={fecha} className="col-md-12">
               <h4>{fecha}</h4>
-              {compras[fecha].map((compra) => (
-                <div key={compra.id} className="card mt-3">
-                  <div className="card-body">
-                    <h5>{compra.publicacion}</h5>
-                    <p>Cantidad: {compra.cantidad}</p>
-                    <p>Total: ${new Intl.NumberFormat("es-CL").format(compra.subtotal)}</p>
+              {Array.isArray(compras[fecha]) && compras[fecha].length > 0 ? (
+                compras[fecha].map((compra) => (
+                  <div key={compra.id} className="card mt-3">
+                    <div className="card-body">
+                      <h5>{compra.publicacion}</h5>
+                      <p>Cantidad: {compra.cantidad}</p>
+                      <p>Total: ${new Intl.NumberFormat("es-CL").format(compra.subtotal)}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))
+              ) : (
+                <p>No tienes compras registradas para esta fecha.</p>
+              )}
             </div>
           ))}
         </div>
