@@ -38,7 +38,7 @@ const Banner = () => {
                     <img
                         className="d-block w-100"
                         src={banner2}
-                        style={{ height: '420px', objectFit: 'cove' }}
+                        style={{ height: '420px', objectFit: 'cover' }}
                     />
                     <Carousel.Caption className="d-flex flex-column justify-content-center align-items-center h-100">
                         <h2 style={{  backgroundColor: 'rgba(0, 0, 0, 0.56)',}}>
@@ -51,7 +51,7 @@ const Banner = () => {
                     <img
                         className="d-block w-100"
                         src={banner3}
-                        style={{ height: '420px', objectFit: 'cove' }}
+                        style={{ height: '420px', objectFit: 'cover' }}
                     />
                     <Carousel.Caption 
                     className="d-flex flex-column justify-content-center align-items-center h-100">
@@ -65,7 +65,7 @@ const Banner = () => {
                     <img
                         className="d-block w-100"
                         src={banner4}
-                        style={{ height: '420px', objectFit: 'cove' }}
+                        style={{ height: '420px', objectFit: 'cover' }}
                     />
                     <Carousel.Caption className="d-flex flex-column justify-content-center align-items-center h-100">
                         <h2 style={{  backgroundColor: 'rgba(0, 0, 0, 0.56)',}}>
