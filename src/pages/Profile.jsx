@@ -96,7 +96,7 @@ useEffect(() => {
                   <div className="card mt-3">
                     <div className="card-body">
                       <h5>{publicacion.nombre}</h5>
-                      <p>{publicacion.stock}</p>
+                      <p>Stock: {publicacion.stock}</p>
                         <small>{new Date(publicacion.fecha_publicacion).toLocaleDateString("es-ES", {
                           year: "numeric",
                           month: "long",
