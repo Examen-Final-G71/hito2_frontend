@@ -32,7 +32,7 @@ const Checkout = () => {
     };
 
     try {
-      const response = await fetch("https://hito3-backend.onrender.com/transacciones", {
+      const response = await fetch("https://hito3-backend.onrender.com/transacciones/comprar", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
