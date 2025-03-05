@@ -58,6 +58,7 @@ const Profile = () => {
 
         const data = await response.json();
         setPublicaciones(data);
+        
       } catch (error) {
         console.error("Error al obtener publicaciones:", error);
       }
@@ -159,9 +160,9 @@ const Profile = () => {
 
       {/* Sección Historial de Compras */}
       <h3 className="mt-4">Historial de Compras</h3>
-      {Object.keys(compras).length > 0 ? (
+      {compras.length > 0 ? (
         <div className="row">
-          {Object.keys(compras).map((fecha) => (
+          {compras.map((fecha) => (
             <div key={fecha} className="col-md-12">
               <h4>{fecha}</h4>
               {compras[fecha].map((compra) => (
