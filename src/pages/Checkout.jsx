@@ -22,7 +22,7 @@ const Checkout = () => {
     }
 
     const transactionData = {
-      usuario_id: user.id, // Asegúrate de que el usuario está en el contexto
+      usuario_id: user.id, 
       monto_total: finalTotal,
       tipo_transaccion: true, // true si es compra
       productos: cart.map((item) => ({
