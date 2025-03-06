@@ -155,9 +155,9 @@ const Profile = () => {
               <div className="row">
                 {publicaciones.map((publicacion) => (
                   <div key={publicacion.id} className="p-3 col-md-6">
-
-                    <Row className="card mt-3 d-flex align-items-center">
-                    <Col md={8}>
+                    <Card className="mt-3">
+                    <Row className="mt-3 d-flex align-items-center">
+                    <Col md={4}>
                       <Card.Img 
                         variant="top" 
                         src={publicacion.imagen}
@@ -165,15 +165,15 @@ const Profile = () => {
                         style={{ height: "150px", objectFit: "cover" }} 
                       />
                     </Col>
-                    <Col md={4}>
-                    
+                    <Col md={8}>
+                    <Card.Body>
                         <h5>{publicacion.nombre}</h5>
                         <p>Stock: {publicacion.stock}</p>
                         <p>Precio: ${new Intl.NumberFormat("es-CL").format(publicacion.precio)}</p>
-                    
+                    </Card.Body>
                     </Col>
                     </Row>
-
+                    </Card>
                   </div>
                 ))}
               </div>
