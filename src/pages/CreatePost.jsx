@@ -27,12 +27,29 @@ const CreatePost = () => {
     }));
   };
 
-  const handleFileChange = (e) => {
+const handleFileChange = (e) => {
+  const file = e.target.files[0];
+
+  if (file) {
+    const maxSize = 10 * 1024 * 1024; //Tamaño máximo
+    const allowedTypes = ["image/jpeg", "image/jpg", "image/png"]; // Extensiones permitidas
+
+    if (fileSizeMB > maxSizeMB) {
+      Swal.fire("Error", `El archivo pesa ${fileSizeMB.toFixed(2)}MB y supera el límite de ${maxSizeMB}MB`, "error");
+      return;
+    }
+
+    if (!allowedTypes.includes(file.type)) {
+      Swal.fire("Error", "Solo se permiten imágenes en formato JPG, JPEG o PNG", "error");
+      return;
+    }
+
     setFormData((prev) => ({
       ...prev,
-      imagen: e.target.files[0],
+      imagen: file,
     }));
-  };
+  }
+};
 
  const handleSubmit = async (e) => {
   e.preventDefault();
