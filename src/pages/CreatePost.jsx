@@ -32,10 +32,15 @@ const handleFileChange = (e) => {
 
   if (file) {
     const maxSize = 10 * 1024 * 1024; //Tamaño máximo
+    const fileSizeMB = file.size / (1024 * 1024);
     const allowedTypes = ["image/jpeg", "image/jpg", "image/png"]; // Extensiones permitidas
 
-    if (fileSizeMB > maxSizeMB) {
-      Swal.fire("Error", `El archivo pesa ${fileSize.toFixed(2)}MB y supera el límite de ${maxSizeMB}MB`, "error");
+    if (file.size > maxSize) {
+      Swal.fire(
+        "Error",
+        `El archivo pesa ${fileSizeMB.toFixed(2)}MB y supera el límite de 10MB`,
+        "error"
+      );
       return;
     }
 
