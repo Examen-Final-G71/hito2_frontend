@@ -154,7 +154,7 @@ const Profile = () => {
             {publicaciones.length > 0 ? (
               <div className="row">
                 {publicaciones.map((publicacion) => (
-                  <div key={publicacion.id} className="col-md-6">
+                  <div key={publicacion.id} className="p-3">
 
                     <Row className="card mt-3">
                     <Col md={8}>
