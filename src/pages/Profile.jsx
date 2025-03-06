@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 import { useNavigate, Navigate } from "react-router-dom";
 import { Tab, Nav, Spinner, Col, Card, Row } from "react-bootstrap";
+import LogoPerfil from "../assets/img/LogoPerfil.png";
 
 const Profile = () => {
   const { user, token, setUser, logout } = useContext(AppContext);
@@ -134,9 +135,18 @@ const Profile = () => {
 
   return (
     <div className="container mt-5 main-content">
-      <div className="card mt-4 p-5" style={{ maxWidth: "400px" }}>
+      <div className="card mt-4 p-5 d-flex row" style={{ maxWidth: "400px" }}>
+        <Col md={6}>
+          <img 
+            src={LogoPerfil}
+            alt="Logo Perfil" 
+            className="img-fluid"
+          />
+        </Col>
+        <<Col md={6} className="card mt-4 p-5">
           <h4>{user.nombre}</h4>
           <p>Email: {user.correo}</p>
+        </Col>
       </div>
 
 
