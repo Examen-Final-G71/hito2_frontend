@@ -167,6 +167,7 @@ const Profile = () => {
           </div>
         ))
       )}
+      </div> 
   );
 };
 
