@@ -88,7 +88,7 @@ const Home = () => {
             <div
               className="position-relative d-flex align-items-start justify-content-center"
               style={{
-                backgroundImage: `url(${Comunidad1})`,
+                backgroundImage: `url(${Comunidad2})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 minHeight: "60vh",
