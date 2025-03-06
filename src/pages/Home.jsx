@@ -84,7 +84,7 @@ const Home = () => {
                 </div>
               </div>
             ) : (
-              // Vista sin usuario (Texto centrado con fondo blanco)
+              // Vista sin usuario
             <div
               className="position-relative d-flex align-items-start justify-content-center"
               style={{
@@ -96,7 +96,7 @@ const Home = () => {
               }}
             >
               <div
-                className="m-4 text-center bg-white shadow rounded position-absolute"
+                className="m-4 p-4 text-center bg-white shadow rounded position-absolute"
                 style={{
                   maxWidth: "500px",
                   opacity: 0.9,
