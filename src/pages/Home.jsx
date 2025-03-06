@@ -96,7 +96,7 @@ const Home = () => {
               }}
             >
               <div
-                className="m-4 p-4 text-center bg-white shadow rounded position-absolute"
+                className="m-4 p-4 text-center bg-white shadow rounded"
                 style={{
                   maxWidth: "500px",
                   opacity: 0.9,
