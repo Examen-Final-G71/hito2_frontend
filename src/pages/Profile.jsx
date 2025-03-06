@@ -135,19 +135,20 @@ const Profile = () => {
 
   return (
     <div className="container mt-5 main-content">
-      <div className="card d-flex row">
+      <div className="card d-flex flex-row">
         <Col md={6} className="m-3">
           <img 
             src={LogoPerfil}
             alt="Logo Perfil" 
             className="img-fluid"
             style={{ 
-             width: "150px", 
-             height: "150px", 
-             cursor: "pointer" }}
+              width: "90px", 
+              height: "90px", 
+              cursor: "pointer" 
+            }}
           />
         </Col>
-        <Col md={6} className="m-3">
+        <Col md={6} className="m-3 d-flex flex-column justify-content-center">
           <h4>{user.nombre}</h4>
           <p>Email: {user.correo}</p>
         </Col>
