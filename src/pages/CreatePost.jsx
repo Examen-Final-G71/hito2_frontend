@@ -35,7 +35,7 @@ const handleFileChange = (e) => {
     const allowedTypes = ["image/jpeg", "image/jpg", "image/png"]; // Extensiones permitidas
 
     if (fileSizeMB > maxSizeMB) {
-      Swal.fire("Error", `El archivo pesa ${fileSizeMB.toFixed(2)}MB y supera el límite de ${maxSizeMB}MB`, "error");
+      Swal.fire("Error", `El archivo pesa ${fileSize.toFixed(2)}MB y supera el límite de ${maxSizeMB}MB`, "error");
       return;
     }
 
