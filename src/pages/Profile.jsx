@@ -76,25 +76,32 @@ const Profile = () => {
         const data = await response.json();
         
         // Agrupar compras por ID de transacción
-        const groupedCompras = data.reduce((acc, compra) => {
-          if (!acc[compra.transaccion_id]) {
-            acc[compra.transaccion_id] = {
-              fecha: compra.fecha,
+        const comprasAgrupadas = data.reduce((acc, compra) => {
+          const { transaccion_id, fecha, subtotal, ...detalle } = compra;
+
+          if (!acc[transaccion_id]) {
+            acc[transaccion_id] = {
+              transaccion_id,
+              fecha,
               total: 0,
-              items: []
+              detalles: [],
             };
           }
-          acc[compra.transaccion_id].items.push(compra);
-          acc[compra.transaccion_id].total += compra.subtotal;
+
+          acc[transaccion_id].total += subtotal; // Sumar subtotales
+          acc[transaccion_id].detalles.push(detalle);
+
           return acc;
         }, {});
         
-        setCompras(groupedCompras);
+        setCompras(Object.values(comprasAgrupadas));
       } catch (error) {
-        console.error("Error al obtener compras:", error);
+        console.error("Error al obtener las compras:", error);
+      } finally {
+        setLoading(false);
       }
     };
-    
+
     fetchCompras();
   }, [user?.id, token]);
 
@@ -139,38 +146,27 @@ const Profile = () => {
         <p>No tienes publicaciones aún.</p>
       )}
 
-      <h3 className="mt-4">Historial de Compras</h3>
-      {Object.keys(compras).length > 0 ? (
-        <div className="row">
-          {Object.entries(compras).map(([transaccionId, transaccion]) => (
-            <div key={transaccionId} className="col-md-6">
-              <div className="card mt-3">
-                <div className="card-body">
-                  <h5>Transacción #{transaccionId}</h5>
-                  <small>{new Date(transaccion.fecha).toLocaleString("es-ES", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                    hour: "2-digit",
-                    minute: "2-digit"
-                  })}</small>
-                  <h6 className="mt-2">Total: ${new Intl.NumberFormat("es-CL").format(transaccion.total)}</h6>
-                  <ul className="mt-2">
-                    {transaccion.items.map((compra) => (
-                      <li key={compra.id}>
-                        {compra.publicacion} - {compra.cantidad} unidades - ${new Intl.NumberFormat("es-CL").format(compra.subtotal)}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      ) : (
+
+      
+      <h2>Historial de Compras</h2>
+      {compras.length === 0 ? (
         <p>No tienes compras registradas.</p>
+      ) : (
+        compras.map((compra) => (
+          <div key={compra.transaccion_id}>
+            <h3>Transacción #{compra.transaccion_id}</h3>
+            <p>{new Date(compra.fecha).toLocaleString()}</p>
+            <p><strong>Total:</strong> ${compra.total.toLocaleString()}</p>
+            <ul>
+              {compra.detalles.map((detalle, index) => (
+                <li key={index}>
+                  {detalle.publicacion} - {detalle.cantidad} unidades - ${detalle.subtotal.toLocaleString()}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
       )}
-    </div>
   );
 };
 
