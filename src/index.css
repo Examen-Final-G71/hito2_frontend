@@ -59,4 +59,12 @@ footer {
     box-shadow: 0 4px 10px rgba(0, 138, 192, 0.5); 
     transition: box-shadow 0.3s ease-in-out; 
   }
-  
+.logo-footer {
+  width: 150px;       
+  height: 150px;      
+  background-color: white; 
+  border-radius: 50%;   
+  display: flex;    
+  justify-content: center;
+  align-items: center;
+}
