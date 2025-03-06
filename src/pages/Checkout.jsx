@@ -162,7 +162,7 @@ const Checkout = () => {
         </Col>
       </Row>
 
-      <div className="text-center">
+      <div className="text-center my-3">
         <Button variant="success" onClick={handleCheckout}>
           Confirmar Pago
         </Button>
