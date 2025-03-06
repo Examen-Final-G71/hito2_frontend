@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Form, Button, Card, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
+import CreatePostBackground from "../assets/img/CreatePostBackground.jpg";
 import Swal from "sweetalert2";
 
 const CreatePost = () => {
@@ -98,7 +99,7 @@ const CreatePost = () => {
      <div
       className="d-flex justify-content-center align-items-center vh-100"
       style={{
-        backgroundImage: `url("https://res.cloudinary.com/df2lqpvry/image/upload/v1741278246/argjp6b9qx1bniaks9zk.jpg")`,
+        backgroundImage: `url(${CreatePostBackground})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
