@@ -106,7 +106,10 @@ const Profile = () => {
         }, {});
         
         // Convertir el objeto a un arreglo
-        setCompras(Object.values(comprasAgrupadas));
+        setCompras(Object.values(comprasAgrupadas).sort(
+            (a, b) => new Date(b.fecha) - new Date(a.fecha)
+          )
+        );
       } catch (error) {
         console.error("Error al obtener las compras:", error);
       } finally {
