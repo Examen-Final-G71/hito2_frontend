@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 import { useNavigate, Navigate } from "react-router-dom";
-import { Tab, Nav, Spinner, Col, Card } from "react-bootstrap";
+import { Tab, Nav, Spinner, Col, Card, Row } from "react-bootstrap";
 
 const Profile = () => {
   const { user, token, setUser, logout } = useContext(AppContext);
@@ -156,7 +156,7 @@ const Profile = () => {
                 {publicaciones.map((publicacion) => (
                   <div key={publicacion.id} className="col-md-4">
 
-                    <div className="card mt-3">
+                    <Row className="card mt-3">
                     <Col md={6}>
                       <Card.Img 
                         variant="top" 
@@ -172,7 +172,7 @@ const Profile = () => {
                         <p>Precio: ${new Intl.NumberFormat("es-CL").format(publicacion.precio)}</p>
                     
                     </Col>
-                    </div>
+                    </Row>
 
                   </div>
                 ))}
