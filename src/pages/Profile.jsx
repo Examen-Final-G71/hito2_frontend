@@ -137,7 +137,7 @@ const Profile = () => {
       </div>
 
 
-      {/*  Pestañas de Publicaciones y Compras */}
+
       <Tab.Container activeKey={activeTab} onSelect={(tab) => setActiveTab(tab)}>
         <Nav variant="tabs" className="mt-4">
           <Nav.Item>
@@ -148,8 +148,7 @@ const Profile = () => {
           </Nav.Item>
         </Nav>
 
-        <Tab.Content className="mt-3">
-          {/*  Pestaña de Publicaciones */}
+        <Tab.Content className="my-3">
           <Tab.Pane eventKey="publicaciones">
             {publicaciones.length > 0 ? (
               <div className="row">
@@ -184,7 +183,7 @@ const Profile = () => {
 
 
       
-          {/*  Pestaña de Compras */}
+
           <Tab.Pane eventKey="compras">
             {compras.length === 0 ? (
               <p>No tienes compras registradas.</p>
