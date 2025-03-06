@@ -63,7 +63,7 @@ const Registro = () => {
     };
 
     return (
-        <div className="d-flex my-5 main-content justify-content-center align-items-center pb-5 bg-light">
+        <div className="d-flex main-content justify-content-center align-items-center pb-5 bg-light">
             <div className="card p-4" style={{ width: '25rem' }}>
                 <h3 className="text-center mb-3">Regístrate</h3>
                 <hr />
