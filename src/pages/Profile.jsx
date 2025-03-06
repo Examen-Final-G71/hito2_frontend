@@ -135,8 +135,8 @@ const Profile = () => {
 
   return (
     <div className="container mt-5 main-content">
-      <div className="card d-flex flex-row" style={{maxWidth: "600px"}}>
-        <Col md={6}>
+      <div className="p-3 card d-flex flex-row justify-content-center" style={{maxWidth: "600px"}}>
+        <Col md={4}>
           <img 
             src={LogoPerfil}
             alt="Logo Perfil" 
@@ -148,7 +148,7 @@ const Profile = () => {
             }}
           />
         </Col>
-        <Col md={6} className="justify-content-center">
+        <Col md={8} className="justify-content-center">
           <h4>{user.nombre}</h4>
           <p>Email: {user.correo}</p>
         </Col>
