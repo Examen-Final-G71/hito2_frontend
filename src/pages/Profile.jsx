@@ -159,31 +159,31 @@ const Profile = () => {
       )}
 
       {/* Sección Historial de Compras */}
-<h3 className="mt-4">Historial de Compras</h3>
-{Object.keys(compras).length > 0 ? (
-  <div className="row">
-    {Object.keys(compras).map((fecha) => (
-      <div key={fecha} className="col-md-12">
-        <h4>{fecha}</h4>
-        {Array.isArray(compras[fecha]) && compras[fecha].length > 0 ? (
-          compras[fecha].map((compra) => (
-            <div key={compra.id} className="card mt-3">
-              <div className="card-body">
-                <h5>{compra.publicacion}</h5>
-                <p>Cantidad: {compra.cantidad}</p>
-                <p>Total: ${new Intl.NumberFormat("es-CL").format(compra.subtotal)}</p>
+      <h3 className="mt-4">Historial de Compras</h3>
+      {compras.length > 0 ? (
+        <div className="row">
+          {compras.map((compra) => (
+            <div key={compra.id} className="col-md-4">
+              <div className="card mt-3">
+                <div className="card-body">
+                  <h5>{compra.publicacion}</h5>
+                  <p>Cantidad: {compra.cantidad}</p>
+                  <p>Total: ${new Intl.NumberFormat("es-CL").format(compra.subtotal)}</p>
+                  <small>
+                    {new Date(compra.fecha).toLocaleDateString("es-ES", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </small>
+                </div>
               </div>
             </div>
-          ))
-        ) : (
-          <p>No tienes compras registradas para esta fecha.</p>
-        )}
-      </div>
-    ))}
-  </div>
-) : (
-  <p>No tienes compras registradas.</p>
-)}
+          ))}
+        </div>
+      ) : (
+        <p>No tienes compras registradas.</p>
+      )}
 
     </div>
   );
