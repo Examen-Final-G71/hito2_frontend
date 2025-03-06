@@ -86,7 +86,7 @@ const Home = () => {
             ) : (
               // Vista sin usuario (Texto centrado con fondo blanco)
             <div
-              className="position-relative d-flex align-items-center justify-content-center"
+              className="position-relative d-flex align-items-center justify-content-start"
               style={{
                 backgroundImage: `url(${Comunidad1})`,
                 backgroundSize: "cover",
