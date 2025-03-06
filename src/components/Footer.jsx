@@ -6,7 +6,7 @@ import { faFacebookF, faTwitter, faInstagram } from '@fortawesome/free-brands-sv
 const Footer = () => {
     return (
         <footer className="bg-dark text-light py-4 mt-5 custom-footer">
-            <Container className='mt-7'>
+            <Container className='pt-5'>
                 <Row>
                     <Col md={4}>
                         <h5>Síguenos</h5>
