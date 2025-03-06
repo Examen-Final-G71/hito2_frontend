@@ -148,7 +148,7 @@ const Profile = () => {
             }}
           />
         </Col>
-        <Col md={8} className="justify-content-center">
+        <Col md={8} className="align-items-center">
           <h4>{user.nombre}</h4>
           <p>Email: {user.correo}</p>
         </Col>
