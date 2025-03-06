@@ -179,8 +179,7 @@ const Profile = () => {
             ) : (
               compras.map((compra) => (
                 <div key={compra.transaccion_id} className="card mt-3 p-3">
-                  <h5>Transacción #{compra.transaccion_id}</h5>
-                  <p>{new Date(compra.fecha).toLocaleString()}</p>
+                  <h5>{new Date(compra.fecha).toLocaleString()}</h5>
                   <p><strong>Total:</strong> ${compra.total.toLocaleString()}</p>
                   <ul>
                     {compra.detalles.map((detalle, index) => (
