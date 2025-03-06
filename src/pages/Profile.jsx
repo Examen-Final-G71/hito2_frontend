@@ -8,17 +8,17 @@ const Profile = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [publicaciones, setPublicaciones] = useState([]);
+  const [compras, setCompras] = useState({});
+
   const storedToken = token || localStorage.getItem("token");
-  const [compras, setCompras] = useState([]);
-
-  console.log("Usuario recibido:", user);
-
-  //DATOS DEL USUARIO Y PERFIL
+  
+        // Obtener perfil del usuario
   useEffect(() => {
     if (!storedToken) {
       navigate("/login");
       return;
     }
+    
     fetch("https://hito3-backend.onrender.com/usuarios/perfil", {
       headers: { Authorization: `Bearer ${storedToken}` },
     })
@@ -40,74 +40,61 @@ const Profile = () => {
         navigate("/login");
       })
       .finally(() => setLoading(false));
-  }, [token, navigate, setUser, logout]);
-
-  //DATOS DE PUBLICACIONES
+  }, [storedToken, navigate, setUser, logout]);
+  
+      // Obtener publicaciones del usuario
   useEffect(() => {
+    if (!user?.id || !token) return;
+
     const fetchPublicaciones = async () => {
       try {
-        if (!user?.id || !token) return;
-
-        console.log("Obteniendo publicaciones para el usuario:", user.id);
-
         const response = await fetch(`https://hito3-backend.onrender.com/api/publicaciones/${user.id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-
         if (!response.ok) throw new Error(`Error ${response.status}: ${response.statusText}`);
-
+        
         const data = await response.json();
         setPublicaciones(data);
-        
       } catch (error) {
         console.error("Error al obtener publicaciones:", error);
       }
     };
-
     fetchPublicaciones();
   }, [user?.id, token]);
 
-  //HISTORIAL DE COMPRAS
+         // Obtener compras del usuario
   useEffect(() => {
+    if (!user?.id || !token) return;
+
     const fetchCompras = async () => {
       try {
-        if (!user?.id || !token) return;
-
-        console.log("Obteniendo compras para el usuario:", user.id);
-
         const response = await fetch(`https://hito3-backend.onrender.com/transacciones/compras`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-
         if (!response.ok) throw new Error(`Error ${response.status}: ${response.statusText}`);
-
+        
         const data = await response.json();
-
-        // AGRUPAR POR FECHA
+        
+        // Agrupar compras por ID de transacción
         const groupedCompras = data.reduce((acc, compra) => {
-        const fechaCompra = new Date(compra.fecha).toLocaleString('es-CL', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-          });
-
-          if (!acc[fechaCompra]) {
-            acc[fechaCompra] = [];
+          if (!acc[compra.transaccion_id]) {
+            acc[compra.transaccion_id] = {
+              fecha: compra.fecha,
+              total: 0,
+              items: []
+            };
           }
-          acc[fechaCompra].push(compra);
-
+          acc[compra.transaccion_id].items.push(compra);
+          acc[compra.transaccion_id].total += compra.subtotal;
           return acc;
         }, {});
         
-        setCompras(data);
+        setCompras(groupedCompras);
       } catch (error) {
         console.error("Error al obtener compras:", error);
       }
     };
-
+    
     fetchCompras();
   }, [user?.id, token]);
 
@@ -133,7 +120,6 @@ const Profile = () => {
         </div>
       </div>
 
-      {/* Sección Publicaciones */}
       <h3 className="mt-4">Tus Publicaciones</h3>
       {publicaciones.length > 0 ? (
         <div className="row">
@@ -143,11 +129,6 @@ const Profile = () => {
                 <div className="card-body">
                   <h5>{publicacion.nombre}</h5>
                   <p>Stock: {publicacion.stock}</p>
-                  <small>{new Date(publicacion.fecha_publicacion).toLocaleDateString("es-ES", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}</small>
                   <p>Precio: ${new Intl.NumberFormat("es-CL").format(publicacion.precio)}</p>
                 </div>
               </div>
@@ -158,24 +139,29 @@ const Profile = () => {
         <p>No tienes publicaciones aún.</p>
       )}
 
-      {/* Sección Historial de Compras */}
       <h3 className="mt-4">Historial de Compras</h3>
-      {compras.length > 0 ? (
+      {Object.keys(compras).length > 0 ? (
         <div className="row">
-          {compras.map((compra) => (
-            <div key={compra.id} className="col-md-4">
+          {Object.entries(compras).map(([transaccionId, transaccion]) => (
+            <div key={transaccionId} className="col-md-6">
               <div className="card mt-3">
                 <div className="card-body">
-                  <h5>{compra.publicacion}</h5>
-                  <p>Cantidad: {compra.cantidad}</p>
-                  <p>Total: ${new Intl.NumberFormat("es-CL").format(compra.subtotal)}</p>
-                  <small>
-                    {new Date(compra.fecha).toLocaleDateString("es-ES", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </small>
+                  <h5>Transacción #{transaccionId}</h5>
+                  <small>{new Date(transaccion.fecha).toLocaleString("es-ES", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit"
+                  })}</small>
+                  <h6 className="mt-2">Total: ${new Intl.NumberFormat("es-CL").format(transaccion.total)}</h6>
+                  <ul className="mt-2">
+                    {transaccion.items.map((compra) => (
+                      <li key={compra.id}>
+                        {compra.publicacion} - {compra.cantidad} unidades - ${new Intl.NumberFormat("es-CL").format(compra.subtotal)}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>
@@ -184,11 +170,11 @@ const Profile = () => {
       ) : (
         <p>No tienes compras registradas.</p>
       )}
-
     </div>
   );
 };
 
 export default Profile;
+
 
 
