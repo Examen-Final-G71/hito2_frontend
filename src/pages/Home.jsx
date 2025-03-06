@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import ShareImage from "../assets/img/ShareProduct.jpg";
 import Comunidad1 from "../assets/img/ImgHomeComunidad1.jpg";
-import Comunidad2 from "../assets/img/ImgHomeComunidad2.jpg";
 
 const Home = () => {
   const { user } = useContext(AppContext); // Obtiene el usuario autenticado
@@ -88,7 +87,7 @@ const Home = () => {
             <div
               className="position-relative d-flex align-items-start justify-content-center"
               style={{
-                backgroundImage: `url(${Comunidad2})`,
+                backgroundImage: `url(${Comunidad1})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 minHeight: "60vh",
