@@ -102,7 +102,6 @@ const CreatePost = () => {
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        padding: "20px",
       }}>
       
       <Card className="p-4 border card" style={{ width: "100%", maxWidth: "700px" }}>
