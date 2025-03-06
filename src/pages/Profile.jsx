@@ -104,7 +104,7 @@ const Profile = () => {
             subtotal: subtotalNumber,
           });
 
-          acc[transaccion_id].total += subtotal; // Sumar subtotales
+          acc[transaccion_id].total += subtotalNumber; // Sumar subtotales
           acc[transaccion_id].detalles.push(detalle);
 
           return acc;
