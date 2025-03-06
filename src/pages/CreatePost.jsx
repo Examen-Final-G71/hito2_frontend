@@ -99,7 +99,7 @@ const handleFileChange = (e) => {
         confirmButtonText: "Ver publicación",
       }).then(() => {
         addProduct(data);
-        navigate(`/product/${data.id}`, { state: { product: data } });
+        navigate("/");
       });
     } else {
       Swal.fire(
