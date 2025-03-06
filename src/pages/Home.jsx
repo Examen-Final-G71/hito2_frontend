@@ -133,6 +133,7 @@ const buttonStyle = {
   border: "2px solid rgb(0, 138, 192)",
   color: "rgb(0, 138, 192)",
   padding: "10px 20px",
+  margin: "1rem",
   borderRadius: "5px",
   cursor: "pointer",
   transition: "background-color 0.3s, color 0.3s",
