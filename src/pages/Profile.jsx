@@ -92,6 +92,12 @@ const Profile = () => {
             };
           }
 
+            const detalle = {
+              publicacion, 
+              cantidad, 
+              subtotal: subtotalNumber, 
+            };
+
           acc[transaccion_id].detalles.push({
             publicacion,
             cantidad,
