@@ -131,7 +131,7 @@ const Profile = () => {
 
   return (
     <div className="container mt-5 main-content">
-      <div className="card mx-auto mt-4" style={{ maxWidth: "400px" }}>
+      <div className="card mt-4 p-5" style={{ maxWidth: "400px" }}>
           <h4>{user.nombre}</h4>
           <p>Email: {user.correo}</p>
       </div>
