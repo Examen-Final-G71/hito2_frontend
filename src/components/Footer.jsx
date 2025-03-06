@@ -2,13 +2,21 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import logo from "../assets/img/novatec.png";
 
 const Footer = () => {
     return (
         <footer className="bg-dark py-4 custom-footer">
             <Container className='text-light my-4'>
                 <Row>
-                    <Col md={4}>
+                    <Col md={3}>
+                        <img src={logo} alt="Logo" className="ms-2" 
+                            style={{ 
+                                width: "60%", 
+                                height: "auto", 
+                                cursor: "pointer" }} />
+                    </Col>
+                    <Col md={3}>
                         <h5>Síguenos</h5>
                         <ul className="list-unstyled d-flex"> 
                             <li className="me-3"> 
@@ -29,7 +37,7 @@ const Footer = () => {
                         </ul>
                     </Col>
 
-                    <Col md={4}>
+                    <Col md={3}>
                         <h5>Contacto</h5>
                         <ul className="list-unstyled">
                             <li><i className="bi bi-geo-alt-fill"></i> Dirección: Calle 123, Santiago</li>
@@ -38,7 +46,7 @@ const Footer = () => {
                         </ul>
                     </Col>
 
-                    <Col md={4}>
+                    <Col md={3}>
                         <h5>Información</h5>
                         <ul className="list-unstyled">
                             <li><a href="/quienes-somos" className="text-light">¿Quiénes somos?</a></li>
