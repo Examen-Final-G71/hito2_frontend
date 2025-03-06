@@ -98,12 +98,6 @@ const Profile = () => {
               subtotal: subtotalNumber, 
             };
 
-          acc[transaccion_id].detalles.push({
-            publicacion,
-            cantidad,
-            subtotal: subtotalNumber,
-          });
-
           acc[transaccion_id].total += subtotalNumber; // Sumar subtotales
           acc[transaccion_id].detalles.push(detalle);
 
@@ -177,7 +171,7 @@ const Profile = () => {
             <ul>
               {compra.detalles.map((detalle, index) => (
                 <li key={index}>
-                  {detalle.publicacion} - {detalle.cantidad} unidades - ${detalle.subtotalNumber.toLocaleString()}
+                  {detalle.publicacion} - {detalle.cantidad} unidades - ${detalle.subtotal.toLocaleString()}
                 </li>
               ))}
             </ul>
