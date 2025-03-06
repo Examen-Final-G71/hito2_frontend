@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 import { useNavigate, Navigate } from "react-router-dom";
-import { Tab, Nav, Spinner, Col } from "react-bootstrap";
+import { Tab, Nav, Spinner, Col, Card } from "react-bootstrap";
 
 const Profile = () => {
   const { user, token, setUser, logout } = useContext(AppContext);
