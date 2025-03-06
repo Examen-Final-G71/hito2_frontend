@@ -109,9 +109,10 @@ function ProductView() {
           
           {/* Lista de comentarios (Visible para todos) */}
           <div>
+            <h2 className="my-3" >Reseñas</h2>
             {comentarios.length > 0 ? (
               comentarios.map((c) => (
-                <div key={c.id}>
+                <div key={c.id} className="my-3">
                   <strong>{c.usuario_nombre}</strong> ({c.calificacion} ★)
                   <p>{c.comment}</p>
                    <small>{new Date(c.fecha).toLocaleDateString("es-ES", {
