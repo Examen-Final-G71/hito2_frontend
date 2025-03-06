@@ -157,7 +157,7 @@ const Profile = () => {
                   <div key={publicacion.id} className="col-md-6">
 
                     <Row className="card mt-3">
-                    <Col md={4}>
+                    <Col md={8}>
                       <Card.Img 
                         variant="top" 
                         src={publicacion.imagen}
@@ -165,7 +165,7 @@ const Profile = () => {
                         style={{ height: "150px", objectFit: "cover" }} 
                       />
                     </Col>
-                    <Col md={8}>
+                    <Col md={4}>
                     
                         <h5>{publicacion.nombre}</h5>
                         <p>Stock: {publicacion.stock}</p>
@@ -191,7 +191,7 @@ const Profile = () => {
             ) : (
               compras.map((compra) => (
                 <div key={compra.transaccion_id} className="card mt-3 p-3">
-                  <h3>{new Date(compra.fecha).toLocaleString()}</h3>
+                  <h5>{new Date(compra.fecha).toLocaleString()}</h5>
                   <p><strong>Total:</strong> ${compra.total.toLocaleString()}</p>
                   <ul>
                     {compra.detalles.map((detalle, index) => (
