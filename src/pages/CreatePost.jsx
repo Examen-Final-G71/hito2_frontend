@@ -128,7 +128,7 @@ const handleFileChange = (e) => {
         minHeight: "100vh",
       }}>
       
-      <Card className="p-5 m-4 border card" style={{ width: "100%", maxWidth: "700px" }}>
+      <Card className="p-5 m-4 border card" style={{ width: "80%", maxWidth: "700px" }}>
         <h3 className="mb-2">Nuevo Producto</h3>
         <h5 className="text-muted mb-3">Agrega producto para vender</h5>
         <hr />
