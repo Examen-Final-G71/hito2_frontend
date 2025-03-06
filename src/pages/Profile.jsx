@@ -157,7 +157,7 @@ const Profile = () => {
                   <div key={publicacion.id} className="col-md-6">
 
                     <Row className="card mt-3">
-                    <Col md={6}>
+                    <Col md={4}>
                       <Card.Img 
                         variant="top" 
                         src={publicacion.imagen}
@@ -165,7 +165,7 @@ const Profile = () => {
                         style={{ height: "150px", objectFit: "cover" }} 
                       />
                     </Col>
-                    <Col md={6}>
+                    <Col md={8}>
                     
                         <h5>{publicacion.nombre}</h5>
                         <p>Stock: {publicacion.stock}</p>
