@@ -135,8 +135,8 @@ const Profile = () => {
 
   return (
     <div className="container mt-5 main-content">
-      <div className="card mt-4 p-5 d-flex row">
-        <Col md={6}>
+      <div className="card d-flex row">
+        <Col md={6} className="m-3">
           <img 
             src={LogoPerfil}
             alt="Logo Perfil" 
@@ -147,7 +147,7 @@ const Profile = () => {
              cursor: "pointer" }}
           />
         </Col>
-        <Col md={6} className="card mt-4 p-5">
+        <Col md={6} className="m-3">
           <h4>{user.nombre}</h4>
           <p>Email: {user.correo}</p>
         </Col>
