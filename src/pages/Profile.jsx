@@ -135,7 +135,7 @@ const Profile = () => {
 
   return (
     <div className="container mt-5 main-content">
-      <div className="card d-flex flex-row style={{maxWidth: "500px"}}>
+      <div className="card d-flex flex-row" style={{maxWidth: "500px"}}>
         <Col md={6} className="m-3">
           <img 
             src={LogoPerfil}
