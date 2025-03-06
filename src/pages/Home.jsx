@@ -5,7 +5,10 @@ import libreria from "../assets/img/libreria.png";
 import Banner from "../components/Banner";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom"; 
-import { AppContext } from "../context/AppContext"; // Importa el contexto para verificar usuario
+import { AppContext } from "../context/AppContext";
+import ShareImage from "../assets/img/ShareProduct.jpg";
+import Comunidad1 from "../assets/img/ImgHomeComunidad1.jpg";
+import Comunidad2 from "../assets/img/ImgHomeComunidad2.jpg";
 
 const Home = () => {
   const { user } = useContext(AppContext); // Obtiene el usuario autenticado
@@ -56,33 +59,65 @@ const Home = () => {
         </div>
 
         {/* NUEVA SECCIÓN PARA VENDER PRODUCTOS */}
-        <div className="mt-5 text-center">
-          <h3 style={{ marginBottom: "20px" }}>¿Quieres vender tus productos?</h3>
-          <p>Únete a nuestra comunidad y empieza a publicar tus productos hoy mismo.</p>
-          <div className="d-flex justify-content-center gap-3 mt-3">
+
             {user ? (
-              <button
-                onClick={handleRedirection}
-                style={buttonStyle}
-                onMouseEnter={(e) => handleMouseEnter(e)}
-                onMouseLeave={(e) => handleMouseLeave(e)}
-              >
-                Crear Publicación
-              </button>
+              // Vista con usuario autenticado
+              <div className="row align-items-center w-100">
+                <div className="col-md-6">
+                  <img 
+                    src={ShareImage}
+                    alt="Compartir productos" 
+                    className="img-fluid rounded shadow"
+                    />
+                </div>
+                <div className="col-md-6 text-center text-md-start">
+                  <h3>¿Quieres vender tus productos?</h3>
+                  <p>Comienza a publicar y accede a un mundo de colaboradores.</p>
+                  <button
+                    onClick={handleRedirection}
+                    style={buttonStyle}
+                    onMouseEnter={(e) => handleMouseEnter(e)}
+                    onMouseLeave={(e) => handleMouseLeave(e)}
+                  >
+                    Crear Publicación
+                  </button>
+                </div>
+              </div>
             ) : (
-              <button
-                onClick={() => navigate("/login")}
-                style={buttonStyle}
-                onMouseEnter={(e) => handleMouseEnter(e)}
-                onMouseLeave={(e) => handleMouseLeave(e)}
+              // Vista sin usuario (Texto centrado con fondo blanco)
+            <div
+              className="position-relative d-flex align-items-center justify-content-center"
+              style={{
+                backgroundImage: `url(${Comunidad1})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                minHeight: "60vh",
+                width: "100%",
+              }}
+            >
+              <div
+                className="p-4 text-center bg-white shadow rounded position-absolute"
+                style={{
+                  maxWidth: "500px",
+                  opacity: 0.9,
+                }}
               >
-                Iniciar Sesión
-              </button>
+                <h3>¿Quieres vender tus productos?</h3>
+                <p>Únete a nuestra comunidad y empieza a publicar tus productos hoy mismo.</p>
+                <button
+                  onClick={() => navigate("/login")}
+                  style={buttonStyle}
+                  onMouseEnter={(e) => handleMouseEnter(e)}
+                  onMouseLeave={(e) => handleMouseLeave(e)}
+                >
+                  Iniciar Sesión
+                </button>
+              </div>
+            </div>
+              
             )}
           </div>
-        </div>
       </div>
-    </div>
   );
 };
 
