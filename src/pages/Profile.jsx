@@ -177,7 +177,7 @@ const Profile = () => {
             <ul>
               {compra.detalles.map((detalle, index) => (
                 <li key={index}>
-                  {detalle.publicacion} - {detalle.cantidad} unidades - ${detalle.subtotal.toLocaleString()}
+                  {detalle.publicacion} - {detalle.cantidad} unidades - ${detalle.subtotalNumber.toLocaleString()}
                 </li>
               ))}
             </ul>
