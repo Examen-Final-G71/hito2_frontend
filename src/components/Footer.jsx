@@ -10,11 +10,13 @@ const Footer = () => {
             <Container className='text-light my-4'>
                 <Row>
                     <Col md={3}>
+                        <div className="logo-footer">
                         <img src={logo} alt="Logo" className="ms-2" 
                             style={{ 
                                 width: "60%", 
                                 height: "auto", 
                                 cursor: "pointer" }} />
+                        </div>
                     </Col>
                     <Col md={3}>
                         <h5>Síguenos</h5>
