@@ -95,7 +95,16 @@ const CreatePost = () => {
 
 
   return (
-    <div className="d-flex justify-content-center main-content align-items-center vh-100 bg-light px-2 px-md-0">
+     <div
+      className="d-flex justify-content-center align-items-center vh-100"
+      style={{
+        backgroundImage: `url("https://res.cloudinary.com/df2lqpvry/image/upload/v1741278246/argjp6b9qx1bniaks9zk.jpg")`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        padding: "20px",
+      }}>
+      
       <Card className="p-4 border card" style={{ width: "100%", maxWidth: "700px" }}>
         <h3 className="mb-2">Nuevo Producto</h3>
         <h5 className="text-muted mb-3">Agrega producto para vender</h5>
