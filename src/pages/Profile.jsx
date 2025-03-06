@@ -142,8 +142,8 @@ const Profile = () => {
             alt="Logo Perfil" 
             className="img-fluid"
             style={{ 
-             width: "250px", 
-             height: "250px", 
+             width: "150px", 
+             height: "150px", 
              cursor: "pointer" }}
           />
         </Col>
