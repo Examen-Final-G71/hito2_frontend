@@ -67,7 +67,7 @@ const Home = () => {
                   <img 
                     src={ShareImage}
                     alt="Compartir productos" 
-                    className="img-fluid rounded shadow"
+                    className="img-fluid rounded"
                     />
                 </div>
                 <div className="col-md-6 text-center text-md-start">
@@ -86,7 +86,7 @@ const Home = () => {
             ) : (
               // Vista sin usuario (Texto centrado con fondo blanco)
             <div
-              className="position-relative d-flex align-items-start justify-content-start"
+              className="position-relative d-flex align-items-start justify-content-center"
               style={{
                 backgroundImage: `url(${Comunidad1})`,
                 backgroundSize: "cover",
@@ -96,7 +96,7 @@ const Home = () => {
               }}
             >
               <div
-                className="p-4 text-center bg-white shadow rounded position-absolute"
+                className="m-4 text-center bg-white shadow rounded position-absolute"
                 style={{
                   maxWidth: "500px",
                   opacity: 0.9,
