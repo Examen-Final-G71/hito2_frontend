@@ -77,7 +77,11 @@ const Profile = () => {
         
         // Agrupar compras por ID de transacción
         const comprasAgrupadas = data.reduce((acc, compra) => {
-          const { transaccion_id, fecha, subtotal, ...detalle } = compra;
+          const { transaccion_id, fecha, subtotal, precio, cantidad, publicacion } = compra;
+
+              //  Aplicamos parse para convertir a Numero
+          const subtotalNumber = parseFloat(subtotal) || 0;
+          const precioNumber = parseFloat(precio) || 0;
 
           if (!acc[transaccion_id]) {
             acc[transaccion_id] = {
@@ -88,12 +92,19 @@ const Profile = () => {
             };
           }
 
+          acc[transaccion_id].detalles.push({
+            publicacion,
+            cantidad,
+            subtotal: subtotalNumber,
+          });
+
           acc[transaccion_id].total += subtotal; // Sumar subtotales
           acc[transaccion_id].detalles.push(detalle);
 
           return acc;
         }, {});
         
+        // Convertir el objeto a un arreglo
         setCompras(Object.values(comprasAgrupadas));
       } catch (error) {
         console.error("Error al obtener las compras:", error);
@@ -167,7 +178,7 @@ const Profile = () => {
           </div>
         ))
       )}
-      </div> 
+    </div>
   );
 };
 
