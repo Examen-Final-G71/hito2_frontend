@@ -98,8 +98,8 @@ const handleFileChange = (e) => {
         icon: "success",
         confirmButtonText: "Ver publicación",
       }).then(() => {
-        addProduct(data);
-        navigate("/");
+        addProduct(result);
+        navigate(`/product/${result.id}`, { state: { product: result } });
       });
     } else {
       Swal.fire(
