@@ -112,6 +112,14 @@ const Home = () => {
                 >
                   Iniciar Sesión
                 </button>
+                <button
+                  onClick={() => navigate("/register")}
+                  style={buttonStyle}
+                  onMouseEnter={(e) => handleMouseEnter(e)}
+                  onMouseLeave={(e) => handleMouseLeave(e)}
+                >
+                  Registrarse
+                </button>
               </div>
             </div>
               
