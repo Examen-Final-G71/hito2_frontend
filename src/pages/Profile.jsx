@@ -8,7 +8,8 @@ const Profile = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [publicaciones, setPublicaciones] = useState([]);
-  const [compras, setCompras] = useState({});
+  const [compras, setCompras] = useState([]);
+
 
   const storedToken = token || localStorage.getItem("token");
   
