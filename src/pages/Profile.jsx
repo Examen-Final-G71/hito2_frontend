@@ -155,13 +155,25 @@ const Profile = () => {
               <div className="row">
                 {publicaciones.map((publicacion) => (
                   <div key={publicacion.id} className="col-md-4">
+
                     <div className="card mt-3">
-                      <div className="card-body">
+                    <Col md={6}>
+                      <Card.Img 
+                        variant="top" 
+                        src={publicacion.imagen}
+                        alt={publicacion.nombre}
+                        style={{ height: "150px", objectFit: "cover" }} 
+                      />
+                    </Col>
+                    <Col md={6}>
+                    
                         <h5>{publicacion.nombre}</h5>
                         <p>Stock: {publicacion.stock}</p>
                         <p>Precio: ${new Intl.NumberFormat("es-CL").format(publicacion.precio)}</p>
-                      </div>
+                    
+                    </Col>
                     </div>
+
                   </div>
                 ))}
               </div>
