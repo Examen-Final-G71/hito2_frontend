@@ -141,6 +141,10 @@ const Profile = () => {
             src={LogoPerfil}
             alt="Logo Perfil" 
             className="img-fluid"
+            style={{ 
+             width: "250px", 
+             height: "250px", 
+             cursor: "pointer" }}
           />
         </Col>
         <Col md={6} className="card mt-4 p-5">
