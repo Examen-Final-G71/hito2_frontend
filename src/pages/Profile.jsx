@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 import { useNavigate, Navigate } from "react-router-dom";
-import { Spinner } from "react-bootstrap";
+import { Tab, Nav, Spinner } from "react-bootstrap";
 
 const Profile = () => {
   const { user, token, setUser, logout } = useContext(AppContext);
@@ -9,7 +9,7 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const [publicaciones, setPublicaciones] = useState([]);
   const [compras, setCompras] = useState([]);
-
+  const [activeTab, setActiveTab] = useState("publicaciones");
 
   const storedToken = token || localStorage.getItem("token");
   
@@ -132,52 +132,69 @@ const Profile = () => {
   return (
     <div className="container mt-5 main-content">
       <div className="card mx-auto mt-4" style={{ maxWidth: "400px" }}>
-        <div className="card-body">
           <h4>{user.nombre}</h4>
           <p>Email: {user.correo}</p>
-        </div>
       </div>
 
-      <h3 className="mt-4">Tus Publicaciones</h3>
-      {publicaciones.length > 0 ? (
-        <div className="row">
-          {publicaciones.map((publicacion) => (
-            <div key={publicacion.id} className="col-md-4">
-              <div className="card mt-3">
-                <div className="card-body">
-                  <h5>{publicacion.nombre}</h5>
-                  <p>Stock: {publicacion.stock}</p>
-                  <p>Precio: ${new Intl.NumberFormat("es-CL").format(publicacion.precio)}</p>
-                </div>
+
+      {/*  Pestañas de Publicaciones y Compras */}
+      <Tab.Container activeKey={activeTab} onSelect={(tab) => setActiveTab(tab)}>
+        <Nav variant="tabs" className="mt-4">
+          <Nav.Item>
+            <Nav.Link eventKey="publicaciones">Tus Publicaciones</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="compras">Historial de Compras</Nav.Link>
+          </Nav.Item>
+        </Nav>
+
+        <Tab.Content className="mt-3">
+          {/*  Pestaña de Publicaciones */}
+          <Tab.Pane eventKey="publicaciones">
+            {publicaciones.length > 0 ? (
+              <div className="row">
+                {publicaciones.map((publicacion) => (
+                  <div key={publicacion.id} className="col-md-4">
+                    <div className="card mt-3">
+                      <div className="card-body">
+                        <h5>{publicacion.nombre}</h5>
+                        <p>Stock: {publicacion.stock}</p>
+                        <p>Precio: ${new Intl.NumberFormat("es-CL").format(publicacion.precio)}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <p>No tienes publicaciones aún.</p>
-      )}
+            ) : (
+              <p>No tienes publicaciones aún.</p>
+            )}
+          </Tab.Pane>
 
 
       
-      <h2>Historial de Compras</h2>
-      {compras.length === 0 ? (
-        <p>No tienes compras registradas.</p>
-      ) : (
-        compras.map((compra) => (
-          <div key={compra.transaccion_id}>
-            <h3>Transacción #{compra.transaccion_id}</h3>
-            <p>{new Date(compra.fecha).toLocaleString()}</p>
-            <p><strong>Total:</strong> ${compra.total.toLocaleString()}</p>
-            <ul>
-              {compra.detalles.map((detalle, index) => (
-                <li key={index}>
-                  {detalle.publicacion} - {detalle.cantidad} unidades - ${detalle.subtotal.toLocaleString()}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))
-      )}
+          {/*  Pestaña de Compras */}
+          <Tab.Pane eventKey="compras">
+            {compras.length === 0 ? (
+              <p>No tienes compras registradas.</p>
+            ) : (
+              compras.map((compra) => (
+                <div key={compra.transaccion_id} className="card mt-3 p-3">
+                  <h5>Transacción #{compra.transaccion_id}</h5>
+                  <p>{new Date(compra.fecha).toLocaleString()}</p>
+                  <p><strong>Total:</strong> ${compra.total.toLocaleString()}</p>
+                  <ul>
+                    {compra.detalles.map((detalle, index) => (
+                      <li key={index}>
+                        {detalle.publicacion} - {detalle.cantidad} unidades - ${detalle.subtotal.toLocaleString()}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))
+            )}
+          </Tab.Pane>
+        </Tab.Content>
+      </Tab.Container>
     </div>
   );
 };
