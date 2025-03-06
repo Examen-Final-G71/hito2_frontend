@@ -36,7 +36,7 @@ const Home = () => {
             <h1>Categorías</h1>
           </div>
         </div>
-        <div className="row gap-2" style={{ marginBottom: "60px" }}>
+        <div className="row my-3" style={{ marginBottom: "60px" }}>
           {categorias.map((categoria, index) => (
             <div className="col-md-4" key={index}>
               <motion.div
