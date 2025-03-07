@@ -24,7 +24,7 @@ const Banner = () => {
                     </h2> 
                     <div style={{ fontSize: '2rem', backgroundColor: 'rgba(0, 0, 0, 0.56)' }}>
                     <p>Productos de aseo</p>
-                    <p>Elementos de protección personal</p>
+                    <p>Ropa de seguridad</p>
                     <p>Productos de librería</p>
                   </div>
                   <Link to="/Gallery">
